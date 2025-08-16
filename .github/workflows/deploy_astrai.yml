@@ -1,0 +1,59 @@
+name: Deploy ASTRAI Website
+
+on:
+  push:
+    branches: [ "gt-pages" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Build static React app  
+        run: |
+          # Build only the frontend React app (not the server)
+          npx vite build
+        working-directory: client
+        
+      - name: Copy CNAME for custom domain
+        run: |
+          if [ -f CNAME ]; then
+            cp CNAME dist/public/
+          fi
+        
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Upload static files to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist/public'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
