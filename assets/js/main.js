@@ -102,3 +102,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
+/* ---- Hover/focus overlay helpers ---- */
+(function () {
+  const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
+
+  // Tap/click "Show options" toggles the overlay class for mobile/touch
+  qsa('.resource-card .show-options').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const card = link.closest('.resource-card');
+      card.classList.toggle('is-hovered');
+    });
+  });
+
+  // Click outside any card closes overlays opened via tap
+  document.addEventListener('click', (e) => {
+    const insideCard = e.target.closest('.resource-card');
+    if (!insideCard) {
+      qsa('.resource-card.is-hovered').forEach(c => c.classList.remove('is-hovered'));
+    }
+  });
+})();
+
+
