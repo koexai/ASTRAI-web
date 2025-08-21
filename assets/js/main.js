@@ -107,7 +107,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     // DOCS toggle
     if (docsBtn && docsBox) {
       docsBtn.addEventListener('click', () => {
-        toggle(docsBox));
+        toggle(docsBox);
         docsBtn.setAttribute('aria-expanded', docsBox.open); // update ARIA
     });
   }
