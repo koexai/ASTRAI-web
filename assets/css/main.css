@@ -109,13 +109,15 @@ h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
   position: absolute; right: .75rem; top: .75rem; z-index: 3;
   font-size: .85rem; text-decoration: underline; color: #1e3a8a;
 }
-@media (hover:hover)) { .show-options { opacity: 0; pointer-events: none; } }
+@media (hover:hover) { .show-options { opacity: 0; pointer-events: none; } }
 
 /* Card footer (small note, not site footer) */
 .resource-foot { margin-top: .75rem; font-size: .85rem; color: #64748b; background: transparent; padding: 0; }
 
 /* Accessibility focus */
 .resource-card:focus-within { outline: 2px solid #94a3b8; outline-offset: 2px; }
+.resource-card:focus-visible {  outline: 2px dashed #2A3E92; outline-offset: 2px; }
+
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
