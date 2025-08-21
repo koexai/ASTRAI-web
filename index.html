@@ -214,7 +214,8 @@
                 <!-- Hover / focus overlay with actions -->
                 <div class="hover-actions" aria-hidden="true">
                   <div class="actions-inner">
-                    <button class="btn btn-secondary" data-action="toggle-sample">View sample (.csv)</button>
+                    <button class="btn btn-secondary" data-action="toggle-sample" aria-expanded="false" aria-controls="sample-1">View sample (.csv)</button>
+                    <details id="sample-1" class="block-sample" aria-live="polite">
                     <button class="btn btn-secondary" data-action="toggle-docs">Documentation</button>
                     <a class="btn" href="#request-access">Request full dataset</a>
                   </div>
