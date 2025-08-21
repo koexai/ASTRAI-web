@@ -102,6 +102,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
+
 /* ---- Hover/focus overlay helpers ---- */
 (function () {
   const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
