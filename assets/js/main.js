@@ -1,11 +1,9 @@
 // Smooth scrolling for in-page nav (ignore "#" and .show-options)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    // Let the card's "Show options" handler deal with it
     if (this.classList.contains('show-options')) return;
 
     const href = this.getAttribute('href') || '';
-    // Ignore bare "#" (no target) and "#!" etc.
     if (href === '#' || href === '#!' || href.trim().length <= 1) {
       e.preventDefault();
       return;
@@ -46,7 +44,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         field += ch; i++; continue;
       }
     }
-    // push last field/row
     if (field.length || row.length) { row.push(field); rows.push(row); }
     return rows;
   }
@@ -85,7 +82,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (sampleBtn && sampleBox) {
       sampleBtn.addEventListener('click', () => {
         toggle(sampleBox);
-        sampleBtn.setAttribute('aria-expanded', sampleBox.open); // update ARIA
+        sampleBtn.setAttribute('aria-expanded', sampleBox.open);
         if (sampleBox.open && !sampleBox.dataset.loaded) {
           const url = card.getAttribute('data-sample-url');
           const container = qs('.sample-table', sampleBox);
@@ -104,14 +101,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
     }
 
-    // DOCS toggle
+    // DOCS toggle (fixed syntax)
     if (docsBtn && docsBox) {
       docsBtn.addEventListener('click', () => {
         toggle(docsBox);
-        docsBtn.setAttribute('aria-expanded', docsBox.open); // update ARIA
-    });
-  }
-});
+        docsBtn.setAttribute('aria-expanded', docsBox.open);
+      });
+    }
+  });
+})();
 
 
 /* ---- Hover/focus overlay helpers ---- */
@@ -123,7 +121,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const card = link.closest('.resource-card');
-      card.classList.toggle('is-hovered');
+      const opened = card.classList.toggle('is-hovered');
+      link.setAttribute('aria-expanded', String(opened));
     });
   });
 
@@ -132,6 +131,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const insideCard = e.target.closest('.resource-card');
     if (!insideCard) {
       qsa('.resource-card.is-hovered').forEach(c => c.classList.remove('is-hovered'));
+      qsa('.resource-card .show-options').forEach(l => l.setAttribute('aria-expanded', 'false'));
     }
   });
 })();
@@ -145,5 +145,3 @@ document.addEventListener('DOMContentLoaded', () => {
     emailLink.href = `mailto:${user}@${domain}`;
   }
 });
-
-
