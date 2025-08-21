@@ -359,10 +359,18 @@
                   </ul>
                 </header>
         
-                <div class="btn-row">
-                  <a class="btn btn-secondary" href="/docs/genai/README.html">Planned scope</a>
-                  <a class="btn" href="mailto:info@koexai.com?subject=ASTRAI GenAI dataset — register interest&body=Please notify me when the GenAI dataset is available.">Register interest</a>
+                <!-- Keyboard/touch entry point (shown on touch, focusable for a11y) -->
+                <a class="show-options" href="#" aria-haspopup="true">Show options</a>
+                
+                <!-- Hover / focus overlay with actions -->
+                <div class="hover-actions" aria-hidden="true">
+                  <div class="actions-inner">
+                    <button class="btn btn-secondary" data-action="toggle-sample">View sample (.csv)</button>
+                    <button class="btn btn-secondary" data-action="toggle-docs">Documentation</button>
+                    <a class="btn" href="#request-access">Request full dataset</a>
+                  </div>
                 </div>
+                  
               </article>
         
             </div>
