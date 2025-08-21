@@ -45,11 +45,9 @@ h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 .feature-list li { padding: 1rem 0; border-left: 4px solid #F46A20; padding-left: 2rem; margin: 1rem 0; background: #f9f9f9; border-radius: 0 5px 5px 0; }
 .feature-list li strong { color: #2A3E92; }
 
-footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; }
-.contact-info { background: #f1f5f9; padding: 2rem; border-radius: 10px; text-align: center; }
-/* Site footer only (does not affect card footers) */
+/* Site footer (scoped) */
 .site-footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; }
-
+.contact-info { background: #f1f5f9; padding: 2rem; border-radius: 10px; text-align: center; }
 
 /* Funding logos */
 .logo-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; list-style: none; padding: 0; margin: 0; gap: 2rem; }
@@ -68,7 +66,7 @@ footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; 
 
 /* Details blocks — hidden when closed */
 .resource-card details > summary { display: none; }
-.resource-card details:not([open]) > *:not(summary) { display: none !important; }
+.block-sample:not([open]), .block-docs:not([open]) { display: none !important; }
 
 .block-sample, .block-docs {
   margin-top: .75rem;
@@ -80,13 +78,6 @@ footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; 
   z-index: 1;
 }
 .block-sample[open], .block-docs[open] { background: #f8fafc; }
-
-/* Hide the whole wrapper when closed */
-.block-sample:not([open]),
-.block-docs:not([open]) { display: none !important; }
-
-/* Keep summary suppressed */
-.resource-card details > summary { display: none; }
 
 /* Sample table */
 .sample-note { font-size: .9rem; color: #475569; margin-bottom: .5rem; }
@@ -118,9 +109,10 @@ footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; 
   position: absolute; right: .75rem; top: .75rem; z-index: 3;
   font-size: .85rem; text-decoration: underline; color: #1e3a8a;
 }
-@media (hover:hover) { .show-options { opacity: 0; pointer-events: none; } }
+@media (hover:hover)) { .show-options { opacity: 0; pointer-events: none; } }
 
-.resource-foot { margin-top: .75rem; font-size: .85rem; color: #64748b; }
+/* Card footer (small note, not site footer) */
+.resource-foot { margin-top: .75rem; font-size: .85rem; color: #64748b; background: transparent; padding: 0; }
 
 /* Accessibility focus */
 .resource-card:focus-within { outline: 2px solid #94a3b8; outline-offset: 2px; }
