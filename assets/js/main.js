@@ -85,6 +85,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (sampleBtn && sampleBox) {
       sampleBtn.addEventListener('click', () => {
         toggle(sampleBox);
+        sampleBtn.setAttribute('aria-expanded', sampleBox.open); // update ARIA
         if (sampleBox.open && !sampleBox.dataset.loaded) {
           const url = card.getAttribute('data-sample-url');
           const container = qs('.sample-table', sampleBox);
@@ -105,10 +106,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     // DOCS toggle
     if (docsBtn && docsBox) {
-      docsBtn.addEventListener('click', () => toggle(docsBox));
-    }
-  });
-})();
+      docsBtn.addEventListener('click', () => {
+        toggle(docsBox));
+        docsBtn.setAttribute('aria-expanded', docsBox.open); // update ARIA
+    });
+  }
+});
 
 
 /* ---- Hover/focus overlay helpers ---- */
