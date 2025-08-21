@@ -4,7 +4,23 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
 /* Header */
-header { background: #fff; padding: 1rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+body > header {
+  background: #fff;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+/* Ensure card headers behave like normal content */
+.resource-card .resource-head {
+  position: static;
+  width: auto;
+  top: auto;
+  box-shadow: none;
+  background: transparent;
+}
 .header-content { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-size: 1.8rem; font-weight: bold; color: #2A3E92; }
 nav a { text-decoration: none; color: #666; margin-left: 2rem; font-weight: 500; transition: color 0.3s; }
