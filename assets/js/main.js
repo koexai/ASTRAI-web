@@ -72,11 +72,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
   function toggle(el) { el.open = !el.open; }
 
-  qsa('.resource-card').forEach(card => {
-    const sampleBtn = qs('[data-action="toggle-sample"]', card);
-    const docsBtn   = qs('[data-action="toggle-docs"]', card);
-    const sampleBox = qs('.block-sample', card);
-    const docsBox   = qs('.block-docs', card);
+  document.querySelectorAll('.resource-card').forEach(card => {
+    const sampleBtn = card.querySelector('[data-action="toggle-sample"]');
+    const docsBtn   = card.querySelector('[data-action="toggle-docs"]');
+    const sampleBox = card.querySelector('.block-sample');
+    const docsBox   = card.querySelector('.block-docs');
 
     // SAMPLE: fetch on first open
     if (sampleBtn && sampleBox) {
@@ -85,7 +85,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         sampleBtn.setAttribute('aria-expanded', sampleBox.open);
         if (sampleBox.open && !sampleBox.dataset.loaded) {
           const url = card.getAttribute('data-sample-url');
-          const container = qs('.sample-table', sampleBox);
+          const container = sampleBox.querySelector('.sample-table');
           if (!url) { container.textContent = 'Sample not available.'; return; }
           fetch(url)
             .then(r => r.ok ? r.text() : Promise.reject())
@@ -101,7 +101,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
     }
 
-    // DOCS toggle (fixed syntax)
+    // DOCS toggle (fixed)
     if (docsBtn && docsBox) {
       docsBtn.addEventListener('click', () => {
         toggle(docsBox);
