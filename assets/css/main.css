@@ -75,3 +75,38 @@ footer { background: #2A3E92; color: white; text-align: center; padding: 2rem 0;
 @media (max-width: 768px) {
   .logo-bar img { height: 48px; }
 }
+
+/* === Resources v2 — lightweight styling === */
+.resource-grid { align-items: stretch; }
+.resource-card { display:flex; flex-direction:column; }
+.resource-card .resource-head p { margin:.35rem 0 0.75rem; }
+
+.meta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin:0 0 0.75rem; padding:0; list-style:none; }
+.meta li { font-size:.95rem; color:#334155; }
+
+.btn-row { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.5rem; }
+
+.block-sample, .block-docs { margin-top:.75rem; border:1px solid #e5e7eb; border-radius:10px; padding:0.75rem; background:#fafafa; }
+.block-sample[open], .block-docs[open] { background:#f8fafc; }
+
+.sample-note { font-size:.9rem; color:#475569; margin-bottom:.5rem; }
+.sample-actions { display:flex; align-items:center; gap:1rem; margin-top:.5rem; }
+.sample-table { overflow:auto; max-height:280px; border:1px solid #e5e7eb; background:white; border-radius:8px; }
+
+.sample-table table { width:100%; border-collapse:collapse; font-size:.92rem; }
+.sample-table th, .sample-table td { padding:.4rem .5rem; border-bottom:1px solid #f1f5f9; white-space:nowrap; }
+.sample-table th { text-align:left; position:sticky; top:0; background:#f8fafc; }
+
+.resource-foot { margin-top:.5rem; font-size:.85rem; }
+
+.access-box { margin-top:2rem; background:#f1f5f9; border-radius:10px; padding:1rem 1.25rem; }
+.access-box ol { margin:.25rem 0 1rem 1.25rem; }
+.access-box .muted { margin:.25rem 0 .5rem; }
+
+.muted { color:#64748b; }
+
+/* Hide <summary> text but keep it accessible to AT */
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
+
