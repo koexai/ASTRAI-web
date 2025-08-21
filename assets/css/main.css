@@ -47,6 +47,9 @@ h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 
 footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; }
 .contact-info { background: #f1f5f9; padding: 2rem; border-radius: 10px; text-align: center; }
+/* Site footer only (does not affect card footers) */
+.site-footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; }
+
 
 /* Funding logos */
 .logo-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; list-style: none; padding: 0; margin: 0; gap: 2rem; }
@@ -77,6 +80,13 @@ footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; 
   z-index: 1;
 }
 .block-sample[open], .block-docs[open] { background: #f8fafc; }
+
+/* Hide the whole wrapper when closed */
+.block-sample:not([open]),
+.block-docs:not([open]) { display: none !important; }
+
+/* Keep summary suppressed */
+.resource-card details > summary { display: none; }
 
 /* Sample table */
 .sample-note { font-size: .9rem; color: #475569; margin-bottom: .5rem; }
