@@ -133,4 +133,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 })();
 
+/* ---- mailto ---- */
+document.addEventListener('DOMContentLoaded', () => {
+  const emailLink = document.getElementById('email-link');
+  if (emailLink) {
+    const user = 'info';
+    const domain = 'koexai.com';
+    emailLink.href = `mailto:${user}@${domain}`;
+  }
+});
+
 
