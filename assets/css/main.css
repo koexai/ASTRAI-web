@@ -1,3 +1,4 @@
+/* === Base reset & layout === */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #fff; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -9,41 +10,112 @@ header { background: #fff; padding: 1rem 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1
 nav a { text-decoration: none; color: #666; margin-left: 2rem; font-weight: 500; transition: color 0.3s; }
 nav a:hover { color: #F46A20; }
 
-/* Main content */
+/* Main */
 main { margin-top: 80px; }
 section { padding: 4rem 0; scroll-margin-top: 90px; }
 
+/* Hero */
 .hero { background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); text-align: center; padding: 6rem 0; }
 .hero h1 { font-size: 3.5rem; color: #2A3E92; margin-bottom: 1rem; }
 .hero .subtitle { font-size: 1.5rem; color: #666; margin-bottom: 1rem; }
 .hero .tagline { font-size: 1.2rem; color: #777; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-
 .funding-notice { background: #f1f5f9; padding: 2rem; border-radius: 10px; margin: 2rem auto; max-width: 900px; font-style: italic; color: #64748b; border-left: 4px solid #F46A20; }
 
-.btn { display: inline-block; background: #F46A20; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s; margin: 10px; }
+/* Buttons */
+.btn { display: inline-block; background: #F46A20; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background .3s; margin: 10px; }
 .btn:hover { background: #e55a1a; }
 .btn-secondary { background: #2A3E92; }
 .btn-secondary:hover { background: #1e2d6f; }
 
+/* Headings */
 h2 { font-size: 2.5rem; color: #2A3E92; text-align: center; margin-bottom: 2rem; }
 h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 
+/* Grid & cards */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; align-items: stretch; }
-
-.card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; justify-content: flex-start; height: 100%; }
+.card { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; justify-content: flex-start; height: 100%; position: relative; }
 .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
 .card h3 { color: #2A3E92; border-left: 4px solid #F46A20; padding-left: 1rem; font-size: 1.6rem; line-height: 1.3; margin-bottom: .75rem; }
 .card p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
 .card .btn { margin-top: auto; }
 
+/* Misc sections */
 .alternate-bg { background: #f8f9ff; }
 .feature-list { list-style: none; padding: 0; }
 .feature-list li { padding: 1rem 0; border-left: 4px solid #F46A20; padding-left: 2rem; margin: 1rem 0; background: #f9f9f9; border-radius: 0 5px 5px 0; }
 .feature-list li strong { color: #2A3E92; }
 
-footer { background: #2A3E92; color: white; text-align: center; padding: 2rem 0; }
+footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; }
 .contact-info { background: #f1f5f9; padding: 2rem; border-radius: 10px; text-align: center; }
 
+/* Funding logos */
+.logo-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; list-style: none; padding: 0; margin: 0; gap: 2rem; }
+.logo-bar img { height: 88px; max-width: 100%; }
+@media (max-width: 1024px) { .logo-bar img { height: 72px; } }
+@media (max-width: 768px)  { .logo-bar img { height: 48px; } }
+
+/* === Resources section === */
+.resource-grid { align-items: stretch; position: relative; }
+.resource-card { display: flex; flex-direction: column; isolation: isolate; overflow: hidden; z-index: 0; }
+.resource-card .resource-head p { margin: .35rem 0 .75rem; }
+
+/* Metadata row */
+.meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: 0 0 .75rem; padding: 0; list-style: none; }
+.meta li { font-size: .95rem; color: #334155; }
+
+/* Details blocks — hidden when closed */
+.resource-card details > summary { display: none; }
+.resource-card details:not([open]) > *:not(summary) { display: none !important; }
+
+.block-sample, .block-docs {
+  margin-top: .75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: .75rem;
+  background: #fafafa;
+  position: relative;
+  z-index: 1;
+}
+.block-sample[open], .block-docs[open] { background: #f8fafc; }
+
+/* Sample table */
+.sample-note { font-size: .9rem; color: #475569; margin-bottom: .5rem; }
+.sample-actions { display: flex; align-items: center; gap: 1rem; margin-top: .5rem; }
+.sample-table { overflow: auto; max-height: 280px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; }
+.sample-table table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.sample-table th, .sample-table td { padding: .4rem .5rem; border-bottom: 1px solid #f1f5f9; white-space: nowrap; }
+.sample-table th { text-align: left; position: sticky; top: 0; background: #f8fafc; }
+
+/* Bottom action bar (appears on hover/focus/tap) */
+.hover-actions {
+  position: absolute; left: 1rem; right: 1rem; bottom: 1rem;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  padding: .75rem;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 2;
+}
+.resource-card:hover .hover-actions,
+.resource-card:focus-within .hover-actions,
+.resource-card.is-hovered .hover-actions { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+.actions-inner { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: center; }
+.actions-inner .btn { margin: 0; } /* don't inherit .card .btn bottom push */
+
+.show-options {
+  position: absolute; right: .75rem; top: .75rem; z-index: 3;
+  font-size: .85rem; text-decoration: underline; color: #1e3a8a;
+}
+@media (hover:hover) { .show-options { opacity: 0; pointer-events: none; } }
+
+.resource-foot { margin-top: .75rem; font-size: .85rem; color: #64748b; }
+
+/* Accessibility focus */
+.resource-card:focus-within { outline: 2px solid #94a3b8; outline-offset: 2px; }
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .hero h1 { font-size: 2.7rem; }
   nav { display: none; }
@@ -51,145 +123,3 @@ footer { background: #2A3E92; color: white; text-align: center; padding: 2rem 0;
   h2 { font-size: 2rem; }
   h3, .card h3 { font-size: 1.4rem; }
 }
-
-/* === Funding logos === */
-.logo-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 2rem;               /* breathing room between logos */
-}
-
-.logo-bar img {
-  height: 88px;            /* desktop */
-  max-width: 100%;
-}
-
-@media (max-width: 1024px) {
-  .logo-bar img { height: 72px; }
-}
-@media (max-width: 768px) {
-  .logo-bar img { height: 48px; }
-}
-
-/* === Resources v2 — lightweight styling === */
-.resource-grid { align-items: stretch; }
-.resource-card { display:flex; flex-direction:column; }
-.resource-card .resource-head p { margin:.35rem 0 0.75rem; }
-
-.meta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin:0 0 0.75rem; padding:0; list-style:none; }
-.meta li { font-size:.95rem; color:#334155; }
-
-.btn-row { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:.5rem; }
-
-.block-sample, .block-docs { margin-top:.75rem; border:1px solid #e5e7eb; border-radius:10px; padding:0.75rem; background:#fafafa; }
-.block-sample[open], .block-docs[open] { background:#f8fafc; }
-
-.sample-note { font-size:.9rem; color:#475569; margin-bottom:.5rem; }
-.sample-actions { display:flex; align-items:center; gap:1rem; margin-top:.5rem; }
-.sample-table { overflow:auto; max-height:280px; border:1px solid #e5e7eb; background:white; border-radius:8px; }
-
-.sample-table table { width:100%; border-collapse:collapse; font-size:.92rem; }
-.sample-table th, .sample-table td { padding:.4rem .5rem; border-bottom:1px solid #f1f5f9; white-space:nowrap; }
-.sample-table th { text-align:left; position:sticky; top:0; background:#f8fafc; }
-
-.resource-foot { margin-top:.5rem; font-size:.85rem; }
-
-.access-box { margin-top:2rem; background:#f1f5f9; border-radius:10px; padding:1rem 1.25rem; }
-.access-box ol { margin:.25rem 0 1rem 1.25rem; }
-.access-box .muted { margin:.25rem 0 .5rem; }
-
-.muted { color:#64748b; }
-
-/* Hide <summary> text but keep it accessible to AT */
-.sr-only {
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
-}
-
-/* --- Hover/focus actions overlay --- */
-.resource-card { position: relative; overflow: hidden; } /* contains overlay */
-.hover-actions {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  padding: 1rem;
-  background: rgba(255,255,255,0.96);
-  backdrop-filter: blur(2px);
-  opacity: 0; pointer-events: none;
-  transition: opacity .18s ease;
-  z-index: 2;
-}
-.resource-card:hover .hover-actions,
-.resource-card:focus-within .hover-actions,
-.resource-card.is-hovered .hover-actions {
-  opacity: 1; pointer-events: auto;
-}
-.actions-inner { display:flex; flex-direction:column; gap:.6rem; align-items:center; }
-
-/* Small link for keyboard/touch users */
-.show-options {
-  position: absolute; right: .75rem; top: .75rem; z-index: 3;
-  font-size: .85rem; text-decoration: underline; color: #1e3a8a;
-}
-@media (hover:hover) {  /* on desktop, hide the link; hover reveals actions */
-  .show-options { opacity: 0; pointer-events: none; }
-}
-
-/* Tidy up details blocks and prevent Safari quirk with <summary> */
-.resource-card summary { display: none; }  /* we toggle via JS */
-.block-sample, .block-docs { margin-top:.75rem; border:1px solid #e5e7eb; border-radius:10px; padding:.75rem; background:#fafafa; position: relative; z-index: 1; }
-.block-sample[open], .block-docs[open] { background:#f8fafc; }
-
-/* Sample table */
-.sample-table { overflow:auto; max-height:280px; border:1px solid #e5e7eb; background:white; border-radius:8px; }
-.sample-table table { width:100%; border-collapse:collapse; font-size:.92rem; }
-.sample-table th, .sample-table td { padding:.4rem .5rem; border-bottom:1px solid #f1f5f9; white-space:nowrap; }
-.sample-table th { text-align:left; position:sticky; top:0; background:#f8fafc; }
-
-/* Meta + footer fixes */
-.meta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin:0 0 .75rem; padding:0; list-style:none; }
-.meta li { font-size:.95rem; color:#334155; }
-.resource-foot { margin-top:.5rem; font-size:.85rem; color:#64748b; background: transparent !important; padding: 0 !important; }
-
-/* Optional: subtle card focus state for keyboard navigation */
-.resource-card:focus-within { outline: 2px solid #94a3b8; outline-offset: 2px; }
-
-
-/* Contain each resource card so overlays cannot escape */
-.resource-grid { position: relative; }
-
-.resource-card {
-  position: relative !important;
-  isolation: isolate;      /* new stacking context */
-  overflow: clip;          /* confine abs-pos children */
-  z-index: 0;              /* baseline */
-}
-
-/* Fallback for browsers without overflow: clip (older Safari) */
-@supports not (overflow: clip) {
-  .resource-card {
-    overflow: hidden;
-    clip-path: inset(0 round 0); /* ensures paint is clipped */
-  }
-}
-
-/* Keep the overlay above its own card content only */
-.resource-card .hover-actions { z-index: 2; }
-
-/* Belt-and-braces: make sure nothing inside the card is sticky */
-.resource-card h1,
-.resource-card h2,
-.resource-card h3,
-.resource-card .resource-head,
-.resource-card .meta {
-  position: static !important;
-  top: auto !important;
-}
-
-/* Scope the summary hide just to these details blocks */
-.resource-card details > summary { display: none !important; }
-
-
