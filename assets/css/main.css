@@ -110,3 +110,50 @@ footer { background: #2A3E92; color: white; text-align: center; padding: 2rem 0;
   position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0;
 }
 
+/* --- Hover/focus actions overlay --- */
+.resource-card { position: relative; overflow: hidden; } /* contains overlay */
+.hover-actions {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s ease;
+  z-index: 2;
+}
+.resource-card:hover .hover-actions,
+.resource-card:focus-within .hover-actions,
+.resource-card.is-hovered .hover-actions {
+  opacity: 1; pointer-events: auto;
+}
+.actions-inner { display:flex; flex-direction:column; gap:.6rem; align-items:center; }
+
+/* Small link for keyboard/touch users */
+.show-options {
+  position: absolute; right: .75rem; top: .75rem; z-index: 3;
+  font-size: .85rem; text-decoration: underline; color: #1e3a8a;
+}
+@media (hover:hover) {  /* on desktop, hide the link; hover reveals actions */
+  .show-options { opacity: 0; pointer-events: none; }
+}
+
+/* Tidy up details blocks and prevent Safari quirk with <summary> */
+.resource-card summary { display: none; }  /* we toggle via JS */
+.block-sample, .block-docs { margin-top:.75rem; border:1px solid #e5e7eb; border-radius:10px; padding:.75rem; background:#fafafa; position: relative; z-index: 1; }
+.block-sample[open], .block-docs[open] { background:#f8fafc; }
+
+/* Sample table */
+.sample-table { overflow:auto; max-height:280px; border:1px solid #e5e7eb; background:white; border-radius:8px; }
+.sample-table table { width:100%; border-collapse:collapse; font-size:.92rem; }
+.sample-table th, .sample-table td { padding:.4rem .5rem; border-bottom:1px solid #f1f5f9; white-space:nowrap; }
+.sample-table th { text-align:left; position:sticky; top:0; background:#f8fafc; }
+
+/* Meta + footer fixes */
+.meta { display:flex; flex-wrap:wrap; gap:.5rem 1rem; margin:0 0 .75rem; padding:0; list-style:none; }
+.meta li { font-size:.95rem; color:#334155; }
+.resource-foot { margin-top:.5rem; font-size:.85rem; color:#64748b; background: transparent !important; padding: 0 !important; }
+
+/* Optional: subtle card focus state for keyboard navigation */
+.resource-card:focus-within { outline: 2px solid #94a3b8; outline-offset: 2px; }
+
