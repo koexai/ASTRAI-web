@@ -1,17 +1,25 @@
-// Smooth scrolling for navigation links
+// Smooth scrolling for in-page nav (ignore "#" and .show-options)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    // allow external links
-    const href = this.getAttribute('href');
-    if (href && href.startsWith('#')) {
+    // Let the card's "Show options" handler deal with it
+    if (this.classList.contains('show-options')) return;
+
+    const href = this.getAttribute('href') || '';
+    // Ignore bare "#" (no target) and "#!" etc.
+    if (href === '#' || href === '#!' || href.trim().length <= 1) {
       e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      return;
+    }
+
+    const id = href.slice(1);
+    const target = document.getElementById(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 });
+
 
 /* === Resources v2 behaviour === */
 (function () {
