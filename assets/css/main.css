@@ -157,3 +157,39 @@ footer { background: #2A3E92; color: white; text-align: center; padding: 2rem 0;
 /* Optional: subtle card focus state for keyboard navigation */
 .resource-card:focus-within { outline: 2px solid #94a3b8; outline-offset: 2px; }
 
+
+/* Contain each resource card so overlays cannot escape */
+.resource-grid { position: relative; }
+
+.resource-card {
+  position: relative !important;
+  isolation: isolate;      /* new stacking context */
+  overflow: clip;          /* confine abs-pos children */
+  z-index: 0;              /* baseline */
+}
+
+/* Fallback for browsers without overflow: clip (older Safari) */
+@supports not (overflow: clip) {
+  .resource-card {
+    overflow: hidden;
+    clip-path: inset(0 round 0); /* ensures paint is clipped */
+  }
+}
+
+/* Keep the overlay above its own card content only */
+.resource-card .hover-actions { z-index: 2; }
+
+/* Belt-and-braces: make sure nothing inside the card is sticky */
+.resource-card h1,
+.resource-card h2,
+.resource-card h3,
+.resource-card .resource-head,
+.resource-card .meta {
+  position: static !important;
+  top: auto !important;
+}
+
+/* Scope the summary hide just to these details blocks */
+.resource-card details > summary { display: none !important; }
+
+
