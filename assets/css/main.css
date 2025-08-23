@@ -243,3 +243,59 @@ button:focus-visible,
 @media (max-width: 768px) {
   :root { --header-h: 72px; }
 }
+
+/* ==== Resources hub: adopt main site's type scale & rhythm (scoped) ==== */
+body.resources-page .lede { max-width: 80ch; margin: .75rem auto 1.25rem; color: #475569; }
+
+body.resources-page h1 { font-size: 3rem; color: #2A3E92; letter-spacing: -0.02em; margin: 0 0 1rem; }
+body.resources-page h2 { font-size: 2.2rem; color: #2A3E92; text-align: center; margin: 2.2rem 0 .75rem; }
+body.resources-page h3 { font-size: 1.6rem; color: #2A3E92; margin: 1.2rem 0 .5rem; }
+body.resources-page h4 { font-size: 1.1rem; font-weight: 700; margin: .6rem 0 .35rem; }
+body.resources-page h5 { font-size: 1rem; font-weight: 600; margin: .75rem 0 .45rem; }
+
+body.resources-page p { margin: .5rem 0; }
+body.resources-page ul { margin: .5rem 0 1rem 1.25rem; }
+body.resources-page a { color: #1f3a8a; text-decoration: underline; text-underline-offset: 2px; }
+body.resources-page a:hover { text-decoration-thickness: 2px; }
+
+/* TOC indentation & bullets */
+body.resources-page #toc ul { padding-left: 1.25rem; margin: .2rem 0; }
+body.resources-page #toc > ul { padding-left: 0; }
+body.resources-page #toc > ul > li { list-style: disc; }
+body.resources-page #toc ul ul > li { list-style: circle; }
+body.resources-page #toc ul ul ul > li { list-style: square; }
+body.resources-page #toc a { line-height: 1.4; }
+
+/* Dataset blocks: breathing room + subtle separators */
+body.resources-page #datasets > section { margin-top: 1.5rem; }
+body.resources-page #datasets article {
+  margin: 1.25rem 0 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Tables: consistent look */
+body.resources-page .table-scroll {
+  margin-top: .4rem; border: 1px solid #e5e7eb; border-radius: 8px;
+  overflow: auto; max-height: 240px; background: #fff;
+}
+body.resources-page .table-scroll table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+body.resources-page .table-scroll thead th {
+  position: sticky; top: 0; background: #f8fafc; text-align: left;
+  border-bottom: 1px solid #e5e7eb; padding: .45rem .6rem; white-space: nowrap;
+}
+body.resources-page .table-scroll tbody td {
+  border-bottom: 1px solid #f1f5f9; padding: .4rem .6rem; white-space: nowrap;
+}
+body.resources-page .table-scroll tbody tr:nth-child(odd) td { background: #fcfdff; }
+
+/* Column pager */
+body.resources-page .preview-colnav { display:flex; gap:.5rem; align-items:center; margin:.35rem 0 .55rem; font-size:.9rem; }
+body.resources-page .preview-colnav button {
+  border:1px solid #e5e7eb; padding:.3rem .5rem; border-radius:6px; background:#fff; cursor:pointer;
+}
+body.resources-page .preview-colnav button[disabled]{ opacity:.5; cursor:default; }
+body.resources-page .preview-colnav .range { font-variant-numeric: tabular-nums; color:#64748b; }
+
+/* Utility */
+body.resources-page .muted { color:#64748b; }
