@@ -356,3 +356,53 @@ body.resources-page .toc-panel a[aria-current="true"] {
   /* Hide the long list on small screens; keep the heading + select */
   body.resources-page .toc-panel ul { display: none; }
 }
+
+/* ===== Resource Hub — Category bands + dataset frames (scoped) ===== */
+:root{
+  /* faint tints for category backgrounds */
+  --band-a: #F8FAFF;  /* cool blue */
+  --band-b: #FAFFF8;  /* soft green */
+  --band-c: #FFF9F8;  /* warm coral */
+  --band-border: #eef2f7;
+}
+
+body.resources-page #datasets .category-band {
+  background: #fff; /* default, overridden by per-band classes below */
+  border: 1px solid var(--band-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* per-category tints */
+body.resources-page #datasets .category-band.band-a { background: var(--band-a); }
+body.resources-page #datasets .category-band.band-b { background: var(--band-b); }
+body.resources-page #datasets .category-band.band-c { background: var(--band-c); }
+
+/* space inside bands */
+body.resources-page #datasets .category-band > * + * { margin-top: 1rem; }
+
+/* dataset frames (NOT cards): subtle border, radius, white bg */
+body.resources-page #datasets .dataset.frame {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: .75rem 0 1rem;
+}
+
+/* remove the old bottom divider when framed */
+body.resources-page #datasets article.frame {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* tidy spacing of headings within framed datasets */
+body.resources-page #datasets .dataset.frame h4 { margin-top: .25rem; }
+body.resources-page #datasets .dataset.frame h5 { margin-top: .75rem; }
+
+/* responsive: soften padding on small screens */
+@media (max-width: 768px){
+  body.resources-page #datasets .category-band { padding: .9rem; }
+  body.resources-page #datasets .dataset.frame { padding: .9rem; }
+}
