@@ -33,7 +33,9 @@
     </p>
 
     <!-- Index / Table of Contents -->
-    <section id="toc" role="navigation" aria-labelledby="toc-heading" aria-label="Table of contents">
+    <div class="page-grid">
+    <nav id="toc" class="toc-panel" aria-labelledby="toc-heading" aria-label="On this page">
+
       <h2 id="toc-heading">Index</h2>
       <ul>
         <li><a href="#datasets">Datasets</a>
@@ -76,7 +78,9 @@
         </li>
 
       </ul>
-    </section>
+    </nav>
+
+    <div class="page-content">
 
     <!-- Datasets -->
     <section id="datasets" aria-labelledby="datasets-heading">
@@ -394,6 +398,9 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
       </section>
     </section>
 
+        </div> <!-- /.page-content -->
+    </div> <!-- /.page-grid -->
+
   </main>
 
   <footer class="site-footer">
@@ -509,6 +516,51 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
           })();
         });
     </script>
+    <script>
+        (function () {
+          const toc = document.getElementById('toc');
+          if (!toc) return;
+
+          // Build a mobile "Jump to…" <select> from the existing links
+          const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+          if (links.length) {
+            const select = document.createElement('select');
+            select.className = 'toc-select';
+            const firstOpt = document.createElement('option');
+            firstOpt.value = ''; firstOpt.textContent = 'Jump to…';
+            select.appendChild(firstOpt);
+
+            links.forEach(a => {
+              const opt = document.createElement('option');
+              opt.value = a.getAttribute('href');
+              opt.textContent = a.textContent.trim();
+              select.appendChild(opt);
+            });
+
+            // Insert after the heading
+            const h2 = toc.querySelector('h2') || toc.firstChild;
+            h2 && h2.insertAdjacentElement('afterend', select);
+
+            select.addEventListener('change', () => {
+              if (select.value) location.hash = select.value;
+            });
+          }
+
+          // Highlight the current item in the TOC
+          function updateActive() {
+            const hash = window.location.hash || '';
+            links.forEach(a => a.setAttribute('aria-current', (a.getAttribute('href') === hash) ? 'true' : 'false'));
+          }
+          window.addEventListener('hashchange', updateActive);
+          // Also set on click (fast feedback)
+          links.forEach(a => a.addEventListener('click', () => {
+            links.forEach(x => x.removeAttribute('aria-current'));
+            a.setAttribute('aria-current', 'true');
+          }));
+          // Initial state
+          updateActive();
+        })();
+        </script>
 
     <noscript>Your browser does not support JavaScript or it is disabled. Some features may not work properly.</noscript>
 </body>

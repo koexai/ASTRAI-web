@@ -296,3 +296,63 @@ body.resources-page header nav .nav-cta[aria-current="page"] { background: #2A3E
   header nav { display: flex; flex-wrap: wrap; gap: .75rem 1rem; }
   header nav a { margin-left: 0; }
 }
+
+/* ===== Resource Hub: two-column layout & TOC panel (scoped) ===== */
+body.resources-page .page-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Sticky TOC panel */
+body.resources-page .toc-panel {
+  position: sticky;
+  top: calc(var(--header-h) + 12px);
+  align-self: start;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  padding: 1rem 1rem 1.25rem;
+}
+body.resources-page .toc-panel h2 {
+  font-size: 1.05rem;
+  text-align: left;
+  margin: 0 0 .5rem;
+  color: #2A3E92;
+}
+/* Lists inside the panel (we already style #toc in your CSS; these just refine spacing) */
+body.resources-page .toc-panel ul { padding-left: 1.1rem; margin: .25rem 0; }
+body.resources-page .toc-panel ul ul { margin-top: .25rem; }
+body.resources-page .toc-panel li + li { margin-top: .25rem; }
+body.resources-page .toc-panel a { text-decoration: none; }
+body.resources-page .toc-panel a:hover { text-decoration: underline; }
+
+/* Active link state (set via the tiny JS below) */
+body.resources-page .toc-panel a[aria-current="true"] {
+  font-weight: 700;
+  color: #2A3E92;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Mobile: collapse to single column and show a Jump control */
+@media (max-width: 980px) {
+  body.resources-page .page-grid { grid-template-columns: 1fr; }
+  body.resources-page .toc-panel {
+    position: static;
+    padding: .75rem;
+  }
+  body.resources-page .toc-select {
+    display: block;
+    width: 100%;
+    margin: .25rem 0 .5rem;
+    padding: .5rem .6rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font: inherit;
+  }
+  /* Hide the long list on small screens; keep the heading + select */
+  body.resources-page .toc-panel ul { display: none; }
+}
