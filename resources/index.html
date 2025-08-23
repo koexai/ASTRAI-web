@@ -67,8 +67,13 @@
             <li><a href="#pub-findings">Findings</a></li>
           </ul>
         </li>
+        <li><a href="#licence-citation">Licence &amp; Citation</a>
+          <ul>
+            <li><a href="#licence-datasets">Datasets — Licence &amp; how to cite</a></li>
+            <li><a href="#licence-software">Software — Licence &amp; how to cite</a></li>
+          </ul>
+        </li>
 
-        <li><a href="#licence-citation">Licence &amp; Citation</a></li>
       </ul>
     </section>
 
@@ -333,8 +338,61 @@
     <!-- Licence & Citation (placeholder) -->
     <section id="licence-citation" aria-labelledby="licence-heading">
       <h2 id="licence-heading">Licence &amp; Citation</h2>
-      <p>Coming soon: dataset and code licences, plus example citations (plain text and BibTeX).</p>
+      <p class="muted">
+        Unless otherwise stated in a specific dataset block, the default policies below apply. Per-dataset files
+        (e.g. <code>LICENSE</code>, <code>citation.txt</code>) take precedence when present.
+      </p>
+
+      <!-- Datasets -->
+      <section id="licence-datasets" aria-labelledby="licence-datasets-heading">
+        <h3 id="licence-datasets-heading">Datasets — Licence &amp; how to cite</h3>
+        <p><strong>Licence (default):</strong> Creative Commons Attribution 4.0 International (CC BY 4.0).
+          You must provide appropriate credit and indicate if changes were made.
+          <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Read the licence</a>.
+        </p>
+
+        <h4>Recommended dataset citation (plain text)</h4>
+        <pre class="cite">ASTRAI Project (2025). ASTRAI Light Curves — Physical models (4-parameters), v0.1.
+    Koexai. URL: https://astrai.koexai.com/resources/  Licence: CC BY 4.0.</pre>
+
+        <h4>Dataset BibTeX (template)</h4>
+        <pre class="cite">@dataset{astrai_A1_v0_1_2025,
+      author  = {ASTRAI Project},
+      title   = {ASTRAI Light Curves — Physical models (4-parameters)},
+      year    = {2025},
+      version = {0.1},
+      url     = {https://astrai.koexai.com/resources/},
+      license = {CC BY 4.0},
+      note    = {Replace with DOI when available}
+    }</pre>
+        <p class="muted">Tip: if a dataset provides its own <code>citation.txt</code> or DOI, please use that instead of the template above.</p>
+      </section>
+
+      <!-- Software -->
+      <section id="licence-software" aria-labelledby="licence-software-heading">
+        <h3 id="licence-software-heading">Software — Licence &amp; how to cite</h3>
+        <p><strong>Licence (intended):</strong> MIT Licence (to be confirmed in the repository).
+          A copy of the licence will be included as <code>LICENSE</code> in the repo.
+          <a href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">About MIT</a>.
+        </p>
+
+        <h4>Recommended software citation (plain text)</h4>
+        <pre class="cite">ASTRAI Project (2025). ASTRAI Core (v0.1) — Generative models and characterisation tools.
+    Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
+
+        <h4>Software BibTeX (template)</h4>
+        <pre class="cite">@software{astrai_core_v0_1_2025,
+      author  = {ASTRAI Project},
+      title   = {ASTRAI Core},
+      year    = {2025},
+      version = {0.1},
+      url     = {https://astrai.koexai.com/resources/},
+      license = {MIT},
+      note    = {Replace with repository URL and tag when public}
+    }</pre>
+      </section>
     </section>
+
   </main>
 
   <footer class="site-footer">
