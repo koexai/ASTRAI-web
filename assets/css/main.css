@@ -472,4 +472,47 @@ body.resources-page .preview-toolbar .status { margin-left: .25rem; color: #6474
 
 body.resources-page .preview-toolbar--bottom { margin-top: .25rem; }
 
+/* ===== Resource Hub — FAIR checklist (scoped) ===== */
+body.resources-page :root {
+  --fair-ok: #16a34a;      /* green */
+  --fair-soon: #d97706;    /* amber */
+  --fair-missing: #64748b; /* grey */
+  --fair-external: #0e7490;/* teal */
+  --fair-chip-bg: #f8fafc;
+  --fair-border: #e5e7eb;
+}
+
+body.resources-page .fair-note { color:#64748b; margin:.35rem 0 .5rem; }
+
+body.resources-page .fair-checklist {
+  list-style: none; margin:.5rem 0 1rem; padding:0;
+  display: grid; gap:.5rem;
+}
+body.resources-page .fair-item {
+  display:flex; align-items:center; gap:.5rem;
+  padding:.5rem .65rem; border:1px solid var(--fair-border);
+  border-radius:8px; background:#fff;
+}
+/* coloured accent */
+body.resources-page .fair-item[data-status="available"] { border-left:4px solid var(--fair-ok); }
+body.resources-page .fair-item[data-status="soon"]      { border-left:4px solid var(--fair-soon); }
+body.resources-page .fair-item[data-status="external"]  { border-left:4px solid var(--fair-external); }
+body.resources-page .fair-item[data-status="missing"]   { border-left:4px solid var(--fair-missing); }
+
+/* tiny icons */
+body.resources-page .fair-item .icon svg { width:16px; height:16px; display:block; }
+body.resources-page .fair-item[data-status="available"] .icon svg { fill: var(--fair-ok); }
+body.resources-page .fair-item[data-status="soon"] .icon svg      { fill: var(--fair-soon); }
+body.resources-page .fair-item[data-status="external"] .icon svg  { fill: var(--fair-external); }
+body.resources-page .fair-item[data-status="missing"] .icon svg   { fill: var(--fair-missing); }
+
+/* name + link */
+body.resources-page .fair-item .name { font-weight:600; margin-right:.25rem; }
+body.resources-page .fair-item .sep  { color:#94a3b8; }
+
+/* right-aligned status chip */
+body.resources-page .fair-item .state {
+  margin-left:auto; font-size:.82rem; color:#334155;
+  background: var(--fair-chip-bg); padding:.2rem .45rem; border-radius:9999px;
+}
 
