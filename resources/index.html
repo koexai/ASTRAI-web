@@ -209,6 +209,62 @@
   </footer>
 
     <script src="assets/js/main.js" defer></script>
+    <script>
+    (function () {
+      // Minimal CSV parser (handles commas, quotes, CRLF)
+      function parseCSV(text) {
+        const rows = []; let row = [], field = '', i = 0, q = false;
+        while (i < text.length) {
+          const ch = text[i];
+          if (q) {
+            if (ch === '"') { if (text[i+1] === '"') { field+='"'; i+=2; continue; } q=false; i++; continue; }
+            field += ch; i++; continue;
+          } else {
+            if (ch === '"') { q = true; i++; continue; }
+            if (ch === ',') { row.push(field); field=''; i++; continue; }
+            if (ch === '\n') { row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
+            if (ch === '\r') { i++; continue; }
+            field += ch; i++; continue;
+          }
+        }
+        if (field.length || row.length) { row.push(field); rows.push(row); }
+        return rows;
+      }
+
+      function makeTable(rows) {
+        const table = document.createElement('table');
+        if (!rows.length) return table;
+        const [head, ...rest] = rows;
+        const thead = document.createElement('thead');
+        const trh = document.createElement('tr');
+        head.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
+        thead.appendChild(trh);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        rest.forEach(r => {
+          const tr = document.createElement('tr');
+          r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+          tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+        return table;
+      }
+
+      document.querySelectorAll('.table-scroll[data-sample-url]').forEach(el => {
+        const url = el.getAttribute('data-sample-url');
+        fetch(url)
+          .then(r => r.ok ? r.text() : Promise.reject())
+          .then(text => {
+            const rows = parseCSV(text);
+            const sliced = rows.length > 0 ? [rows[0], ...rows.slice(1, 6)] : rows; // header + 5 rows
+            el.textContent = '';
+            el.appendChild(makeTable(sliced));
+          })
+          .catch(() => { el.textContent = 'Could not load sample preview.'; });
+      });
+    })();
+    </script>
     <noscript>Your browser does not support JavaScript or it is disabled. Some features may not work properly.</noscript>
 </body>
 </html>
