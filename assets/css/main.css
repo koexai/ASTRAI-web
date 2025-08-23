@@ -406,3 +406,29 @@ body.resources-page #datasets .dataset.frame h5 { margin-top: .75rem; }
   body.resources-page #datasets .category-band { padding: .9rem; }
   body.resources-page #datasets .dataset.frame { padding: .9rem; }
 }
+
+/* Primary files strip (scoped to the hub) */
+body.resources-page .visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+body.resources-page .file-strip {
+  display: flex; flex-wrap: wrap; gap: .5rem 1rem;
+  margin: .35rem 0 .75rem;
+}
+
+body.resources-page .file-item {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .45rem .65rem;
+  border: 1px solid #e5e7eb; border-radius: 9999px;
+  background: #fff;
+}
+
+body.resources-page .file-item svg { width: 16px; height: 16px; fill: #2A3E92; flex: 0 0 auto; }
+body.resources-page .file-item .name { font-weight: 600; }
+body.resources-page .file-item .meta { color: #64748b; font-size: .9rem; }
+body.resources-page .file-item .hash {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .85rem; text-decoration: underline; text-underline-offset: 2px;
+}
