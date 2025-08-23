@@ -299,3 +299,11 @@ body.resources-page .preview-colnav .range { font-variant-numeric: tabular-nums;
 
 /* Utility */
 body.resources-page .muted { color:#64748b; }
+
+/* Nav CTA for Resource Hub */
+header nav .nav-cta {
+  display:inline-block; padding:.45rem .75rem; border:1px solid #2A3E92;
+  border-radius:9999px; text-decoration:none; color:#2A3E92; line-height:1; margin-left:.5rem;
+}
+header nav .nav-cta:hover { background:#2A3E92; color:#fff; }
+@media (max-width:768px){ header nav .nav-cta{ padding:.4rem .65rem; } }
