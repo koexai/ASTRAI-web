@@ -9,11 +9,10 @@
 </head>
 <body>
     <a class="skip-link" href="#datasets">Skip to content</a>
-    <!-- Site header (no 'Resources' item in the menu by design) -->
     <header>
       <div class="container">
         <div class="header-content">
-          <div class="logo">ASTRAI</div>
+          <a class="logo" href="/">ASTRAI</a>
           <nav aria-label="Primary">
             <a href="/#about">About</a>
             <a href="/#project">Project</a>
@@ -25,7 +24,7 @@
     </header>
 
 
-  <main class="container" style="margin-top: 88px;">
+  <main class="container resources-page">
     <h1>ASTRAI Resource Hub</h1>
     <p class="lede">
       This hub provides access to ASTRAI datasets, source code, and publications.
@@ -78,7 +77,7 @@
       </ul>
     </section>
 
-    <!-- Datasets (anchors only for Step 1) -->
+    <!-- Datasets -->
     <section id="datasets" aria-labelledby="datasets-heading">
       <h2 id="datasets-heading">Datasets</h2>
       <p>Datasets are grouped into three categories. Detailed content will be added in subsequent steps.</p>
@@ -104,14 +103,14 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" role="region" aria-label="A1 sample curve table">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" role="region" aria-label="A1 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
             <a class="link" href="/resources/datasets/samples/A1_curves_sample.csv" download>Download sample curves CSV</a>
           </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" role="region" aria-label="A1 sample parameter table">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" role="region" aria-label="A1 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -148,14 +147,14 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_curves_sample.csv" role="region" aria-label="A2 sample curve table">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_curves_sample.csv" role="region" aria-label="A2 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
             <a class="link" href="/resources/datasets/samples/A2_curves_sample.csv" download>Download sample curves CSV</a>
           </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_params_sample.csv" role="region" aria-label="A2 sample parameter table">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_params_sample.csv" role="region" aria-label="A2 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -194,7 +193,7 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" role="region" aria-label="B1 sample table">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" role="region" aria-label="B1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -237,7 +236,7 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" role="region" aria-label="C1 sample table">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" role="region" aria-label="C1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -259,7 +258,7 @@
       </section>
     </section>
 
-    <!-- Source Code (placeholder) -->
+    <!-- Source Code -->
     <section id="code" aria-labelledby="code-heading">
       <h2 id="code-heading">Source Code</h2>
       <p class="muted">Single public repository (placeholder for now). Links will be activated once the repo is public.</p>
@@ -268,15 +267,15 @@
         <h3 id="code-core-heading">ASTRAI Core Repository</h3>
         <p>Generative models and characterisation tools used in ASTRAI. Includes training/evaluation scripts and utilities.</p>
         <p class="stacked-actions">
-          <a class="btn" href="#" aria-disabled="true">View on GitHub (coming soon)</a>
-          <a class="btn btn-secondary" href="#" aria-disabled="true">Download ZIP (coming soon)</a>
+          <a class="btn" href="https://github.com/koexai/ASTRAI.git" aria-disabled="true">View on GitHub (coming soon)</a>
+          <span class="btn btn-secondary" href="#" aria-disabled="true" onclick="return false;">Download ZIP (coming soon)</span>
         </p>
         <p class="muted">Licence: MIT (TBC). For how to cite the software, see <a href="#licence-citation">Licence &amp; Citation</a>.</p>
       </article>
     </section>
 
 
-    <!-- Publications (placeholder) -->
+    <!-- Publications -->
     <section id="publications" aria-labelledby="publications-heading">
       <h2 id="publications-heading">Publications</h2>
       <p class="muted">
@@ -336,7 +335,7 @@
     </section>
 
 
-    <!-- Licence & Citation (placeholder) -->
+    <!-- Licence & Citation -->
     <section id="licence-citation" aria-labelledby="licence-heading">
       <h2 id="licence-heading">Licence &amp; Citation</h2>
       <p class="muted">
@@ -354,7 +353,7 @@
 
         <h4>Recommended dataset citation (plain text)</h4>
         <pre class="cite">ASTRAI Project (2025). ASTRAI Light Curves — Physical models (4-parameters), v0.1.
-    Koexai. URL: https://astrai.koexai.com/resources/  Licence: CC BY 4.0.</pre>
+Koexai. URL: https://astrai.koexai.com/resources/  Licence: CC BY 4.0.</pre>
 
         <h4>Dataset BibTeX (template)</h4>
         <pre class="cite">@dataset{astrai_A1_v0_1_2025,
@@ -379,7 +378,7 @@
 
         <h4>Recommended software citation (plain text)</h4>
         <pre class="cite">ASTRAI Project (2025). ASTRAI Core (v0.1) — Generative models and characterisation tools.
-    Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
+Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
 
         <h4>Software BibTeX (template)</h4>
         <pre class="cite">@software{astrai_core_v0_1_2025,
