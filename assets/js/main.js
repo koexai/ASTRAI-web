@@ -1,33 +1,54 @@
-// Smooth scrolling for in-page nav (ignore "#" and .show-options)
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    if (this.classList.contains('show-options')) return;
+/* ===========================
+   ASTRAI — Main JS (site-wide)
+   =========================== */
 
-    const href = this.getAttribute('href') || '';
-    if (href === '#' || href === '#!' || href.trim().length <= 1) {
-      e.preventDefault();
-      return;
-    }
+/* Smooth scrolling for in-page anchors.
+   - Only handles links that start with "#"
+   - Ignores "#" / "#!" and elements marked .show-options or [data-no-smooth]
+   - Works with fixed header thanks to CSS scroll-margin-top on targets
+*/
+(function smoothInPageAnchors() {
+  const anchors = document.querySelectorAll('a[href^="#"]');
+  anchors.forEach(a => {
+    a.addEventListener('click', function (e) {
+      if (this.classList.contains('show-options') || this.hasAttribute('data-no-smooth')) return;
 
-    const id = href.slice(1);
-    const target = document.getElementById(id);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+      const href = this.getAttribute('href') || '';
+      if (href === '#' || href === '#!' || href.trim().length <= 1) {
+        e.preventDefault();
+        return;
+      }
+
+      const id = href.slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
-});
+})();
 
+/* ===========================
+   Homepage resource cards
+   (safe no-op on pages without .resource-card)
+   =========================== */
+(function resourceCards() {
+  const cards = document.querySelectorAll('.resource-card');
+  if (!cards.length) return; // Not on a page with resource cards (e.g., Resource Hub) — exit early
 
-/* === Resources v2 behaviour === */
-(function () {
-  const qs = (sel, root = document) => root.querySelector(sel);
+  // Utilities
+  const qs  = (sel, root = document) => root.querySelector(sel);
   const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-  // Robust-ish CSV parser (quotes + escaped quotes)
+  // CSV parsing (supports quotes, escaped quotes, auto-detects comma vs semicolon)
   function parseCSV(text) {
+    const firstLine = text.split(/\r?\n/)[0] || '';
+    const delim = (firstLine.split(';').length > firstLine.split(',').length) ? ';' : ',';
+
     const rows = [];
     let row = [], field = '', i = 0, inQuotes = false;
+
     while (i < text.length) {
       const ch = text[i];
       if (inQuotes) {
@@ -38,9 +59,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         field += ch; i++; continue;
       } else {
         if (ch === '"') { inQuotes = true; i++; continue; }
-        if (ch === ',') { row.push(field); field = ''; i++; continue; }
-        if (ch === '\n') { row.push(field); rows.push(row); row = []; field = ''; i++; continue; }
-        if (ch === '\r') { i++; continue; } // ignore CR
+        if (ch === delim) { row.push(field); field = ''; i++; continue; }
+        if (ch === '\n')  { row.push(field); rows.push(row); row = []; field = ''; i++; continue; }
+        if (ch === '\r')  { i++; continue; } // ignore CR
         field += ch; i++; continue;
       }
     }
@@ -48,50 +69,77 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     return rows;
   }
 
+  function clampRows(rows, maxDataRows) {
+    if (!rows.length) return rows;
+    return [rows[0], ...rows.slice(1, 1 + maxDataRows)]; // keep header + N rows
+  }
+
+  function clampCols(rows, maxCols) {
+    if (!rows.length || !maxCols || maxCols <= 0) return rows;
+    return rows.map(r => r.slice(0, maxCols));
+  }
+
   function renderTable(rows) {
     const table = document.createElement('table');
+
+    if (!rows.length) return table;
+
     const [header, ...rest] = rows;
-    const theadRow = document.createElement('tr');
-    header.forEach(h => {
-      const th = document.createElement('th');
-      th.textContent = h;
-      theadRow.appendChild(th);
-    });
-    table.appendChild(theadRow);
+
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    header.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
     rest.forEach(r => {
       const tr = document.createElement('tr');
-      r.forEach(c => {
-        const td = document.createElement('td');
-        td.textContent = c;
-        tr.appendChild(td);
-      });
-      table.appendChild(tr);
+      r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+      tbody.appendChild(tr);
     });
+    table.appendChild(tbody);
+
     return table;
   }
 
-  function toggle(el) { el.open = !el.open; }
+  // Constants for homepage samples (kept small for layout stability)
+  const MAX_ROWS = 5;    // show header + 5 rows
+  const MAX_COLS = 12;   // first 12 columns (home cards are previews)
 
-  document.querySelectorAll('.resource-card').forEach(card => {
+  cards.forEach(card => {
     const sampleBtn = card.querySelector('[data-action="toggle-sample"]');
     const docsBtn   = card.querySelector('[data-action="toggle-docs"]');
     const sampleBox = card.querySelector('.block-sample');
     const docsBox   = card.querySelector('.block-docs');
 
+    // Toggle helpers
+    function toggle(el, btn) {
+      if (!el) return;
+      el.open = !el.open;
+      if (btn) btn.setAttribute('aria-expanded', String(el.open));
+    }
+
     // SAMPLE: fetch on first open
     if (sampleBtn && sampleBox) {
       sampleBtn.addEventListener('click', () => {
-        toggle(sampleBox);
-        sampleBtn.setAttribute('aria-expanded', sampleBox.open);
+        toggle(sampleBox, sampleBtn);
+
         if (sampleBox.open && !sampleBox.dataset.loaded) {
           const url = card.getAttribute('data-sample-url');
           const container = sampleBox.querySelector('.sample-table');
           if (!url) { container.textContent = 'Sample not available.'; return; }
+
           fetch(url)
             .then(r => r.ok ? r.text() : Promise.reject())
             .then(text => {
-              const rows = parseCSV(text).slice(0, 21); // header + 20 rows
+              let rows = parseCSV(text);
               if (!rows.length) { container.textContent = 'No data in sample.'; return; }
+
+              // Clamp for homepage card previews
+              rows = clampRows(rows, MAX_ROWS);
+              rows = clampCols(rows, MAX_COLS);
+
               container.innerHTML = '';
               container.appendChild(renderTable(rows));
               sampleBox.dataset.loaded = '1';
@@ -101,42 +149,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
     }
 
-    // DOCS toggle (fixed)
+    // DOCS toggle
     if (docsBtn && docsBox) {
-      docsBtn.addEventListener('click', () => {
-        toggle(docsBox);
-        docsBtn.setAttribute('aria-expanded', docsBox.open);
+      docsBtn.addEventListener('click', () => toggle(docsBox, docsBtn));
+    }
+  });
+
+  /* Hover/focus overlay helpers (cards)
+     - Mobile/touch: "Show options" toggles overlay visibility
+     - Clicking outside closes any open overlay
+  */
+  (function overlayHelpers() {
+    const toggles = document.querySelectorAll('.resource-card .show-options');
+
+    toggles.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = link.closest('.resource-card');
+        const opened = card.classList.toggle('is-hovered');
+        link.setAttribute('aria-expanded', String(opened));
       });
-    }
-  });
-})();
-
-
-/* ---- Hover/focus overlay helpers ---- */
-(function () {
-  const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
-
-  // Tap/click "Show options" toggles the overlay class for mobile/touch
-  qsa('.resource-card .show-options').forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const card = link.closest('.resource-card');
-      const opened = card.classList.toggle('is-hovered');
-      link.setAttribute('aria-expanded', String(opened));
     });
-  });
 
-  // Click outside any card closes overlays opened via tap
-  document.addEventListener('click', (e) => {
-    const insideCard = e.target.closest('.resource-card');
-    if (!insideCard) {
-      qsa('.resource-card.is-hovered').forEach(c => c.classList.remove('is-hovered'));
-      qsa('.resource-card .show-options').forEach(l => l.setAttribute('aria-expanded', 'false'));
-    }
-  });
+    document.addEventListener('click', (e) => {
+      const insideCard = e.target.closest('.resource-card');
+      if (!insideCard) {
+        document.querySelectorAll('.resource-card.is-hovered').forEach(c => c.classList.remove('is-hovered'));
+        toggles.forEach(l => l.setAttribute('aria-expanded', 'false'));
+      }
+    });
+  })();
 })();
 
-/* ---- mailto ---- */
+/* ===========================
+   Mailto (simple obfuscation)
+   =========================== */
 document.addEventListener('DOMContentLoaded', () => {
   const emailLink = document.getElementById('email-link');
   if (emailLink) {

@@ -7,7 +7,7 @@
   <meta name="description" content="ASTRAI Resource Hub: datasets, source code, publications, and citation/licensing." />
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
-<body>
+<body class="with-fixed-header resources-page">
     <a class="skip-link" href="#datasets">Skip to content</a>
     <header>
       <div class="container">
@@ -16,8 +16,9 @@
           <nav aria-label="Primary">
             <a href="/#about">About</a>
             <a href="/#project">Project</a>
-            <a href="/#resources">Resources</a>
+            <a href="/#outputs">Outputs</a>
             <a href="/#contact">Contact</a>
+              <a href="/resources/" class="nav-cta" aria-current="page">Resource Hub</a>
           </nav>
         </div>
       </div>
@@ -103,14 +104,14 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" role="region" aria-label="A1 sample curve table" tabindex="0">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
             <a class="link" href="/resources/datasets/samples/A1_curves_sample.csv" download>Download sample curves CSV</a>
           </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" role="region" aria-label="A1 sample parameter table" tabindex="0">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -147,14 +148,14 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_curves_sample.csv" role="region" aria-label="A2 sample curve table" tabindex="0">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_curves_sample.csv" data-max-cols="10" role="region" aria-label="A2 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
             <a class="link" href="/resources/datasets/samples/A2_curves_sample.csv" download>Download sample curves CSV</a>
           </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_params_sample.csv" role="region" aria-label="A2 sample parameter table" tabindex="0">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_params_sample.csv" data-max-cols="10" role="region" aria-label="A2 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -193,7 +194,7 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" role="region" aria-label="B1 sample table" tabindex="0">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" data-max-cols="10" role="region" aria-label="B1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -236,7 +237,7 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" role="region" aria-label="C1 sample table" tabindex="0">
+          <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" data-max-cols="10" role="region" aria-label="C1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
           <p class="preview-actions">
@@ -404,63 +405,111 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
     <script src="/assets/js/main.js" defer></script>
     <script>
         window.addEventListener('DOMContentLoaded', function () {
-            (function () {
-              // Minimal CSV parser (handles commas, quotes, CRLF)
-              function parseCSV(text) {
-                const rows = []; let row = [], field = '', i = 0, q = false;
-                while (i < text.length) {
-                  const ch = text[i];
-                  if (q) {
-                    if (ch === '"') { if (text[i+1] === '"') { field+='"'; i+=2; continue; } q=false; i++; continue; }
-                    field += ch; i++; continue;
-                  } else {
-                    if (ch === '"') { q = true; i++; continue; }
-                    if (ch === ',') { row.push(field); field=''; i++; continue; }
-                    if (ch === '\n') { row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
-                    if (ch === '\r') { i++; continue; }
-                    field += ch; i++; continue;
-                  }
-                }
-                if (field.length || row.length) { row.push(field); rows.push(row); }
-                return rows;
+          (function () {
+            // Detects comma vs semicolon; robust to quotes
+            function parseCSV(text) {
+              const firstLine = text.split(/\r?\n/)[0] || "";
+              const delim = (firstLine.split(";").length > firstLine.split(",").length) ? ";" : ",";
+              const rows = []; let row = [], field = '', i = 0, q = false;
+              while (i < text.length) {
+                const ch = text[i];
+                if (q) { if (ch === '"') { if (text[i+1] === '"') { field+='"'; i+=2; continue; } q=false; i++; continue; }
+                         field += ch; i++; continue; }
+                if (ch === '"') { q = true; i++; continue; }
+                if (ch === delim) { row.push(field); field=''; i++; continue; }
+                if (ch === '\n')  { row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
+                if (ch === '\r')  { i++; continue; }
+                field += ch; i++;
               }
+              if (field.length || row.length) { row.push(field); rows.push(row); }
+              return rows;
+            }
 
-              function makeTable(rows) {
-                const table = document.createElement('table');
-                if (!rows.length) return table;
-                const [head, ...rest] = rows;
-                const thead = document.createElement('thead');
-                const trh = document.createElement('tr');
-                head.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
-                thead.appendChild(trh);
-                table.appendChild(thead);
+            function sliceCols(rows, start, count) {
+              if (!rows.length) return rows;
+              const end = count > 0 ? start + count : rows[0].length; // count==0 => all
+              const out = [];
+              for (const r of rows) out.push(r.slice(start, end));
+              return out;
+            }
 
-                const tbody = document.createElement('tbody');
-                rest.forEach(r => {
-                  const tr = document.createElement('tr');
-                  r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
-                  tbody.appendChild(tr);
-                });
-                table.appendChild(tbody);
-                return table;
-              }
-
-              document.querySelectorAll('.table-scroll[data-sample-url]').forEach(el => {
-                const url = el.getAttribute('data-sample-url');
-                fetch(url)
-                  .then(r => r.ok ? r.text() : Promise.reject())
-                  .then(text => {
-                    const rows = parseCSV(text);
-                    const sliced = rows.length > 0 ? [rows[0], ...rows.slice(1, 6)] : rows; // header + 5 rows
-                    el.textContent = '';
-                    el.appendChild(makeTable(sliced));
-                  })
-                  .catch(() => { el.textContent = 'Could not load sample preview.'; });
+            function makeTable(rows) {
+              const table = document.createElement('table');
+              if (!rows.length) return table;
+              const [head, ...rest] = rows;
+              const thead = document.createElement('thead');
+              const trh = document.createElement('tr');
+              head.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
+              thead.appendChild(trh);
+              table.appendChild(thead);
+              const tbody = document.createElement('tbody');
+              rest.forEach(r => {
+                const tr = document.createElement('tr');
+                r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+                tbody.appendChild(tr);
               });
-            })();
+              table.appendChild(tbody);
+              return table;
+            }
 
-    });
+            document.querySelectorAll('.table-scroll[data-sample-url]').forEach(el => {
+              const url = el.getAttribute('data-sample-url');
+              const pageSizeAttr = Number(el.getAttribute('data-max-cols'));
+              const pageSize = Number.isFinite(pageSizeAttr) && pageSizeAttr >= 0 ? pageSizeAttr : 16; // 0 => show all
+              fetch(url)
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(text => {
+                  const rows = parseCSV(text);
+                  // Clamp to header + 5 rows
+                  const limitedRows = rows.length ? [rows[0], ...rows.slice(1, 6)] : rows;
+
+                  const totalCols = limitedRows.length ? limitedRows[0].length : 0;
+                  let startCol = 0;
+
+                  // Build nav
+                  const nav = document.createElement('div');
+                  nav.className = 'preview-colnav';
+                  const prev = document.createElement('button'); prev.type = 'button'; prev.textContent = '◀';
+                  const next = document.createElement('button'); next.type = 'button'; next.textContent = '▶';
+                  const info = document.createElement('span'); info.className = 'range muted'; info.setAttribute('aria-live','polite');
+
+                  function render() {
+                    const slice = sliceCols(limitedRows, startCol, pageSize);
+                    const viewStart = startCol + 1;
+                    const viewEnd = pageSize === 0 ? totalCols : Math.min(startCol + pageSize, totalCols);
+
+                    // Replace table
+                    el.textContent = '';
+                    el.appendChild(makeTable(slice));
+
+                    // Update nav state
+                    info.textContent = `Columns ${viewStart}–${viewEnd} of ${totalCols}`;
+                    prev.disabled = (startCol === 0);
+                    next.disabled = (pageSize === 0 || viewEnd >= totalCols);
+                  }
+
+                  prev.addEventListener('click', () => { startCol = Math.max(0, startCol - (pageSize || totalCols)); render(); });
+                  next.addEventListener('click', () => {
+                    if (pageSize === 0) return;
+                    startCol = Math.min(totalCols - pageSize, startCol + pageSize);
+                    if (startCol < 0) startCol = 0;
+                    render();
+                  });
+
+                  // Insert nav just before the table container
+                  el.parentNode.insertBefore(nav, el);
+                  nav.appendChild(prev);
+                  nav.appendChild(info);
+                  nav.appendChild(next);
+
+                  render();
+                })
+                .catch(() => { el.textContent = 'Could not load sample preview.'; });
+            });
+          })();
+        });
     </script>
+
     <noscript>Your browser does not support JavaScript or it is disabled. Some features may not work properly.</noscript>
 </body>
 </html>

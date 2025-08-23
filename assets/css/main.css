@@ -3,7 +3,7 @@
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #fff; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* Header */
+/* === Header === */
 body > header {
   background: #fff;
   padding: 1rem 0;
@@ -13,41 +13,48 @@ body > header {
   top: 0;
   z-index: 1000;
 }
-/* Ensure card headers behave like normal content */
-.resource-card .resource-head {
-  position: static;
-  width: auto;
-  top: auto;
-  box-shadow: none;
-  background: transparent;
-}
 .header-content { display: flex; justify-content: space-between; align-items: center; }
 .logo { font-size: 1.8rem; font-weight: bold; color: #2A3E92; }
+
+/* Primary nav */
 nav a { text-decoration: none; color: #666; margin-left: 2rem; font-weight: 500; transition: color 0.3s; }
 nav a:hover { color: #F46A20; }
 
-/* Main */
-main { margin-top: 80px; }
-section { padding: 4rem 0; scroll-margin-top: 90px; }
+/* CTA pill for the Resource Hub link (global) */
+header nav .nav-cta {
+  display: inline-block;
+  padding: .45rem .75rem;
+  border: 1px solid #2A3E92;
+  border-radius: 9999px;
+  text-decoration: none;
+  color: #2A3E92;
+  line-height: 1;
+  margin-left: .5rem;
+}
+header nav .nav-cta:hover { background: #2A3E92; color: #fff; }
+@media (max-width: 768px) { header nav .nav-cta { padding: .4rem .65rem; } }
 
-/* Hero */
+/* === Main layout === */
+section { padding: 4rem 0; }  /* content spacing; anchor offset handled below */
+
+/* === Hero === */
 .hero { background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); text-align: center; padding: 6rem 0; }
 .hero h1 { font-size: 3.5rem; color: #2A3E92; margin-bottom: 1rem; }
 .hero .subtitle { font-size: 1.5rem; color: #666; margin-bottom: 1rem; }
 .hero .tagline { font-size: 1.2rem; color: #777; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; }
 .funding-notice { background: #f1f5f9; padding: 2rem; border-radius: 10px; margin: 2rem auto; max-width: 900px; font-style: italic; color: #64748b; border-left: 4px solid #F46A20; }
 
-/* Buttons */
+/* === Buttons === */
 .btn { display: inline-block; background: #F46A20; color: #fff; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background .3s; margin: 10px; }
 .btn:hover { background: #e55a1a; }
 .btn-secondary { background: #2A3E92; }
 .btn-secondary:hover { background: #1e2d6f; }
 
-/* Headings */
+/* === Headings (site-wide defaults) === */
 h2 { font-size: 2.5rem; color: #2A3E92; text-align: center; margin-bottom: 2rem; }
 h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 
-/* Grid & cards */
+/* === Grid & cards === */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; align-items: stretch; }
 .card { background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: transform .3s, box-shadow .3s; display: flex; flex-direction: column; justify-content: flex-start; height: 100%; position: relative; }
 .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
@@ -55,25 +62,27 @@ h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 .card p { font-size: 1rem; line-height: 1.6; margin-bottom: 1rem; }
 .card .btn { margin-top: auto; }
 
-/* Misc sections */
+/* === Misc sections === */
 .alternate-bg { background: #f8f9ff; }
 .feature-list { list-style: none; padding: 0; }
 .feature-list li { padding: 1rem 0; border-left: 4px solid #F46A20; padding-left: 2rem; margin: 1rem 0; background: #f9f9f9; border-radius: 0 5px 5px 0; }
 .feature-list li strong { color: #2A3E92; }
 
-/* Site footer (scoped) */
+/* === Site footer === */
 .site-footer { background: #2A3E92; color: #fff; text-align: center; padding: 2rem 0; }
 .contact-info { background: #f1f5f9; padding: 2rem; border-radius: 10px; text-align: center; }
 
-/* Funding logos */
+/* === Funding logos === */
 .logo-bar { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; list-style: none; padding: 0; margin: 0; gap: 2rem; }
 .logo-bar img { height: 88px; max-width: 100%; }
 @media (max-width: 1024px) { .logo-bar img { height: 72px; } }
 @media (max-width: 768px)  { .logo-bar img { height: 48px; } }
 
-/* === Resources section === */
+/* === Resources section (homepage cards) === */
 .resource-grid { align-items: stretch; position: relative; }
 .resource-card { display: flex; flex-direction: column; isolation: isolate; overflow: hidden; z-index: 0; }
+/* Ensure card headers behave like normal content */
+.resource-card .resource-head { position: static; width: auto; top: auto; box-shadow: none; background: transparent; }
 .resource-card .resource-head p { margin: .35rem 0 .75rem; }
 
 /* Metadata row */
@@ -95,7 +104,7 @@ h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 }
 .block-sample[open], .block-docs[open] { background: #f8fafc; }
 
-/* Sample table */
+/* Sample table (homepage cards) */
 .sample-note { font-size: .9rem; color: #475569; margin-bottom: .5rem; }
 .sample-actions { display: flex; align-items: center; gap: 1rem; margin-top: .5rem; }
 .sample-table { overflow: auto; max-height: 280px; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; }
@@ -130,30 +139,7 @@ h3 { font-size: 1.8rem; color: #2A3E92; margin-bottom: 1rem; }
 /* Card footer (small note, not site footer) */
 .resource-foot { margin-top: .75rem; font-size: .85rem; color: #64748b; background: transparent; padding: 0; }
 
-/* Global accessibility focus */
-:focus-visible {
-  outline: 2px dashed #2A3E92;
-  outline-offset: 2px;
-}
-
-/* Scoped card focus */
-.resource-card:focus-within {
-  outline: 2px solid #94a3b8;
-  outline-offset: 2px;
-}
-
-
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.7rem; }
-  nav { display: none; }
-  .header-content { justify-content: center; }
-  h2 { font-size: 2rem; }
-  h3, .card h3 { font-size: 1.4rem; }
-}
-
-
-/* Accessibility: visible focus */
+/* === Accessibility focus (unified) === */
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
@@ -161,8 +147,7 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
-
-/* Skip link: only visible when focused */
+/* === Skip link === */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -181,4 +166,133 @@ button:focus-visible,
   display: inline-block;
 }
 
-.resources-page main.container { margin-top: 88px; }
+/* === Fixed header compensation + anchor offset === */
+:root { --header-h: 88px; }              /* desktop header height (tweak if needed) */
+
+.with-fixed-header main {                /* pushes page content below the bar */
+  padding-top: var(--header-h);
+}
+
+/* When jumping to #anchors, keep the heading clear of the bar */
+.with-fixed-header section[id],
+.with-fixed-header article[id],
+.with-fixed-header h1[id],
+.with-fixed-header h2[id],
+.with-fixed-header h3[id],
+.with-fixed-header h4[id] {
+  scroll-margin-top: calc(var(--header-h) + 8px);
+}
+
+/* Mobile: header is usually shorter */
+@media (max-width: 768px) {
+  :root { --header-h: 72px; }
+}
+
+/* === Resource Hub (scoped to body.resources-page) === */
+body.resources-page .lede { max-width: 80ch; margin: .75rem auto 1.25rem; color: #475569; }
+
+/* Type scale */
+body.resources-page h1 { font-size: 3rem; color: #2A3E92; letter-spacing: -0.02em; margin: 0 0 1rem; }
+body.resources-page h2 { font-size: 2.2rem; color: #2A3E92; text-align: center; margin: 2.2rem 0 .75rem; }
+body.resources-page h3 { font-size: 1.6rem; color: #2A3E92; margin: 1.2rem 0 .5rem; }
+body.resources-page h4 { font-size: 1.1rem; font-weight: 700; margin: .6rem 0 .35rem; }
+body.resources-page h5 { font-size: 1rem; font-weight: 600; margin: .75rem 0 .45rem; }
+
+body.resources-page p { margin: .5rem 0; }
+body.resources-page ul { margin: .5rem 0 1rem 1.25rem; }
+
+/* Content links (main + footer + TOC) — not header nav */
+body.resources-page main a,
+body.resources-page footer a,
+body.resources-page #toc a {
+  color: #1f3a8a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+body.resources-page main a:hover,
+body.resources-page footer a:hover,
+body.resources-page #toc a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* TOC indentation & bullets */
+body.resources-page #toc ul { padding-left: 1.25rem; margin: .2rem 0; }
+body.resources-page #toc > ul { padding-left: 0; }
+body.resources-page #toc > ul > li { list-style: disc; }
+body.resources-page #toc ul ul > li { list-style: circle; }
+body.resources-page #toc ul ul ul > li { list-style: square; }
+body.resources-page #toc a { line-height: 1.4; }
+
+/* Dataset blocks spacing */
+body.resources-page #datasets { margin-top: 1rem; }
+body.resources-page #datasets > section { margin-top: 1.5rem; }          /* A / B / C categories */
+body.resources-page #datasets article {
+  margin: 1.25rem 0 2rem;                                                /* A1, A2, B1, C1 blocks */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+body.resources-page #datasets h3 { margin: 1rem 0 .25rem; }
+body.resources-page #datasets h4 { margin: .6rem 0 .35rem; }
+body.resources-page #datasets h5 { margin: .75rem 0 .45rem; font-weight: 600; }
+body.resources-page #datasets p { margin: .45rem 0; }
+body.resources-page #datasets ul { margin: .4rem 0 .9rem 1.25rem; }       /* indent lists within blocks */
+
+/* Preview containers / tables */
+body.resources-page .table-scroll {
+  margin-top: .4rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 240px;
+  background: #fff;
+}
+body.resources-page .table-scroll table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+body.resources-page .table-scroll thead th {
+  position: sticky; top: 0;
+  background: #f8fafc;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  padding: .45rem .6rem;
+  white-space: nowrap;
+}
+body.resources-page .table-scroll tbody td {
+  border-bottom: 1px solid #f1f5f9;
+  padding: .4rem .6rem;
+  white-space: nowrap;
+}
+body.resources-page .table-scroll tbody tr:nth-child(odd) td { background: #fcfdff; }
+body.resources-page .preview-actions { margin-top: .45rem; }
+
+/* Column pager */
+body.resources-page .preview-colnav {
+  display: flex; gap: .5rem; align-items: center;
+  margin: .35rem 0 .55rem;
+  font-size: .9rem;
+}
+body.resources-page .preview-colnav button {
+  border: 1px solid #e5e7eb;
+  padding: .3rem .5rem;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+}
+body.resources-page .preview-colnav button[disabled] { opacity: .5; cursor: default; }
+body.resources-page .preview-colnav .range { font-variant-numeric: tabular-nums; color: #64748b; }
+
+/* Muted text */
+body.resources-page .muted { color: #64748b; }
+
+/* Current page state (Hub CTA filled on the hub) */
+body.resources-page header nav .nav-cta[aria-current="page"] { background: #2A3E92; color: #fff; }
+
+/* === Responsive tweaks (site-wide, non-destructive) === */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2.7rem; }
+  h2 { font-size: 2rem; }
+  h3, .card h3 { font-size: 1.4rem; }
+
+  /* Keep nav visible on small screens (no JS burger yet) */
+  .header-content { justify-content: space-between; }
+  header nav { display: flex; flex-wrap: wrap; gap: .75rem 1rem; }
+  header nav a { margin-left: 0; }
+}
