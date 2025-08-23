@@ -222,3 +222,24 @@ button:focus-visible,
 .table-scroll { margin-top: .35rem; }
 .preview-actions { margin-top: .45rem; }
 
+/* Fixed header compensation + anchor offset */
+:root { --header-h: 88px; }              /* desktop header height (tweak if needed) */
+
+.with-fixed-header main {                /* pushes page content below the bar */
+  padding-top: var(--header-h);
+}
+
+/* When jumping to #anchors, keep the heading clear of the bar */
+.with-fixed-header section[id],
+.with-fixed-header article[id],
+.with-fixed-header h1[id],
+.with-fixed-header h2[id],
+.with-fixed-header h3[id],
+.with-fixed-header h4[id] {
+  scroll-margin-top: calc(var(--header-h) + 8px);
+}
+
+/* Mobile: header is usually shorter */
+@media (max-width: 768px) {
+  :root { --header-h: 72px; }
+}
