@@ -8,20 +8,21 @@
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-  <!-- Site header (no 'Resources' item in the menu by design) -->
-<header>
-  <div class="container">
-    <div class="header-content">
-      <div class="logo">ASTRAI</div>
-      <nav aria-label="Primary">
-        <a href="/#about">About</a>
-        <a href="/#project">Project</a>
-        <a href="/#resources">Resources</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </div>
-  </div>
-</header>
+    <a class="skip-link" href="#datasets">Skip to content</a>
+    <!-- Site header (no 'Resources' item in the menu by design) -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">ASTRAI</div>
+          <nav aria-label="Primary">
+            <a href="/#about">About</a>
+            <a href="/#project">Project</a>
+            <a href="/#resources">Resources</a>
+            <a href="/#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
 
 
   <main class="container" style="margin-top: 88px;">
@@ -32,7 +33,7 @@
     </p>
 
     <!-- Index / Table of Contents -->
-    <section id="toc" aria-labelledby="toc-heading">
+    <section id="toc" role="navigation" aria-labelledby="toc-heading" aria-label="Table of contents">
       <h2 id="toc-heading">Index</h2>
       <ul>
         <li><a href="#datasets">Datasets</a>
@@ -276,7 +277,7 @@
 
 
     <!-- Publications (placeholder) -->
-    <section id="publiclications" aria-labelledby="publications-heading">
+    <section id="publications" aria-labelledby="publications-heading">
       <h2 id="publications-heading">Publications</h2>
       <p class="muted">
         Note: formal project deliverables are not published here. This section lists
@@ -309,7 +310,7 @@
             — model blocks and data flow.
           </li>
           <li>
-            <a href="/resources/diagrams/training_workflow_v1.pdf">Training workflow (v1, PDF)</a>
+            <a href="/resources/diagrams/training_workflow_v1.pdf" target="_blank" rel="noopener">Training workflow (v1, PDF)</a>
             — data preprocessing, training, and evaluation steps.
           </li>
           <li>
