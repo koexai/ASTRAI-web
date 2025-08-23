@@ -195,3 +195,30 @@ button:focus-visible,
 }
 .preview-colnav button[disabled] { opacity: .5; cursor: default; }
 .preview-colnav .range { font-variant-numeric: tabular-nums; }
+
+/* ===== Resources Hub — TOC indentation & bullets ===== */
+#toc ul { padding-left: 1.25rem; margin: .2rem 0; }   /* restore indent */
+#toc > ul { padding-left: 0; }                        /* top level flush with heading */
+
+#toc > ul > li { list-style: disc; }
+#toc ul ul > li { list-style: circle; }
+#toc ul ul ul > li { list-style: square; }
+
+#toc a { line-height: 1.35; }                         /* better readability for dense links */
+
+/* ===== Resources Hub — section rhythm & spacing ===== */
+#datasets { margin-top: 1rem; }
+#datasets > section { margin-top: 1.25rem; }          /* A / B / C categories */
+#datasets article { margin: 1.25rem 0 2rem; }         /* A1, A2, B1, C1 blocks */
+
+#datasets h3 { margin: 1rem 0 .25rem; }
+#datasets h4 { margin: .6rem 0 .35rem; }
+#datasets h5 { margin: .75rem 0 .45rem; font-weight: 600; }
+
+#datasets p { margin: .45rem 0; }
+#datasets ul { margin: .4rem 0 .9rem 1.25rem; }       /* indent lists within blocks */
+
+/* Preview containers: consistent spacing around them */
+.table-scroll { margin-top: .35rem; }
+.preview-actions { margin-top: .45rem; }
+
