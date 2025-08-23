@@ -182,3 +182,16 @@ button:focus-visible,
 }
 
 .resources-page main.container { margin-top: 88px; }
+
+/* Column pager for wide CSVs */
+.preview-colnav {
+  display: flex; gap: .5rem; align-items: center;
+  margin: .35rem 0 .55rem;
+  font-size: .9rem;
+}
+.preview-colnav button {
+  border: 1px solid #e5e7eb;
+  padding: .3rem .5rem; border-radius: 6px; background: #fff; cursor: pointer;
+}
+.preview-colnav button[disabled] { opacity: .5; cursor: default; }
+.preview-colnav .range { font-variant-numeric: tabular-nums; }
