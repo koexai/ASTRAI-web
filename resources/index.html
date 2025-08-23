@@ -119,16 +119,10 @@
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A1_curves_sample.csv" download>Download sample curves CSV</a>
-          </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A1_params_sample.csv" download>Download sample parameters CSV</a>
-          </p>
 
           <h5>FAIR artefacts (work in progress)</h5>
             <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
@@ -169,16 +163,10 @@
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_curves_sample.csv" data-max-cols="10" role="region" aria-label="A2 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A2_curves_sample.csv" download>Download sample curves CSV</a>
-          </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_params_sample.csv" data-max-cols="10" role="region" aria-label="A2 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A2_params_sample.csv" download>Download sample parameters CSV</a>
-          </p>
 
           <h5>FAIR artefacts (work in progress)</h5>
           <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
@@ -219,9 +207,6 @@
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" data-max-cols="10" role="region" aria-label="B1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/B1_sample.csv" download>Download sample CSV</a>
-          </p>
 
           <h5>FAIR artefacts (work in progress)</h5>
             <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
@@ -268,9 +253,6 @@
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" data-max-cols="10" role="region" aria-label="C1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/C1_sample.csv" download>Download sample CSV</a>
-          </p>
 
           <h5>FAIR artefacts (work in progress)</h5>
             <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
@@ -437,156 +419,241 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
 
     <script src="/assets/js/main.js" defer></script>
     <script>
-        window.addEventListener('DOMContentLoaded', function () {
-          (function () {
-            // Detects comma vs semicolon; robust to quotes
-            function parseCSV(text) {
-              const firstLine = text.split(/\r?\n/)[0] || "";
-              const delim = (firstLine.split(";").length > firstLine.split(",").length) ? ";" : ",";
-              const rows = []; let row = [], field = '', i = 0, q = false;
-              while (i < text.length) {
-                const ch = text[i];
-                if (q) { if (ch === '"') { if (text[i+1] === '"') { field+='"'; i+=2; continue; } q=false; i++; continue; }
-                         field += ch; i++; continue; }
-                if (ch === '"') { q = true; i++; continue; }
-                if (ch === delim) { row.push(field); field=''; i++; continue; }
-                if (ch === '\n')  { row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
-                if (ch === '\r')  { i++; continue; }
-                field += ch; i++;
-              }
-              if (field.length || row.length) { row.push(field); rows.push(row); }
-              return rows;
-            }
+    window.addEventListener('DOMContentLoaded', function () {
+      (function () {
+        /* ========= CSV preview: toolbar + column pager ========= */
 
-            function sliceCols(rows, start, count) {
-              if (!rows.length) return rows;
-              const end = count > 0 ? start + count : rows[0].length; // count==0 => all
-              const out = [];
-              for (const r of rows) out.push(r.slice(start, end));
-              return out;
+        // Robust CSV parse with delimiter auto-detect (comma/semicolon) and quotes
+        function parseCSV(text) {
+          const firstLine = text.split(/\r?\n/)[0] || "";
+          const delim = (firstLine.split(";").length > firstLine.split(",").length) ? ";" : ",";
+          const rows = []; let row = [], field = '', i = 0, q = false;
+          while (i < text.length) {
+            const ch = text[i];
+            if (q) {
+              if (ch === '"') { if (text[i+1] === '"') { field+='"'; i+=2; continue; } q=false; i++; continue; }
+              field += ch; i++; continue;
+            } else {
+              if (ch === '"') { q = true; i++; continue; }
+              if (ch === delim) { row.push(field); field=''; i++; continue; }
+              if (ch === '\n')  { row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
+              if (ch === '\r')  { i++; continue; }
+              field += ch; i++; continue;
             }
+          }
+          if (field.length || row.length) { row.push(field); rows.push(row); }
+          return rows;
+        }
 
-            function makeTable(rows) {
-              const table = document.createElement('table');
-              if (!rows.length) return table;
-              const [head, ...rest] = rows;
-              const thead = document.createElement('thead');
-              const trh = document.createElement('tr');
-              head.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
-              thead.appendChild(trh);
-              table.appendChild(thead);
-              const tbody = document.createElement('tbody');
-              rest.forEach(r => {
-                const tr = document.createElement('tr');
-                r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
-                tbody.appendChild(tr);
+        function sliceCols(rows, start, count) {
+          if (!rows.length) return rows;
+          const end = count > 0 ? start + count : rows[0].length; // count==0 => all
+          return rows.map(r => r.slice(start, end));
+        }
+
+        function makeTable(rows) {
+          const table = document.createElement('table');
+          if (!rows.length) return table;
+          const [head, ...rest] = rows;
+
+          const thead = document.createElement('thead');
+          const trh = document.createElement('tr');
+          head.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
+          thead.appendChild(trh);
+          table.appendChild(thead);
+
+          const tbody = document.createElement('tbody');
+          rest.forEach(r => {
+            const tr = document.createElement('tr');
+            r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
+            tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+          return table;
+        }
+
+        function copyToClipboard(text, onOK, onFail) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(onOK, onFail);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-9999px';
+            document.body.appendChild(ta); ta.focus(); ta.select();
+            try { document.execCommand('copy') ? onOK() : onFail(); }
+            catch(_) { onFail(); }
+            document.body.removeChild(ta);
+          }
+        }
+
+        document.querySelectorAll('.table-scroll[data-sample-url]').forEach(el => {
+          const url = el.getAttribute('data-sample-url');
+          const pageSizeAttr = Number(el.getAttribute('data-max-cols'));
+          const pageSize = Number.isFinite(pageSizeAttr) && pageSizeAttr >= 0 ? pageSizeAttr : 20; // 0 => all
+
+          fetch(url)
+            .then(r => r.ok ? r.text() : Promise.reject())
+            .then(text => {
+              const rows = parseCSV(text);
+              const limitedRows = rows.length ? [rows[0], ...rows.slice(1, 6)] : rows; // header + 5 rows
+              const totalCols = limitedRows.length ? limitedRows[0].length : 0;
+              let startCol = 0;
+
+              // Top toolbar: actions (left) + status (right)
+                const topBar = document.createElement('div');
+                topBar.className = 'preview-toolbar';
+
+                const topLeft = document.createElement('div');
+                topLeft.className = 'group';
+
+                const download = document.createElement('a');
+                download.className = 'btn-ghost';
+                download.href = url; download.download = '';
+                download.textContent = 'Download sample';
+
+                const copyBtn = document.createElement('button');
+                copyBtn.type = 'button';
+                copyBtn.textContent = 'Copy header';
+
+                topLeft.append(download, copyBtn);
+
+                const topRight = document.createElement('div');
+                topRight.className = 'group';
+                const status = document.createElement('span');
+                status.className = 'status';
+                status.setAttribute('aria-live', 'polite');
+                topRight.appendChild(status);
+
+                // Bottom toolbar: navigation only (bottom-left)
+                const bottomBar = document.createElement('div');
+                bottomBar.className = 'preview-toolbar preview-toolbar--bottom';
+
+                const bottomLeft = document.createElement('div');
+                bottomLeft.className = 'group';
+                const prev = document.createElement('button'); prev.type = 'button'; prev.textContent = '◀';
+                const info = document.createElement('span'); info.className = 'range'; info.setAttribute('aria-live','polite');
+                const next = document.createElement('button'); next.type = 'button'; next.textContent = '▶';
+                bottomLeft.append(prev, info, next);
+                bottomBar.appendChild(bottomLeft);
+
+                // Insert bars around the table container
+                el.parentNode.insertBefore(topBar, el);          // actions above
+                topBar.append(topLeft, topRight);
+                el.parentNode.insertBefore(bottomBar, el.nextSibling); // nav below
+
+                function render() {
+                  const slice = sliceCols(limitedRows, startCol, pageSize);
+                  const viewStart = startCol + 1;
+                  const viewEnd = pageSize === 0 ? totalCols : Math.min(startCol + pageSize, totalCols);
+
+                  // Replace table
+                  el.textContent = '';
+                  el.appendChild(makeTable(slice));
+
+                  // Update bottom nav state
+                  info.textContent = `Columns ${viewStart}–${viewEnd} of ${totalCols}`;
+                  prev.disabled = (startCol === 0);
+                  next.disabled = (pageSize === 0 || viewEnd >= totalCols);
+                }
+
+
+              prev.addEventListener('click', () => { startCol = Math.max(0, startCol - (pageSize || totalCols)); render(); });
+              next.addEventListener('click', () => {
+                if (pageSize === 0) return;
+                startCol = Math.min(totalCols - pageSize, startCol + pageSize);
+                if (startCol < 0) startCol = 0;
+                render();
               });
-              table.appendChild(tbody);
-              return table;
-            }
 
-            document.querySelectorAll('.table-scroll[data-sample-url]').forEach(el => {
-              const url = el.getAttribute('data-sample-url');
-              const pageSizeAttr = Number(el.getAttribute('data-max-cols'));
-              const pageSize = Number.isFinite(pageSizeAttr) && pageSizeAttr >= 0 ? pageSizeAttr : 16; // 0 => show all
-              fetch(url)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(text => {
-                  const rows = parseCSV(text);
-                  // Clamp to header + 5 rows
-                  const limitedRows = rows.length ? [rows[0], ...rows.slice(1, 6)] : rows;
+              copyBtn.addEventListener('click', () => {
+                if (!limitedRows.length) return;
+                const header = limitedRows[0].join(','); // copy as comma-separated
+                copyToClipboard(header,
+                  () => { status.textContent = 'Copied.'; setTimeout(() => status.textContent = '', 1200); },
+                  () => { status.textContent = 'Copy failed.'; setTimeout(() => status.textContent = '', 1500); }
+                );
+              });
 
-                  const totalCols = limitedRows.length ? limitedRows[0].length : 0;
-                  let startCol = 0;
-
-                  // Build nav
-                  const nav = document.createElement('div');
-                  nav.className = 'preview-colnav';
-                  const prev = document.createElement('button'); prev.type = 'button'; prev.textContent = '◀';
-                  const next = document.createElement('button'); next.type = 'button'; next.textContent = '▶';
-                  const info = document.createElement('span'); info.className = 'range muted'; info.setAttribute('aria-live','polite');
-
-                  function render() {
-                    const slice = sliceCols(limitedRows, startCol, pageSize);
-                    const viewStart = startCol + 1;
-                    const viewEnd = pageSize === 0 ? totalCols : Math.min(startCol + pageSize, totalCols);
-
-                    // Replace table
-                    el.textContent = '';
-                    el.appendChild(makeTable(slice));
-
-                    // Update nav state
-                    info.textContent = `Columns ${viewStart}–${viewEnd} of ${totalCols}`;
-                    prev.disabled = (startCol === 0);
-                    next.disabled = (pageSize === 0 || viewEnd >= totalCols);
-                  }
-
-                  prev.addEventListener('click', () => { startCol = Math.max(0, startCol - (pageSize || totalCols)); render(); });
-                  next.addEventListener('click', () => {
-                    if (pageSize === 0) return;
-                    startCol = Math.min(totalCols - pageSize, startCol + pageSize);
-                    if (startCol < 0) startCol = 0;
-                    render();
-                  });
-
-                  // Insert nav just before the table container
-                  el.parentNode.insertBefore(nav, el);
-                  nav.appendChild(prev);
-                  nav.appendChild(info);
-                  nav.appendChild(next);
-
-                  render();
-                })
-                .catch(() => { el.textContent = 'Could not load sample preview.'; });
-            });
-          })();
+              render();
+            })
+            .catch(() => { el.textContent = 'Could not load sample preview.'; });
         });
-    </script>
-    <script>
-        (function () {
-          const toc = document.getElementById('toc');
-          if (!toc) return;
 
-          // Build a mobile "Jump to…" <select> from the existing links
+        /* ========= TOC: mobile “Jump to…” + scroll-spy highlight ========= */
+
+        const toc = document.getElementById('toc');
+        if (toc) {
           const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
+
+          // Build mobile select
           if (links.length) {
             const select = document.createElement('select');
             select.className = 'toc-select';
             const firstOpt = document.createElement('option');
             firstOpt.value = ''; firstOpt.textContent = 'Jump to…';
             select.appendChild(firstOpt);
-
             links.forEach(a => {
               const opt = document.createElement('option');
               opt.value = a.getAttribute('href');
               opt.textContent = a.textContent.trim();
               select.appendChild(opt);
             });
-
-            // Insert after the heading
             const h2 = toc.querySelector('h2') || toc.firstChild;
             h2 && h2.insertAdjacentElement('afterend', select);
-
-            select.addEventListener('change', () => {
-              if (select.value) location.hash = select.value;
-            });
+            select.addEventListener('change', () => { if (select.value) location.hash = select.value; });
           }
 
-          // Highlight the current item in the TOC
-          function updateActive() {
-            const hash = window.location.hash || '';
-            links.forEach(a => a.setAttribute('aria-current', (a.getAttribute('href') === hash) ? 'true' : 'false'));
+          // Scroll-spy (uses --header-h for accuracy)
+          const targets = links
+            .map(a => document.getElementById((a.getAttribute('href') || '').slice(1)))
+            .filter(Boolean);
+
+          const headerPx = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 88;
+          const OFFSET = headerPx + 12;
+
+          function setActive(el) {
+            links.forEach(l => l.removeAttribute('aria-current'));
+            const found = links.find(l => l.getAttribute('href') === `#${el.id}`);
+            if (found) found.setAttribute('aria-current', 'true');
           }
-          window.addEventListener('hashchange', updateActive);
-          // Also set on click (fast feedback)
+
+          function updateOnScroll() {
+            let best = null, bestDist = Infinity;
+            for (const el of targets) {
+              const top = el.getBoundingClientRect().top - OFFSET;
+              const dist = Math.abs(top);
+              if (top <= 0 && dist < bestDist) { best = el; bestDist = dist; }
+            }
+            if (!best) {
+              for (const el of targets) {
+                const top = el.getBoundingClientRect().top - OFFSET;
+                if (top > 0) { best = el; break; }
+              }
+            }
+            if (best) setActive(best);
+          }
+
+          let ticking = false;
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              requestAnimationFrame(() => { updateOnScroll(); ticking = false; });
+              ticking = true;
+            }
+          }, { passive: true });
+
+          window.addEventListener('resize', updateOnScroll);
+          window.addEventListener('load', updateOnScroll);
+
+          // Instant feedback on click
           links.forEach(a => a.addEventListener('click', () => {
             links.forEach(x => x.removeAttribute('aria-current'));
             a.setAttribute('aria-current', 'true');
           }));
-          // Initial state
-          updateActive();
-        })();
-        </script>
+
+          updateOnScroll();
+        }
+      })();
+    });
+    </script>
 
     <noscript>Your browser does not support JavaScript or it is disabled. Some features may not work properly.</noscript>
 </body>
