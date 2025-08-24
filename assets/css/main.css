@@ -532,3 +532,69 @@ body.resources-page pre.cite{
   overflow-y:auto;
     /* another option is overflow-wrap: anywhere; */
 }
+
+
+/* ===== Resource Hub — Publications (scoped) ===== */
+body.resources-page .pub-filter{
+  display:flex; gap:.5rem; flex-wrap:wrap;
+  margin:.5rem 0 1rem;
+}
+body.resources-page .pub-filter button{
+  border:1px solid #e5e7eb; background:#fff; border-radius:9999px;
+  padding:.35rem .75rem; cursor:pointer; line-height:1; font:inherit;
+}
+body.resources-page .pub-filter button[aria-pressed="true"]{
+  background:#2A3E92; color:#fff; border-color:#2A3E92;
+}
+
+body.resources-page .pub-group{ margin:1.25rem 0 1.75rem; }
+body.resources-page .pub-list{ list-style:none; margin:.5rem 0 0; padding:0; display:grid; gap:.75rem; }
+
+body.resources-page .pub-item{
+  border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+  padding:.8rem .95rem;
+}
+body.resources-page .pub-head{
+  display:flex; align-items:center; gap:.75rem;
+}
+body.resources-page .pub-title a{ text-decoration:none; }
+body.resources-page .pub-title a:hover{ text-decoration:underline; }
+
+body.resources-page .pub-meta{
+  list-style:none; margin:.35rem 0 .25rem; padding:0;
+  display:flex; flex-wrap:wrap; gap:.35rem 1rem; color:#475569; font-size:.95rem;
+}
+body.resources-page .pub-meta .label{ color:#334155; font-weight:600; }
+
+/* Status chip (publication) */
+body.resources-page{
+  --pub-prep:     #d97706; /* amber */
+  --pub-submit:   #0ea5e9; /* sky */
+  --pub-review:   #7c3aed; /* violet */
+  --pub-accept:   #16a34a; /* green */
+  --pub-publish:  #15803d; /* deep green */
+  --pub-preprint: #0369a1; /* deep sky */
+  --pub-wip:      #64748b; /* slate */
+}
+body.resources-page .pub-state{
+  margin-left:auto; font-size:.82rem; padding:.2rem .55rem; border-radius:9999px;
+  border:1px solid #e5e7eb; background:#f8fafc; color:#334155;
+}
+
+/* colour the chip by data-status */
+body.resources-page .pub-item[data-status="in-prep"]     .pub-state{ background:#fff4e5; border-color:var(--pub-prep);     color:#7c2d12; }
+body.resources-page .pub-item[data-status="submitted"]   .pub-state{ background:#e6f6fe; border-color:var(--pub-submit);   color:#075985; }
+body.resources-page .pub-item[data-status="under-review"].pub-state{ background:#f3e8ff; border-color:var(--pub-review);   color:#5b21b6; }
+body.resources-page .pub-item[data-status="accepted"]    .pub-state{ background:#e9f7ef; border-color:var(--pub-accept);   color:#065f46; }
+body.resources-page .pub-item[data-status="published"]   .pub-state{ background:#e8f5eb; border-color:var(--pub-publish);  color:#065f46; }
+body.resources-page .pub-item[data-status="preprint"]    .pub-state{ background:#e6f7fb; border-color:var(--pub-preprint); color:#0c4a6e; }
+body.resources-page .pub-item[data-status="wip"]         .pub-state{ background:#eef2f7; border-color:var(--pub-wip);      color:#334155; }
+body.resources-page .pub-item[data-status="planned"]     .pub-state{ background:#eef2f7; border-color:#cbd5e1;             color:#334155; }
+
+/* details/summary tidy */
+body.resources-page details.pub-more summary{
+  cursor: pointer; color:#1f3a8a; text-decoration: underline; text-underline-offset:2px;
+}
+body.resources-page details.pub-more[open]{ background:#f8fafc; border-radius:8px; padding:.4rem .5rem; margin-top:.25rem; }
+body.resources-page details.pub-more[open] .pub-note{ color:#475569; }
+

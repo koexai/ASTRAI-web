@@ -432,6 +432,7 @@
 
     </section>
 
+
     <!-- Source Code -->
     <section id="code" aria-labelledby="code-heading">
       <h2 id="code-heading">Source Code</h2>
@@ -453,56 +454,127 @@
     <section id="publications" aria-labelledby="publications-heading">
       <h2 id="publications-heading">Publications</h2>
       <p class="muted">
-        Note: formal project deliverables are not published here. This section lists
+        This section lists
         <strong>journal &amp; conference submissions</strong>, <strong>technical diagrams/notes</strong>, and selected
         <strong>findings</strong> for the community.
       </p>
 
-      <!-- Journal & Conference Submissions -->
-      <section id="pub-articles" aria-labelledby="pub-articles-heading">
+      <!-- Optional category filter (static-friendly) -->
+      <nav class="pub-filter" aria-label="Filter publications">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="articles">Articles</button>
+        <button type="button" data-filter="diagrams">Diagrams</button>
+        <button type="button" data-filter="findings">Findings</button>
+      </nav>
+
+      <!-- Articles -->
+      <section id="pub-articles" aria-labelledby="pub-articles-heading" class="pub-group" data-group="articles">
         <h3 id="pub-articles-heading">Journal &amp; Conference Submissions</h3>
-        <ul>
-          <li>
-            <strong>Paper&nbsp;#1 (title TBC)</strong> — <em>Status:</em> In preparation.
-            <a href="/resources/publications/articles/paper1_abstract.md">Abstract</a>
-            · <a href="#">Preprint link (TBC)</a>
+        <ul class="pub-list">
+          <li class="pub-item" data-kind="articles" data-status="in-prep">
+            <div class="pub-head">
+              <span class="pub-title"><strong>Paper #1 (title TBC)</strong></span>
+              <span class="pub-state" aria-label="Status: in preparation"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Status:</span> In preparation</li>
+              <li><span class="label">Type:</span> Journal article</li>
+            </ul>
+            <p class="pub-links">
+              <a href="/resources/publications/articles/paper1_abstract.md">Abstract</a>
+              <span aria-hidden="true">·</span>
+              <a href="#" aria-disabled="true">Preprint (coming soon)</a>
+            </p>
+            <details class="pub-more">
+              <summary>Show short note</summary>
+              <div class="pub-note">
+                Scope: early results on physical-model light curves; baselines &amp; GenAI augmentation plan.
+              </div>
+            </details>
           </li>
-          <li>
-            <strong>Paper&nbsp;#2 (title TBC)</strong> — <em>Status:</em> Planned submission.
-            <a href="/resources/publications/articles/paper2_outline.md">Outline</a>
+
+          <li class="pub-item" data-kind="articles" data-status="planned">
+            <div class="pub-head">
+              <span class="pub-title"><strong>Paper #2 (title TBC)</strong></span>
+              <span class="pub-state" aria-label="Status: planned"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Status:</span> Planned submission</li>
+              <li><span class="label">Type:</span> Conference paper</li>
+            </ul>
+            <p class="pub-links">
+              <a href="/resources/publications/articles/paper2_outline.md">Outline</a>
+            </p>
           </li>
         </ul>
       </section>
 
       <!-- Diagrams & Technical Notes -->
-      <section id="pub-diagrams" aria-labelledby="pub-diagrams-heading">
+      <section id="pub-diagrams" aria-labelledby="pub-diagrams-heading" class="pub-group" data-group="diagrams">
         <h3 id="pub-diagrams-heading">Diagrams &amp; Technical Notes</h3>
-        <ul>
-          <li>
-            <a href="/resources/diagrams/dl_network_architecture_v1.png">DL network architecture (v1)</a>
-            — model blocks and data flow.
+        <ul class="pub-list">
+          <li class="pub-item" data-kind="diagrams" data-status="published">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/dl_network_architecture_v1.png">DL network architecture (v1)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PNG diagram</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Blocks and data flow of the DL model.</p>
           </li>
-          <li>
-            <a href="/resources/diagrams/training_workflow_v1.pdf" target="_blank" rel="noopener">Training workflow (v1, PDF)</a>
-            — data preprocessing, training, and evaluation steps.
+
+          <li class="pub-item" data-kind="diagrams" data-status="published">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/training_workflow_v1.pdf" target="_blank" rel="noopener">Training workflow (v1, PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Preprocessing, training, and evaluation steps.</p>
           </li>
-          <li>
-            <a href="/resources/diagrams/generation_pipeline_note.md">Generative pipeline — short note</a>
+
+          <li class="pub-item" data-kind="diagrams" data-status="wip">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/generation_pipeline_note.md">Generative pipeline — short note</a></span>
+              <span class="pub-state" aria-label="Status: work in progress"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> Markdown note</li>
+              <li><span class="label">Status:</span> Work in progress</li>
+            </ul>
           </li>
         </ul>
       </section>
 
       <!-- Findings -->
-      <section id="pub-findings" aria-labelledby="pub-findings-heading">
+      <section id="pub-findings" aria-labelledby="pub-findings-heading" class="pub-group" data-group="findings">
         <h3 id="pub-findings-heading">Findings</h3>
-        <ul>
-          <li>
-            <a href="/resources/findings/orphan_afterglow_candidates_v1.md">Orphan afterglow candidates — note v1</a>
-            — brief description and selection criteria.
+        <ul class="pub-list">
+          <li class="pub-item" data-kind="findings" data-status="published">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/findings/orphan_afterglow_candidates_v1.md">Orphan afterglow candidates — note v1</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Theme:</span> GRB afterglows</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Brief description and selection criteria.</p>
           </li>
-          <li>
-            <a href="/resources/findings/benchmark_snapshot_v1.md">Benchmark snapshot — early metrics</a>
-            — timing/quality metrics (TBC).
+
+          <li class="pub-item" data-kind="findings" data-status="wip">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/findings/benchmark_snapshot_v1.md">Benchmark snapshot — early metrics</a></span>
+              <span class="pub-state" aria-label="Status: work in progress"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Theme:</span> Timing/quality</li>
+              <li><span class="label">Status:</span> WIP</li>
+            </ul>
           </li>
         </ul>
       </section>
@@ -843,6 +915,48 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
                 });
               });
               items.forEach(el => mo.observe(el, { attributes: true }));
+            })();
+
+            /* ========= Publications: filter + dynamic chip text ========= */
+            (function(){
+              // Dynamic chip labels for publications
+              const MAP = {
+                'in-prep': 'In prep',
+                'submitted': 'Submitted',
+                'under-review': 'Under review',
+                'accepted': 'Accepted',
+                'published': 'Published',
+                'preprint': 'Preprint',
+                'wip': 'WIP',
+                'planned': 'Planned'
+              };
+              document.querySelectorAll('.pub-item').forEach(item => {
+                const chip = item.querySelector('.pub-state');
+                if (!chip) return;
+                const s = (item.getAttribute('data-status') || '').toLowerCase();
+                const txt = MAP[s] || '—';
+                chip.textContent = txt;
+                chip.setAttribute('aria-label', `Status: ${txt.toLowerCase()}`);
+              });
+
+              // Category filter
+              const bar = document.querySelector('.pub-filter');
+              if (!bar) return;
+              const buttons = Array.from(bar.querySelectorAll('button[data-filter]'));
+              const items = Array.from(document.querySelectorAll('.pub-item'));
+              function applyFilter(kind){
+                items.forEach(it => {
+                  const k = it.getAttribute('data-kind');
+                  it.style.display = (kind === 'all' || k === kind) ? '' : 'none';
+                });
+              }
+              buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                  buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
+                  btn.setAttribute('aria-pressed', 'true');
+                  applyFilter(btn.getAttribute('data-filter'));
+                });
+              });
             })();
 
           })();
