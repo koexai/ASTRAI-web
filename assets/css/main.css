@@ -215,13 +215,97 @@ body.resources-page #toc a:hover {
   text-decoration-thickness: 2px;
 }
 
-/* TOC indentation & bullets */
-body.resources-page #toc ul { padding-left: 1.25rem; margin: .2rem 0; }
-body.resources-page #toc > ul { padding-left: 0; }
-body.resources-page #toc > ul > li { list-style: disc; }
-body.resources-page #toc ul ul > li { list-style: circle; }
-body.resources-page #toc ul ul ul > li { list-style: square; }
-body.resources-page #toc a { line-height: 1.4; }
+/* ===== Resource Hub — TOC panel (professional/clean) ===== */
+body.resources-page #toc { --toc-indent: .7rem; --toc-rail1:#e5e7eb; --toc-rail2:#eef2f7; }
+
+/* No bullets anywhere */
+body.resources-page #toc ul,
+body.resources-page #toc li { list-style: none; margin: 0; padding: 0; }
+
+/* Top level: flush with the panel (no rail) */
+body.resources-page #toc > ul {
+  padding-left: 0;
+  margin-left: 0;
+  border-left: 0;
+  margin-top: .35rem;
+}
+
+/* Nested levels: small, consistent indent + subtle rail */
+body.resources-page #toc li                 { margin: .18rem 0; }
+body.resources-page #toc li > ul            { margin-left: var(--toc-indent); padding-left: var(--toc-indent); border-left: 2px solid var(--toc-rail1); }
+body.resources-page #toc li > ul > li > ul  { border-left: 2px solid var(--toc-rail2); }
+
+/* Links */
+body.resources-page #toc a {
+  display: block;
+  color: #334155;
+  text-decoration: none;
+  line-height: 1.3;
+  overflow-wrap: anywhere;   /* wrap long labels instead of pushing indent */
+}
+body.resources-page #toc a:hover { color: #1f3a8a; text-decoration: underline; }
+
+/* Active */
+body.resources-page #toc a[aria-current="true"] {
+  color: #1f3a8a;
+  font-weight: 700;
+  background: #eef2ff;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+
+/* TOC panel shell */
+body.resources-page .toc-panel { padding: .9rem .95rem 1.15rem .95rem; }
+body.resources-page .toc-panel h2 {
+  font-size: 1.05rem;
+  text-align: left;
+  margin: 0 0 .5rem;
+  color: #2A3E92;
+}
+/* Avoid generic padding on lists; indenting is handled above */
+body.resources-page .toc-panel ul { margin: .25rem 0; padding-left: 0; }
+body.resources-page .toc-panel ul ul { margin-top: .25rem; }
+body.resources-page .toc-panel li + li { margin-top: .25rem; }
+body.resources-page .toc-panel a { text-decoration: none; }
+body.resources-page .toc-panel a:hover { text-decoration: underline; }
+
+/* Hard reset to guarantee flush top level (wins over any earlier rules) */
+body.resources-page .toc-panel #toc > ul{
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  border-left: 0 !important;
+}
+body.resources-page .toc-panel #toc > ul > li,
+body.resources-page .toc-panel #toc > ul > li > a{
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+/* First nested level inside the panel */
+body.resources-page .toc-panel #toc > ul > li > ul{
+  margin-left: .45rem;
+  padding-left: .6rem;
+  border-left: 2px solid #e5e7eb;
+}
+
+/* Active link state (set via JS) */
+body.resources-page .toc-panel a[aria-current="true"] {
+  font-weight: 700;
+  color: #2A3E92;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Jump to… select — full-width and neat */
+body.resources-page .toc-panel .toc-select{
+  display:block; width:100%;
+  margin:.5rem 0 .5rem;
+  padding:.45rem .6rem;
+  border:1px solid #e5e7eb; border-radius:8px; background:#fff;
+  font: inherit;
+}
+
+/* Ensure long labels/URLs wrap inside the panel */
+body.resources-page .toc-panel a{ overflow-wrap:anywhere; word-break:break-word; }
 
 /* Dataset blocks spacing */
 body.resources-page #datasets { margin-top: 1rem; }
@@ -289,7 +373,7 @@ body.resources-page .page-grid {
   align-items: start;
 }
 
-/* Sticky TOC panel */
+/* Sticky TOC panel (shell already above) */
 body.resources-page .toc-panel {
   position: sticky;
   top: calc(var(--header-h) + 12px);
@@ -298,26 +382,6 @@ body.resources-page .toc-panel {
   border-radius: 12px;
   background: #fff;
   padding: 1rem 1rem 1.25rem;
-}
-body.resources-page .toc-panel h2 {
-  font-size: 1.05rem;
-  text-align: left;
-  margin: 0 0 .5rem;
-  color: #2A3E92;
-}
-/* Lists inside the panel (we already style #toc in your CSS; these just refine spacing) */
-body.resources-page .toc-panel ul { padding-left: 1.1rem; margin: .25rem 0; }
-body.resources-page .toc-panel ul ul { margin-top: .25rem; }
-body.resources-page .toc-panel li + li { margin-top: .25rem; }
-body.resources-page .toc-panel a { text-decoration: none; }
-body.resources-page .toc-panel a:hover { text-decoration: underline; }
-
-/* Active link state (set via the tiny JS below) */
-body.resources-page .toc-panel a[aria-current="true"] {
-  font-weight: 700;
-  color: #2A3E92;
-  text-decoration: underline;
-  text-underline-offset: 2px;
 }
 
 /* Mobile: collapse to single column and show a Jump control */
@@ -558,6 +622,13 @@ body.resources-page pre.cite.is-wrapped{
   overflow-x: auto;             /* keep internal scroll if still needed */
 }
 
+body.resources-page pre.cite.is-copied { box-shadow: 0 0 0 2px #c7d2fe inset; }
+
+/* Copy button success/fail flash */
+body.resources-page .cite-toolbar button.ok {
+  border-color: #2A3E92;
+  box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
+}
 
 /* ===== Resource Hub — Publications (scoped) ===== */
 body.resources-page .pub-filter{
@@ -607,14 +678,14 @@ body.resources-page .pub-state{
 }
 
 /* colour the chip by data-status */
-body.resources-page .pub-item[data-status="in-prep"]     .pub-state{ background:#fff4e5; border-color:var(--pub-prep);     color:#7c2d12; }
-body.resources-page .pub-item[data-status="submitted"]   .pub-state{ background:#e6f6fe; border-color:var(--pub-submit);   color:#075985; }
-body.resources-page .pub-item[data-status="under-review"].pub-state{ background:#f3e8ff; border-color:var(--pub-review);   color:#5b21b6; }
-body.resources-page .pub-item[data-status="accepted"]    .pub-state{ background:#e9f7ef; border-color:var(--pub-accept);   color:#065f46; }
-body.resources-page .pub-item[data-status="published"]   .pub-state{ background:#e8f5eb; border-color:var(--pub-publish);  color:#065f46; }
-body.resources-page .pub-item[data-status="preprint"]    .pub-state{ background:#e6f7fb; border-color:var(--pub-preprint); color:#0c4a6e; }
-body.resources-page .pub-item[data-status="wip"]         .pub-state{ background:#eef2f7; border-color:var(--pub-wip);      color:#334155; }
-body.resources-page .pub-item[data-status="planned"]     .pub-state{ background:#eef2f7; border-color:#cbd5e1;             color:#334155; }
+body.resources-page .pub-item[data-status="in-prep"]      .pub-state{ background:#fff4e5; border-color:var(--pub-prep);     color:#7c2d12; }
+body.resources-page .pub-item[data-status="submitted"]    .pub-state{ background:#e6f6fe; border-color:var(--pub-submit);   color:#075985; }
+body.resources-page .pub-item[data-status="under-review"] .pub-state{ background:#f3e8ff; border-color:var(--pub-review);   color:#5b21b6; }
+body.resources-page .pub-item[data-status="accepted"]     .pub-state{ background:#e9f7ef; border-color:var(--pub-accept);   color:#065f46; }
+body.resources-page .pub-item[data-status="published"]    .pub-state{ background:#e8f5eb; border-color:var(--pub-publish);  color:#065f46; }
+body.resources-page .pub-item[data-status="preprint"]     .pub-state{ background:#e6f7fb; border-color:var(--pub-preprint); color:#0c4a6e; }
+body.resources-page .pub-item[data-status="wip"]          .pub-state{ background:#eef2f7; border-color:var(--pub-wip);      color:#334155; }
+body.resources-page .pub-item[data-status="planned"]      .pub-state{ background:#eef2f7; border-color:#cbd5e1;             color:#334155; }
 
 /* details/summary tidy */
 body.resources-page details.pub-more summary{
@@ -689,14 +760,6 @@ body.resources-page a.btn:focus {
   text-decoration: none;
 }
 
-body.resources-page pre.cite.is-copied { box-shadow: 0 0 0 2px #c7d2fe inset; }
-
-/* Copy button success/fail flash */
-body.resources-page .cite-toolbar button.ok {
-  border-color: #2A3E92;
-  box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
-}
-
 /* CSV Copy button success/fail flash (same as citation toolbar) */
 body.resources-page .preview-toolbar button.ok {
   border-color: #2A3E92;
@@ -733,4 +796,70 @@ body.resources-page #datasets .category-band,
 body.resources-page #datasets .dataset.frame {
   max-width: 100%;
 }
+
+/* === Resource Hub — TOC (consolidated) === */
+body.resources-page .toc-panel { padding-left: .55rem; } /* tidy left gutter */
+
+/* Reset list styles & logical indents */
+body.resources-page #toc ul,
+body.resources-page #toc li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+/* Links baseline + active */
+body.resources-page #toc a {
+  display: block;
+  text-decoration: none;
+  color: #334155;
+  line-height: 1.3;
+}
+body.resources-page #toc a[aria-current="true"] {
+  font-weight: 700;
+  color: #2A3E92;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 2px 4px; /* no left indent */
+}
+
+/* Top level flush */
+body.resources-page #toc > ul,
+body.resources-page #toc > ul > li,
+body.resources-page #toc > ul > li > a {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: 0;
+}
+
+/* Level 2: minimal indent + light rail */
+body.resources-page #toc > ul > li > ul {
+  margin-left: .10rem;
+  padding-left: .35rem;
+  padding-inline-start: .35rem;
+  border-left: 1px solid #e5e7eb;
+}
+body.resources-page #toc > ul > li > ul > li,
+body.resources-page #toc > ul > li > ul > li > a {
+  margin-left: 0;
+  padding-left: .15rem; /* tiny cushion from the rail */
+}
+
+/* Level 3: even tighter + lighter rail */
+body.resources-page #toc ul ul ul {
+  margin-left: .10rem;
+  padding-left: .30rem;
+  padding-inline-start: .30rem;
+  border-left: 1px solid #eef2f7;
+}
+body.resources-page #toc ul ul ul > li,
+body.resources-page #toc ul ul ul > li > a {
+  margin-left: 0;
+  padding-left: .15rem;
+}
+
+/* Spacing between items */
+body.resources-page #toc li { margin: .15rem 0; }
 
