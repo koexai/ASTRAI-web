@@ -611,10 +611,11 @@
     <!-- Licence & Citation -->
     <section id="licence-citation" aria-labelledby="licence-heading">
       <h2 id="licence-heading">Licence &amp; Citation</h2>
-      <p class="muted">
-        Unless otherwise stated in a specific dataset block, the default policies below apply. Per-dataset files
-        (e.g. <code>LICENSE</code>, <code>citation.txt</code>) take precedence when present.
-      </p>
+        <p class="muted">
+            Please prefer the dataset-specific citation when available.
+          <br/><strong>Heads up:</strong> per-dataset files (for example <code>LICENSE</code>, <code>citation.txt</code> or a DOI) override the defaults below.
+        </p>
+
 
       <!-- Datasets -->
       <section id="licence-datasets" aria-labelledby="licence-datasets-heading">
@@ -666,7 +667,7 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
       </section>
     </section>
 
-        </div> <!-- /.page-content -->
+    </div> <!-- /.page-content -->
     </div> <!-- /.page-grid -->
 
   </main>
@@ -1006,6 +1007,93 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
             })();
             /* ========= end ========= */
 
+            /* ========= Licence & Citation: toolbar (Copy + Wrap) — robust ========= */
+            (function(){
+              function copyText(text){
+                return new Promise((resolve, reject) => {
+                  // Prefer modern API when available AND in a secure context
+                  if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(resolve, reject);
+                  } else {
+                    // Fallback for HTTP/local files/older browsers
+                    try {
+                      const ta = document.createElement('textarea');
+                      ta.value = text;
+                      ta.setAttribute('readonly', '');
+                      ta.style.position = 'fixed';
+                      ta.style.top = '-9999px';
+                      document.body.appendChild(ta);
+                      ta.focus();
+                      ta.select();
+                      ta.setSelectionRange(0, ta.value.length);
+                      const ok = document.execCommand('copy');
+                      document.body.removeChild(ta);
+                      ok ? resolve() : reject(new Error('execCommand copy failed'));
+                    } catch (err) {
+                      reject(err);
+                    }
+                  }
+                });
+              }
+
+              document.querySelectorAll('pre.cite').forEach(pre => {
+                // Build toolbar
+                const bar = document.createElement('div');
+                bar.className = 'cite-toolbar';
+
+                const left = document.createElement('div'); left.className = 'group';
+                const btnCopy = document.createElement('button'); btnCopy.type='button'; btnCopy.textContent='Copy';
+                const btnWrap = document.createElement('button'); btnWrap.type='button'; btnWrap.textContent='Wrap lines'; btnWrap.setAttribute('aria-pressed','false');
+                left.append(btnCopy, btnWrap);
+
+                const right = document.createElement('div'); right.className = 'group';
+                const status = document.createElement('span'); status.className = 'status'; status.setAttribute('aria-live','polite');
+                right.append(status);
+
+                bar.append(left, right);
+                pre.parentNode.insertBefore(bar, pre); // inject above the <pre>
+
+                // Handlers
+                btnCopy.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  const original = btnCopy.textContent;
+                  copyText(pre.textContent)
+                    .then(() => {
+                      // Visual feedback on the button + message on the right
+                      btnCopy.textContent = 'Copied';
+                      btnCopy.classList.add('ok');
+                      status.textContent = 'Copied.';
+                      pre.classList.add('is-copied');
+
+                      setTimeout(() => {
+                        btnCopy.textContent = original;
+                        btnCopy.classList.remove('ok');
+                        status.textContent = '';
+                        pre.classList.remove('is-copied');
+                      }, 1200);
+                    })
+                    .catch(() => {
+                      btnCopy.textContent = 'Copy failed';
+                      btnCopy.classList.add('ok');
+                      status.textContent = 'Copy failed.';
+                      setTimeout(() => {
+                        btnCopy.textContent = original;
+                        btnCopy.classList.remove('ok');
+                        status.textContent = '';
+                      }, 1500);
+                    });
+                });
+
+
+                btnWrap.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  const on = btnWrap.getAttribute('aria-pressed') !== 'true';
+                  btnWrap.setAttribute('aria-pressed', on ? 'true' : 'false');
+                  pre.classList.toggle('is-wrapped', on);
+                });
+              });
+            })();
+            /* ========= end ========= */
 
           })();
         });
