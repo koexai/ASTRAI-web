@@ -598,3 +598,68 @@ body.resources-page details.pub-more summary{
 body.resources-page details.pub-more[open]{ background:#f8fafc; border-radius:8px; padding:.4rem .5rem; margin-top:.25rem; }
 body.resources-page details.pub-more[open] .pub-note{ color:#475569; }
 
+/* ===== Resource Hub — Source Code (scoped) ===== */
+body.resources-page .repo{
+  border:1px solid #e5e7eb; border-radius:12px; background:#fff;
+  padding:1rem 1.25rem; margin:1rem 0 1.5rem;
+}
+body.resources-page .repo-head{
+  display:flex; align-items:center; gap:.75rem;
+}
+body.resources-page .repo-title{ margin:0; font-size:1.25rem; color:#2A3E92; }
+
+/* status chip */
+body.resources-page .repo-state{
+  margin-left:auto; font-size:.82rem; padding:.2rem .55rem; border-radius:9999px;
+  border:1px solid #e5e7eb; background:#f8fafc; color:#334155;
+}
+
+/* tint by status */
+body.resources-page{
+  --repo-public:   #16a34a;
+  --repo-private:  #64748b;
+  --repo-wip:      #d97706;
+  --repo-frozen:   #7c3aed;
+  --repo-arch:     #0e7490;
+
+  --repo-public-bg:  #e9f7ef; --repo-public-text:#065f46;
+  --repo-private-bg: #eef2f7; --repo-private-text:#334155;
+  --repo-wip-bg:     #fff4e5; --repo-wip-text:#7c2d12;
+  --repo-frozen-bg:  #f3e8ff; --repo-frozen-text:#5b21b6;
+  --repo-arch-bg:    #e6f7fb; --repo-arch-text:#0c4a6e;
+}
+body.resources-page .repo[data-status="public"]  .repo-state{ background:var(--repo-public-bg);  border-color:var(--repo-public);  color:var(--repo-public-text); }
+body.resources-page .repo[data-status="private"] .repo-state{ background:var(--repo-private-bg); border-color:var(--repo-private); color:var(--repo-private-text); }
+body.resources-page .repo[data-status="wip"]     .repo-state{ background:var(--repo-wip-bg);     border-color:var(--repo-wip);     color:var(--repo-wip-text); }
+body.resources-page .repo[data-status="frozen"]  .repo-state{ background:var(--repo-frozen-bg);  border-color:var(--repo-frozen);  color:var(--repo-frozen-text); }
+body.resources-page .repo[data-status="archived"].repo-state,
+body.resources-page .repo[data-status="archived"] .repo-state{ background:var(--repo-arch-bg);   border-color:var(--repo-arch);    color:var(--repo-arch-text); }
+
+body.resources-page .repo-meta{
+  list-style:none; margin:.5rem 0 .6rem; padding:0;
+  display:flex; flex-wrap:wrap; gap:.35rem 1rem; color:#475569; font-size:.95rem;
+}
+body.resources-page .repo-meta .label{ color:#334155; font-weight:600; }
+
+body.resources-page .repo-actions .btn[aria-disabled="true"]{
+  opacity:.6; pointer-events:none;
+}
+
+body.resources-page details.repo-more summary{
+  cursor:pointer; color:#1f3a8a; text-decoration:underline; text-underline-offset:2px;
+}
+body.resources-page details.repo-more[open]{ background:#f8fafc; border-radius:8px; padding:.4rem .5rem; margin-top:.35rem; }
+
+/* Resource Hub: ensure anchor-buttons keep white text */
+body.resources-page a.btn,
+body.resources-page a.btn:visited,
+body.resources-page a.btn.btn-secondary,
+body.resources-page a.btn.btn-secondary:visited {
+  color: #fff;
+  text-decoration: none;
+}
+body.resources-page a.btn:hover,
+body.resources-page a.btn:focus {
+  color: #fff;
+  text-decoration: none;
+}

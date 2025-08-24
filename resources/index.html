@@ -436,18 +436,45 @@
     <!-- Source Code -->
     <section id="code" aria-labelledby="code-heading">
       <h2 id="code-heading">Source Code</h2>
-      <p class="muted">Single public repository (placeholder for now). Links will be activated once the repo is public.</p>
+      <p class="muted">Single public repository (placeholder). Links activate once the repo is public.</p>
 
-      <article id="code-core" aria-labelledby="code-core-heading">
-        <h3 id="code-core-heading">ASTRAI Core Repository</h3>
-        <p>Generative models and characterisation tools used in ASTRAI. Includes training/evaluation scripts and utilities.</p>
-        <p class="stacked-actions">
-          <a class="btn" href="https://github.com/koexai/ASTRAI.git" aria-disabled="true">View on GitHub (coming soon)</a>
-          <span class="btn btn-secondary" href="#" aria-disabled="true" onclick="return false;">Download ZIP (coming soon)</span>
+      <article class="repo" data-status="wip" aria-labelledby="code-core-heading">
+      <!-- Allowed values for data-status: private, public, wip, frozen, archived -->
+        <div class="repo-head">
+          <h3 id="code-core-heading" class="repo-title">ASTRAI Core Repository</h3>
+          <span class="repo-state" aria-live="polite"></span>
+        </div>
+
+        <ul class="repo-meta">
+          <li><span class="label">Languages:</span> Python (PyTorch), JAX (planned)</li>
+          <li><span class="label">Licence:</span> MIT (TBC)</li>
+          <li><span class="label">Visibility:</span> Private (opening soon)</li>
+        </ul>
+
+        <p class="repo-actions">
+          <!-- No links, just placeholder -->
+          <!--
+          <a class="btn" href="#" aria-disabled="true">View on GitHub (coming soon)</a>
+          <a class="btn btn-secondary" href="#" aria-disabled="true">Download ZIP</a>
+          -->
+          <!-- with links, just placeholder -->
+            <a class="btn" href="https://github.com/koexai/ASTRAI.git" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn btn-secondary" href="https://github.com/koexai/ASTRAI/archive/refs/heads/main.zip">Download ZIP</a>
         </p>
-        <p class="muted">Licence: MIT (TBC). For how to cite the software, see <a href="#licence-citation">Licence &amp; Citation</a>.</p>
+
+        <!-- Once the repo is public you can: (1) remove this section (2) convert it to a Contents summary, with links to real folders/files in Github-->
+        <details class="repo-more">
+          <summary>Planned contents</summary>
+          <ul>
+            <li>Training &amp; evaluation scripts</li>
+            <li>Model architectures (physical + GenAI variants)</li>
+            <li>Data loaders and preprocessing utilities</li>
+            <li>Reproducible configs and example notebooks</li>
+          </ul>
+        </details>
       </article>
     </section>
+
 
 
     <!-- Publications -->
@@ -958,6 +985,27 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
                 });
               });
             })();
+
+          /* ========= Source Code: dynamic chip text from data-status ========= */
+            (function(){
+              const MAP = {
+                public: 'Public',
+                private: 'Private',
+                wip: 'Work in progress',
+                frozen: 'Frozen',
+                archived: 'Archived'
+              };
+              document.querySelectorAll('.repo').forEach(repo => {
+                const chip = repo.querySelector('.repo-state');
+                if (!chip) return;
+                const s = (repo.getAttribute('data-status') || '').toLowerCase();
+                const txt = MAP[s] || '—';
+                chip.textContent = txt;
+                chip.setAttribute('aria-label', `Repository status: ${txt.toLowerCase()}`);
+              });
+            })();
+            /* ========= end ========= */
+
 
           })();
         });
