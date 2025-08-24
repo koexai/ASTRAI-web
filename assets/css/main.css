@@ -702,3 +702,35 @@ body.resources-page .preview-toolbar button.ok {
   border-color: #2A3E92;
   box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
 }
+
+/* === Resource Hub: narrower page + robust grid === */
+
+/* 1) Narrow ONLY the Resource Hub page */
+body.resources-page .container { max-width: 1000px; } /* try 960–1040 to taste */
+
+/* 2) Grid must not expand: let the content column shrink if needed */
+@media (min-width: 981px) {
+  body.resources-page .page-grid {
+    grid-template-columns: 220px minmax(0, 1fr);  /* <-- minmax(0,1fr) prevents overflow */
+    gap: 1.75rem;
+  }
+  body.resources-page .toc-panel { width: 220px; } /* keep sidebar steady */
+}
+
+/* 3) Long strings must wrap inside the sidebar/content */
+body.resources-page .toc-panel a,
+body.resources-page code,
+body.resources-page .file-item .hash {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 4) Defensive: wide blocks must respect the container */
+body.resources-page .table-scroll,
+body.resources-page pre.cite,
+body.resources-page .repo,
+body.resources-page #datasets .category-band,
+body.resources-page #datasets .dataset.frame {
+  max-width: 100%;
+}
+
