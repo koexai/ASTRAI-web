@@ -263,22 +263,6 @@ body.resources-page .table-scroll tbody td {
 body.resources-page .table-scroll tbody tr:nth-child(odd) td { background: #fcfdff; }
 body.resources-page .preview-actions { margin-top: .45rem; }
 
-/* Column pager */
-body.resources-page .preview-colnav {
-  display: flex; gap: .5rem; align-items: center;
-  margin: .35rem 0 .55rem;
-  font-size: .9rem;
-}
-body.resources-page .preview-colnav button {
-  border: 1px solid #e5e7eb;
-  padding: .3rem .5rem;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-}
-body.resources-page .preview-colnav button[disabled] { opacity: .5; cursor: default; }
-body.resources-page .preview-colnav .range { font-variant-numeric: tabular-nums; color: #64748b; }
-
 /* Muted text */
 body.resources-page .muted { color: #64748b; }
 
@@ -472,47 +456,79 @@ body.resources-page .preview-toolbar .status { margin-left: .25rem; color: #6474
 
 body.resources-page .preview-toolbar--bottom { margin-top: .25rem; }
 
-/* ===== Resource Hub — FAIR checklist (scoped) ===== */
-body.resources-page :root {
-  --fair-ok: #16a34a;      /* green */
-  --fair-soon: #d97706;    /* amber */
-  --fair-missing: #64748b; /* grey */
-  --fair-external: #0e7490;/* teal */
-  --fair-chip-bg: #f8fafc;
-  --fair-border: #e5e7eb;
+/* ===== Resource Hub — FAIR checklist (scoped, consolidated) ===== */
+body.resources-page{
+  /* status colours */
+  --fair-ok:       #16a34a;  /* green */
+  --fair-soon:     #d97706;  /* amber */
+  --fair-missing:  #64748b;  /* grey */
+  --fair-external: #0e7490;  /* teal */
+  --fair-border:   #e5e7eb;
+
+  /* chip tints (bg + text) */
+  --fair-ok-bg:       #e9f7ef;  --fair-ok-text:       #065f46;
+  --fair-soon-bg:     #fff4e5;  --fair-soon-text:     #7c2d12;
+  --fair-missing-bg:  #eef2f7;  --fair-missing-text:  #334155;
+  --fair-external-bg: #e6f7fb;  --fair-external-text: #0c4a6e;
 }
 
 body.resources-page .fair-note { color:#64748b; margin:.35rem 0 .5rem; }
 
 body.resources-page .fair-checklist {
-  list-style: none; margin:.5rem 0 1rem; padding:0;
-  display: grid; gap:.5rem;
+  list-style:none; margin:.5rem 0 1rem; padding:0; display:grid; gap:.5rem;
 }
+
 body.resources-page .fair-item {
   display:flex; align-items:center; gap:.5rem;
   padding:.5rem .65rem; border:1px solid var(--fair-border);
   border-radius:8px; background:#fff;
 }
-/* coloured accent */
+
+/* left accent by status */
 body.resources-page .fair-item[data-status="available"] { border-left:4px solid var(--fair-ok); }
 body.resources-page .fair-item[data-status="soon"]      { border-left:4px solid var(--fair-soon); }
 body.resources-page .fair-item[data-status="external"]  { border-left:4px solid var(--fair-external); }
 body.resources-page .fair-item[data-status="missing"]   { border-left:4px solid var(--fair-missing); }
 
-/* tiny icons */
+/* tiny icon colour by status */
 body.resources-page .fair-item .icon svg { width:16px; height:16px; display:block; }
 body.resources-page .fair-item[data-status="available"] .icon svg { fill: var(--fair-ok); }
-body.resources-page .fair-item[data-status="soon"] .icon svg      { fill: var(--fair-soon); }
-body.resources-page .fair-item[data-status="external"] .icon svg  { fill: var(--fair-external); }
-body.resources-page .fair-item[data-status="missing"] .icon svg   { fill: var(--fair-missing); }
+body.resources-page .fair-item[data-status="soon"]      .icon svg { fill: var(--fair-soon); }
+body.resources-page .fair-item[data-status="external"]  .icon svg { fill: var(--fair-external); }
+body.resources-page .fair-item[data-status="missing"]   .icon svg { fill: var(--fair-missing); }
 
 /* name + link */
 body.resources-page .fair-item .name { font-weight:600; margin-right:.25rem; }
 body.resources-page .fair-item .sep  { color:#94a3b8; }
 
-/* right-aligned status chip */
-body.resources-page .fair-item .state {
-  margin-left:auto; font-size:.82rem; color:#334155;
-  background: var(--fair-chip-bg); padding:.2rem .45rem; border-radius:9999px;
+/* coloured status chip (matches accent) */
+body.resources-page .fair-item .state{
+  margin-left:auto; font-size:.82rem; padding:.2rem .5rem; border-radius:9999px;
+  border:1px solid var(--fair-border); background:#f8fafc; color:#334155;
+}
+body.resources-page .fair-item[data-status="available"] .state{
+  background:var(--fair-ok-bg); border-color:var(--fair-ok); color:var(--fair-ok-text);
+}
+body.resources-page .fair-item[data-status="soon"] .state{
+  background:var(--fair-soon-bg); border-color:var(--fair-soon); color:var(--fair-soon-text);
+}
+body.resources-page .fair-item[data-status="external"] .state{
+  background:var(--fair-external-bg); border-color:var(--fair-external); color:var(--fair-external-text);
+}
+body.resources-page .fair-item[data-status="missing"] .state{
+  background:var(--fair-missing-bg); border-color:var(--fair-missing); color:var(--fair-missing-text);
 }
 
+/* Contain long BibTeX/URL lines inside the box (prevents page-wide overflow) */
+body.resources-page pre.cite{
+  display:block;
+  max-width:100%;
+  padding:.75rem .9rem;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  background:#f8fafc;
+  white-space:pre;          /* keep formatting; another option: pre-wrap */
+  overflow-x:auto;          /* scroll inside the box if needed */
+  overflow-y:auto;
+    /* another option is overflow-wrap: anywhere; */
+}
