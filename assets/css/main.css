@@ -696,3 +696,9 @@ body.resources-page .cite-toolbar button.ok {
   border-color: #2A3E92;
   box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
 }
+
+/* CSV Copy button success/fail flash (same as citation toolbar) */
+body.resources-page .preview-toolbar button.ok {
+  border-color: #2A3E92;
+  box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
+}

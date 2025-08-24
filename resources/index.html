@@ -827,14 +827,37 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
                     render();
                   });
 
-                  copyBtn.addEventListener('click', () => {
-                    if (!limitedRows.length) return;
-                    const header = limitedRows[0].join(','); // copy as comma-separated
-                    copyToClipboard(header,
-                      () => { status.textContent = 'Copied.'; setTimeout(() => status.textContent = '', 1200); },
-                      () => { status.textContent = 'Copy failed.'; setTimeout(() => status.textContent = '', 1500); }
-                    );
-                  });
+                copyBtn.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  if (!limitedRows.length) return;
+
+                  const original = copyBtn.textContent;
+                  const header = limitedRows[0].join(','); // copy as comma-separated
+
+                  copyToClipboard(header,
+                    () => {
+                      copyBtn.textContent = 'Copied';
+                      copyBtn.classList.add('ok');
+                      status.textContent = 'Copied.';
+                      setTimeout(() => {
+                        copyBtn.textContent = original;
+                        copyBtn.classList.remove('ok');
+                        status.textContent = '';
+                      }, 1200);
+                    },
+                    () => {
+                      copyBtn.textContent = 'Copy failed';
+                      copyBtn.classList.add('ok');
+                      status.textContent = 'Copy failed.';
+                      setTimeout(() => {
+                        copyBtn.textContent = original;
+                        copyBtn.classList.remove('ok');
+                        status.textContent = '';
+                      }, 1500);
+                    }
+                  );
+                });
+
 
                   render();
                 })
