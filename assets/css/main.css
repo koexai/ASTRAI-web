@@ -769,7 +769,10 @@ body.resources-page .preview-toolbar button.ok {
 /* === Resource Hub: narrower page + robust grid === */
 
 /* 1) Narrow ONLY the Resource Hub page */
-body.resources-page .container { max-width: 1000px; } /* try 960–1040 to taste */
+/* Comment this line to inherit the base .container with page width matches the main site (1200px) */
+/* body.resources-page .container { max-width: 1000px; } /* try 960–1040 to taste */
+
+
 
 /* 2) Grid must not expand: let the content column shrink if needed */
 @media (min-width: 981px) {
