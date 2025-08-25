@@ -215,13 +215,97 @@ body.resources-page #toc a:hover {
   text-decoration-thickness: 2px;
 }
 
-/* TOC indentation & bullets */
-body.resources-page #toc ul { padding-left: 1.25rem; margin: .2rem 0; }
-body.resources-page #toc > ul { padding-left: 0; }
-body.resources-page #toc > ul > li { list-style: disc; }
-body.resources-page #toc ul ul > li { list-style: circle; }
-body.resources-page #toc ul ul ul > li { list-style: square; }
-body.resources-page #toc a { line-height: 1.4; }
+/* ===== Resource Hub — TOC panel (professional/clean) ===== */
+body.resources-page #toc { --toc-indent: .7rem; --toc-rail1:#e5e7eb; --toc-rail2:#eef2f7; }
+
+/* No bullets anywhere */
+body.resources-page #toc ul,
+body.resources-page #toc li { list-style: none; margin: 0; padding: 0; }
+
+/* Top level: flush with the panel (no rail) */
+body.resources-page #toc > ul {
+  padding-left: 0;
+  margin-left: 0;
+  border-left: 0;
+  margin-top: .35rem;
+}
+
+/* Nested levels: small, consistent indent + subtle rail */
+body.resources-page #toc li                 { margin: .18rem 0; }
+body.resources-page #toc li > ul            { margin-left: var(--toc-indent); padding-left: var(--toc-indent); border-left: 2px solid var(--toc-rail1); }
+body.resources-page #toc li > ul > li > ul  { border-left: 2px solid var(--toc-rail2); }
+
+/* Links */
+body.resources-page #toc a {
+  display: block;
+  color: #334155;
+  text-decoration: none;
+  line-height: 1.3;
+  overflow-wrap: anywhere;   /* wrap long labels instead of pushing indent */
+}
+body.resources-page #toc a:hover { color: #1f3a8a; text-decoration: underline; }
+
+/* Active */
+body.resources-page #toc a[aria-current="true"] {
+  color: #1f3a8a;
+  font-weight: 700;
+  background: #eef2ff;
+  border-radius: 6px;
+  padding: 2px 4px;
+}
+
+/* TOC panel shell */
+body.resources-page .toc-panel { padding: .9rem .95rem 1.15rem .95rem; }
+body.resources-page .toc-panel h2 {
+  font-size: 1.05rem;
+  text-align: left;
+  margin: 0 0 .5rem;
+  color: #2A3E92;
+}
+/* Avoid generic padding on lists; indenting is handled above */
+body.resources-page .toc-panel ul { margin: .25rem 0; padding-left: 0; }
+body.resources-page .toc-panel ul ul { margin-top: .25rem; }
+body.resources-page .toc-panel li + li { margin-top: .25rem; }
+body.resources-page .toc-panel a { text-decoration: none; }
+body.resources-page .toc-panel a:hover { text-decoration: underline; }
+
+/* Hard reset to guarantee flush top level (wins over any earlier rules) */
+body.resources-page .toc-panel #toc > ul{
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  border-left: 0 !important;
+}
+body.resources-page .toc-panel #toc > ul > li,
+body.resources-page .toc-panel #toc > ul > li > a{
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+/* First nested level inside the panel */
+body.resources-page .toc-panel #toc > ul > li > ul{
+  margin-left: .45rem;
+  padding-left: .6rem;
+  border-left: 2px solid #e5e7eb;
+}
+
+/* Active link state (set via JS) */
+body.resources-page .toc-panel a[aria-current="true"] {
+  font-weight: 700;
+  color: #2A3E92;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Jump to… select — full-width and neat */
+body.resources-page .toc-panel .toc-select{
+  display:block; width:100%;
+  margin:.5rem 0 .5rem;
+  padding:.45rem .6rem;
+  border:1px solid #e5e7eb; border-radius:8px; background:#fff;
+  font: inherit;
+}
+
+/* Ensure long labels/URLs wrap inside the panel */
+body.resources-page .toc-panel a{ overflow-wrap:anywhere; word-break:break-word; }
 
 /* Dataset blocks spacing */
 body.resources-page #datasets { margin-top: 1rem; }
@@ -263,22 +347,6 @@ body.resources-page .table-scroll tbody td {
 body.resources-page .table-scroll tbody tr:nth-child(odd) td { background: #fcfdff; }
 body.resources-page .preview-actions { margin-top: .45rem; }
 
-/* Column pager */
-body.resources-page .preview-colnav {
-  display: flex; gap: .5rem; align-items: center;
-  margin: .35rem 0 .55rem;
-  font-size: .9rem;
-}
-body.resources-page .preview-colnav button {
-  border: 1px solid #e5e7eb;
-  padding: .3rem .5rem;
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-}
-body.resources-page .preview-colnav button[disabled] { opacity: .5; cursor: default; }
-body.resources-page .preview-colnav .range { font-variant-numeric: tabular-nums; color: #64748b; }
-
 /* Muted text */
 body.resources-page .muted { color: #64748b; }
 
@@ -296,3 +364,502 @@ body.resources-page header nav .nav-cta[aria-current="page"] { background: #2A3E
   header nav { display: flex; flex-wrap: wrap; gap: .75rem 1rem; }
   header nav a { margin-left: 0; }
 }
+
+/* ===== Resource Hub: two-column layout & TOC panel (scoped) ===== */
+body.resources-page .page-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Sticky TOC panel (shell already above) */
+body.resources-page .toc-panel {
+  position: sticky;
+  top: calc(var(--header-h) + 12px);
+  align-self: start;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  padding: 1rem 1rem 1.25rem;
+}
+
+/* Mobile: collapse to single column and show a Jump control */
+@media (max-width: 980px) {
+  body.resources-page .page-grid { grid-template-columns: 1fr; }
+  body.resources-page .toc-panel {
+    position: static;
+    padding: .75rem;
+  }
+  body.resources-page .toc-select {
+    display: block;
+    width: 100%;
+    margin: .25rem 0 .5rem;
+    padding: .5rem .6rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    font: inherit;
+  }
+  /* Hide the long list on small screens; keep the heading + select */
+  body.resources-page .toc-panel ul { display: none; }
+}
+
+/* ===== Resource Hub — Category bands + dataset frames (scoped) ===== */
+:root{
+  /* faint tints for category backgrounds */
+  --band-a: #F8FAFF;  /* cool blue */
+  --band-b: #FAFFF8;  /* soft green */
+  --band-c: #FFF9F8;  /* warm coral */
+  --band-border: #eef2f7;
+}
+
+body.resources-page #datasets .category-band {
+  background: #fff; /* default, overridden by per-band classes below */
+  border: 1px solid var(--band-border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* per-category tints */
+body.resources-page #datasets .category-band.band-a { background: var(--band-a); }
+body.resources-page #datasets .category-band.band-b { background: var(--band-b); }
+body.resources-page #datasets .category-band.band-c { background: var(--band-c); }
+
+/* space inside bands */
+body.resources-page #datasets .category-band > * + * { margin-top: 1rem; }
+
+/* dataset frames (NOT cards): subtle border, radius, white bg */
+body.resources-page #datasets .dataset.frame {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin: .75rem 0 1rem;
+}
+
+/* remove the old bottom divider when framed */
+body.resources-page #datasets article.frame {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* tidy spacing of headings within framed datasets */
+body.resources-page #datasets .dataset.frame h4 { margin-top: .25rem; }
+body.resources-page #datasets .dataset.frame h5 { margin-top: .75rem; }
+
+/* responsive: soften padding on small screens */
+@media (max-width: 768px){
+  body.resources-page #datasets .category-band { padding: .9rem; }
+  body.resources-page #datasets .dataset.frame { padding: .9rem; }
+}
+
+/* Primary files strip (scoped to the hub) */
+body.resources-page .visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+body.resources-page .file-strip {
+  display: flex; flex-wrap: wrap; gap: .5rem 1rem;
+  margin: .35rem 0 .75rem;
+}
+
+body.resources-page .file-item {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .45rem .65rem;
+  border: 1px solid #e5e7eb; border-radius: 9999px;
+  background: #fff;
+}
+
+body.resources-page .file-item svg { width: 16px; height: 16px; fill: #2A3E92; flex: 0 0 auto; }
+body.resources-page .file-item .name { font-weight: 600; }
+body.resources-page .file-item .meta { color: #64748b; font-size: .9rem; }
+body.resources-page .file-item .hash {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .85rem; text-decoration: underline; text-underline-offset: 2px;
+}
+
+/* ===== Resource Hub — Preview toolbar (scoped) ===== */
+body.resources-page .preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin: .35rem 0 .25rem;
+  font-size: .9rem;
+}
+
+body.resources-page .preview-toolbar .group {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* Reuse the small, neutral button look */
+body.resources-page .preview-toolbar button,
+body.resources-page .preview-toolbar a.btn-ghost {
+  border: 1px solid #e5e7eb;
+  padding: .3rem .5rem;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+}
+
+body.resources-page .preview-toolbar button[disabled] { opacity: .5; cursor: default; }
+body.resources-page .preview-toolbar .range { font-variant-numeric: tabular-nums; color: #64748b; }
+body.resources-page .preview-toolbar .status { margin-left: .25rem; color: #64748b; font-size: .85rem; }
+
+/* Small screens: stack neatly */
+@media (max-width: 640px) {
+  body.resources-page .preview-toolbar { flex-wrap: wrap; }
+}
+
+body.resources-page .preview-toolbar--bottom { margin-top: .25rem; }
+
+/* ===== Resource Hub — FAIR checklist (scoped, consolidated) ===== */
+body.resources-page{
+  /* status colours */
+  --fair-ok:       #16a34a;  /* green */
+  --fair-soon:     #d97706;  /* amber */
+  --fair-missing:  #64748b;  /* grey */
+  --fair-external: #0e7490;  /* teal */
+  --fair-border:   #e5e7eb;
+
+  /* chip tints (bg + text) */
+  --fair-ok-bg:       #e9f7ef;  --fair-ok-text:       #065f46;
+  --fair-soon-bg:     #fff4e5;  --fair-soon-text:     #7c2d12;
+  --fair-missing-bg:  #eef2f7;  --fair-missing-text:  #334155;
+  --fair-external-bg: #e6f7fb;  --fair-external-text: #0c4a6e;
+}
+
+body.resources-page .fair-note { color:#64748b; margin:.35rem 0 .5rem; }
+
+body.resources-page .fair-checklist {
+  list-style:none; margin:.5rem 0 1rem; padding:0; display:grid; gap:.5rem;
+}
+
+body.resources-page .fair-item {
+  display:flex; align-items:center; gap:.5rem;
+  padding:.5rem .65rem; border:1px solid var(--fair-border);
+  border-radius:8px; background:#fff;
+}
+
+/* left accent by status */
+body.resources-page .fair-item[data-status="available"] { border-left:4px solid var(--fair-ok); }
+body.resources-page .fair-item[data-status="soon"]      { border-left:4px solid var(--fair-soon); }
+body.resources-page .fair-item[data-status="external"]  { border-left:4px solid var(--fair-external); }
+body.resources-page .fair-item[data-status="missing"]   { border-left:4px solid var(--fair-missing); }
+
+/* tiny icon colour by status */
+body.resources-page .fair-item .icon svg { width:16px; height:16px; display:block; }
+body.resources-page .fair-item[data-status="available"] .icon svg { fill: var(--fair-ok); }
+body.resources-page .fair-item[data-status="soon"]      .icon svg { fill: var(--fair-soon); }
+body.resources-page .fair-item[data-status="external"]  .icon svg { fill: var(--fair-external); }
+body.resources-page .fair-item[data-status="missing"]   .icon svg { fill: var(--fair-missing); }
+
+/* name + link */
+body.resources-page .fair-item .name { font-weight:600; margin-right:.25rem; }
+body.resources-page .fair-item .sep  { color:#94a3b8; }
+
+/* coloured status chip (matches accent) */
+body.resources-page .fair-item .state{
+  margin-left:auto; font-size:.82rem; padding:.2rem .5rem; border-radius:9999px;
+  border:1px solid var(--fair-border); background:#f8fafc; color:#334155;
+}
+body.resources-page .fair-item[data-status="available"] .state{
+  background:var(--fair-ok-bg); border-color:var(--fair-ok); color:var(--fair-ok-text);
+}
+body.resources-page .fair-item[data-status="soon"] .state{
+  background:var(--fair-soon-bg); border-color:var(--fair-soon); color:var(--fair-soon-text);
+}
+body.resources-page .fair-item[data-status="external"] .state{
+  background:var(--fair-external-bg); border-color:var(--fair-external); color:var(--fair-external-text);
+}
+body.resources-page .fair-item[data-status="missing"] .state{
+  background:var(--fair-missing-bg); border-color:var(--fair-missing); color:var(--fair-missing-text);
+}
+
+/* ===== Resource Hub — Licence & Citation tools (scoped) ===== */
+body.resources-page .cite-toolbar{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:.5rem; margin:.35rem 0 .35rem; font-size:.9rem;
+}
+body.resources-page .cite-toolbar .group{
+  display:inline-flex; align-items:center; gap:.5rem;
+}
+
+/* Reuse neutral button look (same as preview toolbar) */
+body.resources-page .cite-toolbar button{
+  border:1px solid #e5e7eb; padding:.3rem .5rem; border-radius:6px;
+  background:#fff; cursor:pointer; line-height:1;
+}
+body.resources-page .cite-toolbar button[aria-pressed="true"]{
+  background:#f1f5f9;
+}
+body.resources-page .cite-toolbar .status{ margin-left:.25rem; color:#64748b; font-size:.85rem; }
+
+/* Contain long BibTeX/URL lines inside the box (prevents page-wide overflow) */
+body.resources-page pre.cite{
+  display:block;
+  max-width:100%;
+  padding:.75rem .9rem;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  background:#f8fafc;
+  white-space:pre;          /* keep formatting */
+  overflow-x:auto;          /* scroll inside the box if needed */
+  overflow-y:auto;
+}
+
+/* Wrapping toggle for long citations */
+body.resources-page pre.cite.is-wrapped{
+  white-space: pre-wrap;        /* wrap long lines */
+  overflow-wrap: anywhere;      /* break very long tokens (URLs) */
+  overflow-x: auto;             /* keep internal scroll if still needed */
+}
+
+body.resources-page pre.cite.is-copied { box-shadow: 0 0 0 2px #c7d2fe inset; }
+
+/* Copy button success/fail flash */
+body.resources-page .cite-toolbar button.ok {
+  border-color: #2A3E92;
+  box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
+}
+
+/* ===== Resource Hub — Publications (scoped) ===== */
+body.resources-page .pub-filter{
+  display:flex; gap:.5rem; flex-wrap:wrap;
+  margin:.5rem 0 1rem;
+}
+body.resources-page .pub-filter button{
+  border:1px solid #e5e7eb; background:#fff; border-radius:9999px;
+  padding:.35rem .75rem; cursor:pointer; line-height:1; font:inherit;
+}
+body.resources-page .pub-filter button[aria-pressed="true"]{
+  background:#2A3E92; color:#fff; border-color:#2A3E92;
+}
+
+body.resources-page .pub-group{ margin:1.25rem 0 1.75rem; }
+body.resources-page .pub-list{ list-style:none; margin:.5rem 0 0; padding:0; display:grid; gap:.75rem; }
+
+body.resources-page .pub-item{
+  border:1px solid #e5e7eb; border-radius:10px; background:#fff;
+  padding:.8rem .95rem;
+}
+body.resources-page .pub-head{
+  display:flex; align-items:center; gap:.75rem;
+}
+body.resources-page .pub-title a{ text-decoration:none; }
+body.resources-page .pub-title a:hover{ text-decoration:underline; }
+
+body.resources-page .pub-meta{
+  list-style:none; margin:.35rem 0 .25rem; padding:0;
+  display:flex; flex-wrap:wrap; gap:.35rem 1rem; color:#475569; font-size:.95rem;
+}
+body.resources-page .pub-meta .label{ color:#334155; font-weight:600; }
+
+/* Status chip (publication) */
+body.resources-page{
+  --pub-prep:     #d97706; /* amber */
+  --pub-submit:   #0ea5e9; /* sky */
+  --pub-review:   #7c3aed; /* violet */
+  --pub-accept:   #16a34a; /* green */
+  --pub-publish:  #15803d; /* deep green */
+  --pub-preprint: #0369a1; /* deep sky */
+  --pub-wip:      #64748b; /* slate */
+}
+body.resources-page .pub-state{
+  margin-left:auto; font-size:.82rem; padding:.2rem .55rem; border-radius:9999px;
+  border:1px solid #e5e7eb; background:#f8fafc; color:#334155;
+}
+
+/* colour the chip by data-status */
+body.resources-page .pub-item[data-status="in-prep"]      .pub-state{ background:#fff4e5; border-color:var(--pub-prep);     color:#7c2d12; }
+body.resources-page .pub-item[data-status="submitted"]    .pub-state{ background:#e6f6fe; border-color:var(--pub-submit);   color:#075985; }
+body.resources-page .pub-item[data-status="under-review"] .pub-state{ background:#f3e8ff; border-color:var(--pub-review);   color:#5b21b6; }
+body.resources-page .pub-item[data-status="accepted"]     .pub-state{ background:#e9f7ef; border-color:var(--pub-accept);   color:#065f46; }
+body.resources-page .pub-item[data-status="published"]    .pub-state{ background:#e8f5eb; border-color:var(--pub-publish);  color:#065f46; }
+body.resources-page .pub-item[data-status="preprint"]     .pub-state{ background:#e6f7fb; border-color:var(--pub-preprint); color:#0c4a6e; }
+body.resources-page .pub-item[data-status="wip"]          .pub-state{ background:#eef2f7; border-color:var(--pub-wip);      color:#334155; }
+body.resources-page .pub-item[data-status="planned"]      .pub-state{ background:#eef2f7; border-color:#cbd5e1;             color:#334155; }
+
+/* details/summary tidy */
+body.resources-page details.pub-more summary{
+  cursor: pointer; color:#1f3a8a; text-decoration: underline; text-underline-offset:2px;
+}
+body.resources-page details.pub-more[open]{ background:#f8fafc; border-radius:8px; padding:.4rem .5rem; margin-top:.25rem; }
+body.resources-page details.pub-more[open] .pub-note{ color:#475569; }
+
+/* ===== Resource Hub — Source Code (scoped) ===== */
+body.resources-page .repo{
+  border:1px solid #e5e7eb; border-radius:12px; background:#fff;
+  padding:1rem 1.25rem; margin:1rem 0 1.5rem;
+}
+body.resources-page .repo-head{
+  display:flex; align-items:center; gap:.75rem;
+}
+body.resources-page .repo-title{ margin:0; font-size:1.25rem; color:#2A3E92; }
+
+/* status chip */
+body.resources-page .repo-state{
+  margin-left:auto; font-size:.82rem; padding:.2rem .55rem; border-radius:9999px;
+  border:1px solid #e5e7eb; background:#f8fafc; color:#334155;
+}
+
+/* tint by status */
+body.resources-page{
+  --repo-public:   #16a34a;
+  --repo-private:  #64748b;
+  --repo-wip:      #d97706;
+  --repo-frozen:   #7c3aed;
+  --repo-arch:     #0e7490;
+
+  --repo-public-bg:  #e9f7ef; --repo-public-text:#065f46;
+  --repo-private-bg: #eef2f7; --repo-private-text:#334155;
+  --repo-wip-bg:     #fff4e5; --repo-wip-text:#7c2d12;
+  --repo-frozen-bg:  #f3e8ff; --repo-frozen-text:#5b21b6;
+  --repo-arch-bg:    #e6f7fb; --repo-arch-text:#0c4a6e;
+}
+body.resources-page .repo[data-status="public"]  .repo-state{ background:var(--repo-public-bg);  border-color:var(--repo-public);  color:var(--repo-public-text); }
+body.resources-page .repo[data-status="private"] .repo-state{ background:var(--repo-private-bg); border-color:var(--repo-private); color:var(--repo-private-text); }
+body.resources-page .repo[data-status="wip"]     .repo-state{ background:var(--repo-wip-bg);     border-color:var(--repo-wip);     color:var(--repo-wip-text); }
+body.resources-page .repo[data-status="frozen"]  .repo-state{ background:var(--repo-frozen-bg);  border-color:var(--repo-frozen);  color:var(--repo-frozen-text); }
+body.resources-page .repo[data-status="archived"].repo-state,
+body.resources-page .repo[data-status="archived"] .repo-state{ background:var(--repo-arch-bg);   border-color:var(--repo-arch);    color:var(--repo-arch-text); }
+
+body.resources-page .repo-meta{
+  list-style:none; margin:.5rem 0 .6rem; padding:0;
+  display:flex; flex-wrap:wrap; gap:.35rem 1rem; color:#475569; font-size:.95rem;
+}
+body.resources-page .repo-meta .label{ color:#334155; font-weight:600; }
+
+body.resources-page .repo-actions .btn[aria-disabled="true"]{
+  opacity:.6; pointer-events:none;
+}
+
+body.resources-page details.repo-more summary{
+  cursor:pointer; color:#1f3a8a; text-decoration:underline; text-underline-offset:2px;
+}
+body.resources-page details.repo-more[open]{ background:#f8fafc; border-radius:8px; padding:.4rem .5rem; margin-top:.35rem; }
+
+/* Resource Hub: ensure anchor-buttons keep white text */
+body.resources-page a.btn,
+body.resources-page a.btn:visited,
+body.resources-page a.btn.btn-secondary,
+body.resources-page a.btn.btn-secondary:visited {
+  color: #fff;
+  text-decoration: none;
+}
+body.resources-page a.btn:hover,
+body.resources-page a.btn:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* CSV Copy button success/fail flash (same as citation toolbar) */
+body.resources-page .preview-toolbar button.ok {
+  border-color: #2A3E92;
+  box-shadow: 0 0 0 2px rgba(42, 62, 146, 0.12);
+}
+
+/* === Resource Hub: narrower page + robust grid === */
+
+/* 1) Narrow ONLY the Resource Hub page */
+body.resources-page .container { max-width: 1000px; } /* try 960–1040 to taste */
+
+/* 2) Grid must not expand: let the content column shrink if needed */
+@media (min-width: 981px) {
+  body.resources-page .page-grid {
+    grid-template-columns: 220px minmax(0, 1fr);  /* <-- minmax(0,1fr) prevents overflow */
+    gap: 1.75rem;
+  }
+  body.resources-page .toc-panel { width: 220px; } /* keep sidebar steady */
+}
+
+/* 3) Long strings must wrap inside the sidebar/content */
+body.resources-page .toc-panel a,
+body.resources-page code,
+body.resources-page .file-item .hash {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 4) Defensive: wide blocks must respect the container */
+body.resources-page .table-scroll,
+body.resources-page pre.cite,
+body.resources-page .repo,
+body.resources-page #datasets .category-band,
+body.resources-page #datasets .dataset.frame {
+  max-width: 100%;
+}
+
+/* === Resource Hub — TOC (consolidated) === */
+body.resources-page .toc-panel { padding-left: .55rem; } /* tidy left gutter */
+
+/* Reset list styles & logical indents */
+body.resources-page #toc ul,
+body.resources-page #toc li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+/* Links baseline + active */
+body.resources-page #toc a {
+  display: block;
+  text-decoration: none;
+  color: #334155;
+  line-height: 1.3;
+}
+body.resources-page #toc a[aria-current="true"] {
+  font-weight: 700;
+  color: #2A3E92;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 2px 4px; /* no left indent */
+}
+
+/* Top level flush */
+body.resources-page #toc > ul,
+body.resources-page #toc > ul > li,
+body.resources-page #toc > ul > li > a {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: 0;
+}
+
+/* Level 2: minimal indent + light rail */
+body.resources-page #toc > ul > li > ul {
+  margin-left: .10rem;
+  padding-left: .35rem;
+  padding-inline-start: .35rem;
+  border-left: 1px solid #e5e7eb;
+}
+body.resources-page #toc > ul > li > ul > li,
+body.resources-page #toc > ul > li > ul > li > a {
+  margin-left: 0;
+  padding-left: .15rem; /* tiny cushion from the rail */
+}
+
+/* Level 3: even tighter + lighter rail */
+body.resources-page #toc ul ul ul {
+  margin-left: .10rem;
+  padding-left: .30rem;
+  padding-inline-start: .30rem;
+  border-left: 1px solid #eef2f7;
+}
+body.resources-page #toc ul ul ul > li,
+body.resources-page #toc ul ul ul > li > a {
+  margin-left: 0;
+  padding-left: .15rem;
+}
+
+/* Spacing between items */
+body.resources-page #toc li { margin: .15rem 0; }
+

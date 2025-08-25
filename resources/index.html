@@ -33,7 +33,9 @@
     </p>
 
     <!-- Index / Table of Contents -->
-    <section id="toc" role="navigation" aria-labelledby="toc-heading" aria-label="Table of contents">
+    <div class="page-grid">
+    <nav id="toc" class="toc-panel" aria-labelledby="toc-heading" aria-label="On this page">
+
       <h2 id="toc-heading">Index</h2>
       <ul>
         <li><a href="#datasets">Datasets</a>
@@ -76,7 +78,9 @@
         </li>
 
       </ul>
-    </section>
+    </nav>
+
+    <div class="page-content">
 
     <!-- Datasets -->
     <section id="datasets" aria-labelledby="datasets-heading">
@@ -84,194 +88,390 @@
       <p>Datasets are grouped into three categories. Detailed content will be added in subsequent steps.</p>
 
       <!-- Category A -->
-      <section id="A" aria-labelledby="A-heading">
+      <section id="A" class="category-band band-a" aria-labelledby="A-heading">
+
         <h3 id="A-heading">A. Physical Simulations</h3>
 
-        <article id="A1" aria-labelledby="A1-heading">
+        <article id="A1" class="dataset frame" aria-labelledby="A1-heading">
           <h4 id="A1-heading">A1. Physical models (4-parameters)</h4>
 
-          <h5>Main files (.npy)</h5>
-          <ul>
-            <li>
-              <a href="/resources/datasets/A1/lightcurves_4param.npy" download>lightcurves_4param.npy</a>
-              — core light-curve simulations (4-parameter model).
-            </li>
-            <li>
-              <a href="/resources/datasets/A1/params_4param.npy" download>params_4param.npy</a>
-              — parameter matrix (4 columns).
-            </li>
-          </ul>
+          <h5 class="visually-hidden">Primary files</h5>
+            <div class="file-strip" aria-label="Primary files">
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/A1/lightcurves_4param.npy" download class="name">lightcurves_4param.npy</a>
+                <span class="meta">· 152&nbsp;MB</span>
+                <a class="hash" href="/resources/datasets/A1/checksums.txt">SHA-256</a>
+              </div>
+
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/A1/params_4param.npy" download class="name">params_4param.npy</a>
+                <span class="meta">· 9.4&nbsp;MB</span>
+                <a class="hash" href="/resources/datasets/A1/checksums.txt">SHA-256</a>
+              </div>
+            </div>
+            <p class="muted">Last updated: 2025-08-23</p>
+
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A1_curves_sample.csv" download>Download sample curves CSV</a>
-          </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A1_params_sample.csv" download>Download sample parameters CSV</a>
-          </p>
 
-          <h5>FAIR artefacts (work in progress)</h5>
-            <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
-            <ul>
-              <li><a href="/resources/datasets/A1/metadata.json" download>Metadata record (metadata.json)</a></li>
-              <li><a href="/resources/datasets/A1/README.md" download>README</a></li>
-              <li><a href="/resources/datasets/A1/dictionary.csv" download>Data dictionary</a></li>
-              <li><a href="/resources/datasets/A1/provenance.md" download>Provenance &amp; methods</a></li>
-              <li>Licensing &amp; citation: <a href="/resources/datasets/A1/LICENSE" download>LICENCE</a> · <a href="/resources/datasets/A1/citation.txt" download>citation.txt</a></li>
-              <li><a href="/resources/datasets/A1/supplements/">Supplementary materials</a> (notebooks, diagrams, scripts)</li>
+          <h5>FAIR artefacts (status)</h5>
+            <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
+
+            <ul class="fair-checklist">
+              <li class="fair-item" data-status="available">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg>
+                </span>
+                <span class="name">Metadata record</span><span class="sep">·</span>
+                <a href="/resources/datasets/A1/metadata.json">metadata.json</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="external">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg>
+                </span>
+                <span class="name">README</span><span class="sep">·</span>
+                <a href="/resources/datasets/A1/README.md">README.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="missing">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg>
+                </span>
+                <span class="name">Data dictionary</span><span class="sep">·</span>
+                <a href="/resources/datasets/A1/dictionary.csv">dictionary.csv</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg>
+                </span>
+                <span class="name">Provenance &amp; methods</span><span class="sep">·</span>
+                <a href="/resources/datasets/A1/provenance.md">provenance.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M6 20h12v-2H6v2ZM8 2h8l1 4H7l1-4Zm-1 6h10l-1.5 9h-7L7 8Z"/></svg>
+                </span>
+                <span class="name">Licensing &amp; citation</span><span class="sep">·</span>
+                <a href="/resources/datasets/A1/LICENSE">LICENCE</a> · <a href="/resources/datasets/A1/citation.txt">citation.txt</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg>
+                </span>
+                <span class="name">Supplementary materials</span><span class="sep">·</span>
+                <a href="/resources/datasets/A1/supplements/">notebooks, diagrams, scripts</a>
+                <span class="state"></span>
+              </li>
             </ul>
+
 
         </article>
 
-        <article id="A2" aria-labelledby="A2-heading">
+        <article id="A2" class="dataset frame" aria-labelledby="A2-heading">
           <h4 id="A2-heading">A2. Physical models (7-parameters)</h4>
 
-          <h5>Main files (.npy)</h5>
-          <ul>
-            <li>
-              <a href="/resources/datasets/A2/lightcurves_7param.npy" download>lightcurves_7param.npy</a>
-              — core simulations (7-parameter model).
-            </li>
-            <li>
-              <a href="/resources/datasets/A2/params_7param.npy" download>params_7param.npy</a>
-              — parameter matrix (7 columns).
-            </li>
-          </ul>
+          <h5 class="visually-hidden">Primary files</h5>
+            <div class="file-strip" aria-label="Primary files">
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/A2/lightcurves_7param.npy" download class="name">lightcurves_7param.npy</a>
+                <span class="meta">· TBD</span>
+                <a class="hash" href="/resources/datasets/A2/checksums.txt">SHA-256</a>
+              </div>
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/A2/params_7param.npy" download class="name">params_7param.npy</a>
+                <span class="meta">· TBD</span>
+                <a class="hash" href="/resources/datasets/A2/checksums.txt">SHA-256</a>
+              </div>
+            </div>
+            <p class="muted">Last updated: <time datetime="2025-08-23">2025-08-23</time></p>
+
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_curves_sample.csv" data-max-cols="10" role="region" aria-label="A2 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A2_curves_sample.csv" download>Download sample curves CSV</a>
-          </p>
           <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/A2_params_sample.csv" data-max-cols="10" role="region" aria-label="A2 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/A2_params_sample.csv" download>Download sample parameters CSV</a>
-          </p>
 
-          <h5>FAIR artefacts (work in progress)</h5>
-          <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
-          <ul>
-            <li><a href="/resources/datasets/A2/metadata.json" download>Metadata record (metadata.json)</a></li>
-            <li><a href="/resources/datasets/A2/README.md" download>README</a></li>
-            <li><a href="/resources/datasets/A2/dictionary.csv" download>Data dictionary</a></li>
-            <li><a href="/resources/datasets/A2/provenance.md" download>Provenance &amp; methods</a></li>
-            <li>Licensing &amp; citation: <a href="/resources/datasets/A2/LICENSE" download>LICENCE</a> · <a href="/resources/datasets/A2/citation.txt" download>citation.txt</a></li>
-            <li><a href="/resources/datasets/A2/supplements/">Supplementary materials</a></li>
-          </ul>
+
+          <h5>FAIR artefacts (status)</h5>
+            <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
+
+            <ul class="fair-checklist">
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg></span>
+                <span class="name">Metadata record</span> <span class="sep">·</span>
+                <a href="/resources/datasets/A2/metadata.json">metadata.json</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg></span>
+                <span class="name">README</span> <span class="sep">·</span>
+                <a href="/resources/datasets/A2/README.md">README.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg></span>
+                <span class="name">Data dictionary</span> <span class="sep">·</span>
+                <a href="/resources/datasets/A2/dictionary.csv">dictionary.csv</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg></span>
+                <span class="name">Provenance &amp; methods</span> <span class="sep">·</span>
+                <a href="/resources/datasets/A2/provenance.md">provenance.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20h12v-2H6v2ZM8 2h8l1 4H7l1-4Zm-1 6h10l-1.5 9h-7L7 8Z"/></svg></span>
+                <span class="name">Licensing &amp; citation</span> <span class="sep">·</span>
+                <a href="/resources/datasets/A2/LICENSE">LICENCE</a> · <a href="/resources/datasets/A2/citation.txt">citation.txt</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg></span>
+                <span class="name">Supplementary materials</span> <span class="sep">·</span>
+                <a href="/resources/datasets/A2/supplements/">notebooks, diagrams, scripts</a>
+                <span class="state"></span>
+              </li>
+            </ul>
+
 
         </article>
 
       </section>
 
       <!-- Category B -->
-      <section id="B" aria-labelledby="B-heading">
+      <section id="B" class="category-band band-b" aria-labelledby="B-heading">
         <h3 id="B-heading">B. Real Supernova Observations</h3>
 
-        <article id="B1" aria-labelledby="B1-heading">
+        <article id="B1" class="dataset frame" aria-labelledby="B1-heading">
           <h4 id="B1-heading">B1. Real observations</h4>
 
-          <h5>Main files (.npy)</h5>
-          <ul>
-            <li>
-              <a href="/resources/datasets/B1/observations.npy" download>observations.npy</a>
-              — calibrated photometry (aggregated).
-            </li>
-          </ul>
+          <h5 class="visually-hidden">Primary files</h5>
+            <div class="file-strip" aria-label="Primary files">
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/B1/observations.npy" download class="name">observations.npy</a>
+                <span class="meta">· TBD</span>
+                <a class="hash" href="/resources/datasets/B1/checksums.txt">SHA-256</a>
+              </div>
+            </div>
+            <p class="muted">Last updated: <time datetime="2025-08-23">2025-08-23</time></p>
+
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" data-max-cols="10" role="region" aria-label="B1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/B1_sample.csv" download>Download sample CSV</a>
-          </p>
 
-          <h5>FAIR artefacts (work in progress)</h5>
-            <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
-            <ul>
-              <li><a href="/resources/datasets/B1/metadata.json" download>Metadata record (metadata.json)</a></li>
-              <li><a href="/resources/datasets/B1/README.md" download>README</a></li>
-              <li><a href="/resources/datasets/B1/dictionary.csv" download>Data dictionary</a></li>
-              <li><a href="/resources/datasets/B1/provenance.md" download>Provenance &amp; methods</a></li>
-              <li>Licensing &amp; citation: <a href="/resources/datasets/B1/LICENSE" download>LICENCE</a> · <a href="/resources/datasets/B1/citation.txt" download>citation.txt</a></li>
-              <li><a href="/resources/datasets/B1/supplements/">Supplementary materials</a></li>
+          <h5>FAIR artefacts (status)</h5>
+            <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
+
+            <ul class="fair-checklist">
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg></span>
+                <span class="name">Metadata record</span> <span class="sep">·</span>
+                <a href="/resources/datasets/B1/metadata.json">metadata.json</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg></span>
+                <span class="name">README</span> <span class="sep">·</span>
+                <a href="/resources/datasets/B1/README.md">README.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg></span>
+                <span class="name">Data dictionary</span> <span class="sep">·</span>
+                <a href="/resources/datasets/B1/dictionary.csv">dictionary.csv</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg></span>
+                <span class="name">Provenance &amp; methods</span> <span class="sep">·</span>
+                <a href="/resources/datasets/B1/provenance.md">provenance.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20h12v-2H6v2ZM8 2h8l1 4H7l1-4Zm-1 6h10l-1.5 9h-7L7 8Z"/></svg></span>
+                <span class="name">Licensing &amp; citation</span> <span class="sep">·</span>
+                <a href="/resources/datasets/B1/LICENSE">LICENCE</a> · <a href="/resources/datasets/B1/citation.txt">citation.txt</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg></span>
+                <span class="name">Supplementary materials</span> <span class="sep">·</span>
+                <a href="/resources/datasets/B1/supplements/">notebooks, diagrams, scripts</a>
+                <span class="state"></span>
+              </li>
             </ul>
+
 
         </article>
 
       </section>
 
       <!-- Category C -->
-      <section id="C" aria-labelledby="C-heading">
+      <section id="C" class="category-band band-c" aria-labelledby="C-heading">
         <h3 id="C-heading">C. GenAI Simulator</h3>
 
-        <article id="C1" aria-labelledby="C1-heading">
+        <article id="C1" class="dataset frame" aria-labelledby="C1-heading">
           <h4 id="C1-heading">C1. Synthetic GenAI data</h4>
 
-          <h5>Main files (.npy)</h5>
-          <ul>
-            <li>
-              <a href="/resources/datasets/C1/synthetic_series.npy" download>synthetic_series.npy</a>
-              — generated time series.
-            </li>
-            <li>
-              <a href="/resources/datasets/C1/synthetic_labels.npy" download>synthetic_labels.npy</a>
-              — labels / metadata for generated series.
-            </li>
-          </ul>
+          <h5 class="visually-hidden">Primary files</h5>
+            <div class="file-strip" aria-label="Primary files">
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/C1/synthetic_series.npy" download class="name">synthetic_series.npy</a>
+                <span class="meta">· TBD</span>
+                <a class="hash" href="/resources/datasets/C1/checksums.txt">SHA-256</a>
+              </div>
+              <div class="file-item">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
+                <a href="/resources/datasets/C1/synthetic_labels.npy" download class="name">synthetic_labels.npy</a>
+                <span class="meta">· TBD</span>
+                <a class="hash" href="/resources/datasets/C1/checksums.txt">SHA-256</a>
+              </div>
+            </div>
+            <p class="muted">Last updated: <time datetime="2025-08-23">2025-08-23</time></p>
+
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
           <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" data-max-cols="10" role="region" aria-label="C1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="preview-actions">
-            <a class="link" href="/resources/datasets/samples/C1_sample.csv" download>Download sample CSV</a>
-          </p>
 
-          <h5>FAIR artefacts (work in progress)</h5>
-            <p class="muted">We’re progressively adding the artefacts below; some items are placeholders in this release.</p>
-            <ul>
-              <li><a href="/resources/datasets/C1/metadata.json" download>Metadata record (metadata.json)</a></li>
-              <li><a href="/resources/datasets/C1/README.md" download>README</a></li>
-              <li><a href="/resources/datasets/C1/dictionary.csv" download>Data dictionary</a></li>
-              <li><a href="/resources/datasets/C1/provenance.md" download>Provenance &amp; methods</a></li>
-              <li>Licensing &amp; citation: <a href="/resources/datasets/C1/LICENSE" download>LICENCE</a> · <a href="/resources/datasets/C1/citation.txt" download>citation.txt</a></li>
-              <li><a href="/resources/datasets/C1/supplements/">Supplementary materials</a></li>
+          <h5>FAIR artefacts (status)</h5>
+            <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
+
+            <ul class="fair-checklist">
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg></span>
+                <span class="name">Metadata record</span> <span class="sep">·</span>
+                <a href="/resources/datasets/C1/metadata.json">metadata.json</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg></span>
+                <span class="name">README</span> <span class="sep">·</span>
+                <a href="/resources/datasets/C1/README.md">README.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg></span>
+                <span class="name">Data dictionary</span> <span class="sep">·</span>
+                <a href="/resources/datasets/C1/dictionary.csv">dictionary.csv</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg></span>
+                <span class="name">Provenance &amp; methods</span> <span class="sep">·</span>
+                <a href="/resources/datasets/C1/provenance.md">provenance.md</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20h12v-2H6v2ZM8 2h8l1 4H7l1-4Zm-1 6h10l-1.5 9h-7L7 8Z"/></svg></span>
+                <span class="name">Licensing &amp; citation</span> <span class="sep">·</span>
+                <a href="/resources/datasets/C1/LICENSE">LICENCE</a> · <a href="/resources/datasets/C1/citation.txt">citation.txt</a>
+                <span class="state"></span>
+              </li>
+
+              <li class="fair-item" data-status="soon">
+                <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg></span>
+                <span class="name">Supplementary materials</span> <span class="sep">·</span>
+                <a href="/resources/datasets/C1/supplements/">notebooks, diagrams, scripts</a>
+                <span class="state"></span>
+              </li>
             </ul>
 
+
         </article>
+
       </section>
+
     </section>
+
 
     <!-- Source Code -->
     <section id="code" aria-labelledby="code-heading">
       <h2 id="code-heading">Source Code</h2>
-      <p class="muted">Single public repository (placeholder for now). Links will be activated once the repo is public.</p>
+      <p class="muted">Single public repository (placeholder). Links activate once the repo is public.</p>
 
-      <article id="code-core" aria-labelledby="code-core-heading">
-        <h3 id="code-core-heading">ASTRAI Core Repository</h3>
-        <p>Generative models and characterisation tools used in ASTRAI. Includes training/evaluation scripts and utilities.</p>
-        <p class="stacked-actions">
-          <a class="btn" href="https://github.com/koexai/ASTRAI.git" aria-disabled="true">View on GitHub (coming soon)</a>
-          <span class="btn btn-secondary" href="#" aria-disabled="true" onclick="return false;">Download ZIP (coming soon)</span>
+      <article class="repo" data-status="wip" aria-labelledby="code-core-heading">
+      <!-- Allowed values for data-status: private, public, wip, frozen, archived -->
+        <div class="repo-head">
+          <h3 id="code-core-heading" class="repo-title">ASTRAI Core Repository</h3>
+          <span class="repo-state" aria-live="polite"></span>
+        </div>
+
+        <ul class="repo-meta">
+          <li><span class="label">Languages:</span> Python (PyTorch), JAX (planned)</li>
+          <li><span class="label">Licence:</span> MIT (TBC)</li>
+          <li><span class="label">Visibility:</span> Private (opening soon)</li>
+        </ul>
+
+        <p class="repo-actions">
+          <!-- No links, just placeholder -->
+          <!--
+          <a class="btn" href="#" aria-disabled="true">View on GitHub (coming soon)</a>
+          <a class="btn btn-secondary" href="#" aria-disabled="true">Download ZIP</a>
+          -->
+          <!-- with links, just placeholder -->
+            <a class="btn" href="https://github.com/koexai/ASTRAI.git" target="_blank" rel="noopener">View on GitHub</a>
+            <a class="btn btn-secondary" href="https://github.com/koexai/ASTRAI/archive/refs/heads/main.zip">Download ZIP</a>
         </p>
-        <p class="muted">Licence: MIT (TBC). For how to cite the software, see <a href="#licence-citation">Licence &amp; Citation</a>.</p>
+
+        <!-- Once the repo is public you can: (1) remove this section (2) convert it to a Contents summary, with links to real folders/files in Github-->
+        <details class="repo-more">
+          <summary>Planned contents</summary>
+          <ul>
+            <li>Training &amp; evaluation scripts</li>
+            <li>Model architectures (physical + GenAI variants)</li>
+            <li>Data loaders and preprocessing utilities</li>
+            <li>Reproducible configs and example notebooks</li>
+          </ul>
+        </details>
       </article>
     </section>
 
@@ -280,56 +480,127 @@
     <section id="publications" aria-labelledby="publications-heading">
       <h2 id="publications-heading">Publications</h2>
       <p class="muted">
-        Note: formal project deliverables are not published here. This section lists
+        This section lists
         <strong>journal &amp; conference submissions</strong>, <strong>technical diagrams/notes</strong>, and selected
         <strong>findings</strong> for the community.
       </p>
 
-      <!-- Journal & Conference Submissions -->
-      <section id="pub-articles" aria-labelledby="pub-articles-heading">
+      <!-- Optional category filter (static-friendly) -->
+      <nav class="pub-filter" aria-label="Filter publications">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="articles">Articles</button>
+        <button type="button" data-filter="diagrams">Diagrams</button>
+        <button type="button" data-filter="findings">Findings</button>
+      </nav>
+
+      <!-- Articles -->
+      <section id="pub-articles" aria-labelledby="pub-articles-heading" class="pub-group" data-group="articles">
         <h3 id="pub-articles-heading">Journal &amp; Conference Submissions</h3>
-        <ul>
-          <li>
-            <strong>Paper&nbsp;#1 (title TBC)</strong> — <em>Status:</em> In preparation.
-            <a href="/resources/publications/articles/paper1_abstract.md">Abstract</a>
-            · <a href="#">Preprint link (TBC)</a>
+        <ul class="pub-list">
+          <li class="pub-item" data-kind="articles" data-status="in-prep">
+            <div class="pub-head">
+              <span class="pub-title"><strong>Paper #1 (title TBC)</strong></span>
+              <span class="pub-state" aria-label="Status: in preparation"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Status:</span> In preparation</li>
+              <li><span class="label">Type:</span> Journal article</li>
+            </ul>
+            <p class="pub-links">
+              <a href="/resources/publications/articles/paper1_abstract.md">Abstract</a>
+              <span aria-hidden="true">·</span>
+              <a href="#" aria-disabled="true">Preprint (coming soon)</a>
+            </p>
+            <details class="pub-more">
+              <summary>Show short note</summary>
+              <div class="pub-note">
+                Scope: early results on physical-model light curves; baselines &amp; GenAI augmentation plan.
+              </div>
+            </details>
           </li>
-          <li>
-            <strong>Paper&nbsp;#2 (title TBC)</strong> — <em>Status:</em> Planned submission.
-            <a href="/resources/publications/articles/paper2_outline.md">Outline</a>
+
+          <li class="pub-item" data-kind="articles" data-status="planned">
+            <div class="pub-head">
+              <span class="pub-title"><strong>Paper #2 (title TBC)</strong></span>
+              <span class="pub-state" aria-label="Status: planned"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Status:</span> Planned submission</li>
+              <li><span class="label">Type:</span> Conference paper</li>
+            </ul>
+            <p class="pub-links">
+              <a href="/resources/publications/articles/paper2_outline.md">Outline</a>
+            </p>
           </li>
         </ul>
       </section>
 
       <!-- Diagrams & Technical Notes -->
-      <section id="pub-diagrams" aria-labelledby="pub-diagrams-heading">
+      <section id="pub-diagrams" aria-labelledby="pub-diagrams-heading" class="pub-group" data-group="diagrams">
         <h3 id="pub-diagrams-heading">Diagrams &amp; Technical Notes</h3>
-        <ul>
-          <li>
-            <a href="/resources/diagrams/dl_network_architecture_v1.png">DL network architecture (v1)</a>
-            — model blocks and data flow.
+        <ul class="pub-list">
+          <li class="pub-item" data-kind="diagrams" data-status="published">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/dl_network_architecture_v1.png">DL network architecture (v1)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PNG diagram</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Blocks and data flow of the DL model.</p>
           </li>
-          <li>
-            <a href="/resources/diagrams/training_workflow_v1.pdf" target="_blank" rel="noopener">Training workflow (v1, PDF)</a>
-            — data preprocessing, training, and evaluation steps.
+
+          <li class="pub-item" data-kind="diagrams" data-status="published">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/training_workflow_v1.pdf" target="_blank" rel="noopener">Training workflow (v1, PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Preprocessing, training, and evaluation steps.</p>
           </li>
-          <li>
-            <a href="/resources/diagrams/generation_pipeline_note.md">Generative pipeline — short note</a>
+
+          <li class="pub-item" data-kind="diagrams" data-status="wip">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/generation_pipeline_note.md">Generative pipeline — short note</a></span>
+              <span class="pub-state" aria-label="Status: work in progress"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> Markdown note</li>
+              <li><span class="label">Status:</span> Work in progress</li>
+            </ul>
           </li>
         </ul>
       </section>
 
       <!-- Findings -->
-      <section id="pub-findings" aria-labelledby="pub-findings-heading">
+      <section id="pub-findings" aria-labelledby="pub-findings-heading" class="pub-group" data-group="findings">
         <h3 id="pub-findings-heading">Findings</h3>
-        <ul>
-          <li>
-            <a href="/resources/findings/orphan_afterglow_candidates_v1.md">Orphan afterglow candidates — note v1</a>
-            — brief description and selection criteria.
+        <ul class="pub-list">
+          <li class="pub-item" data-kind="findings" data-status="published">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/findings/orphan_afterglow_candidates_v1.md">Orphan afterglow candidates — note v1</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Theme:</span> GRB afterglows</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Brief description and selection criteria.</p>
           </li>
-          <li>
-            <a href="/resources/findings/benchmark_snapshot_v1.md">Benchmark snapshot — early metrics</a>
-            — timing/quality metrics (TBC).
+
+          <li class="pub-item" data-kind="findings" data-status="wip">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/findings/benchmark_snapshot_v1.md">Benchmark snapshot — early metrics</a></span>
+              <span class="pub-state" aria-label="Status: work in progress"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Theme:</span> Timing/quality</li>
+              <li><span class="label">Status:</span> WIP</li>
+            </ul>
           </li>
         </ul>
       </section>
@@ -339,10 +610,11 @@
     <!-- Licence & Citation -->
     <section id="licence-citation" aria-labelledby="licence-heading">
       <h2 id="licence-heading">Licence &amp; Citation</h2>
-      <p class="muted">
-        Unless otherwise stated in a specific dataset block, the default policies below apply. Per-dataset files
-        (e.g. <code>LICENSE</code>, <code>citation.txt</code>) take precedence when present.
-      </p>
+        <p class="muted">
+            Please prefer the dataset-specific citation when available.
+          <br/><strong>Heads up:</strong> per-dataset files (for example <code>LICENSE</code>, <code>citation.txt</code> or a DOI) override the defaults below.
+        </p>
+
 
       <!-- Datasets -->
       <section id="licence-datasets" aria-labelledby="licence-datasets-heading">
@@ -394,6 +666,10 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
       </section>
     </section>
 
+
+    </div> <!-- /.page-content -->
+    </div> <!-- /.page-grid -->
+
   </main>
 
   <footer class="site-footer">
@@ -402,114 +678,8 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
     </div>
   </footer>
 
-    <script src="/assets/js/main.js" defer></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', function () {
-          (function () {
-            // Detects comma vs semicolon; robust to quotes
-            function parseCSV(text) {
-              const firstLine = text.split(/\r?\n/)[0] || "";
-              const delim = (firstLine.split(";").length > firstLine.split(",").length) ? ";" : ",";
-              const rows = []; let row = [], field = '', i = 0, q = false;
-              while (i < text.length) {
-                const ch = text[i];
-                if (q) { if (ch === '"') { if (text[i+1] === '"') { field+='"'; i+=2; continue; } q=false; i++; continue; }
-                         field += ch; i++; continue; }
-                if (ch === '"') { q = true; i++; continue; }
-                if (ch === delim) { row.push(field); field=''; i++; continue; }
-                if (ch === '\n')  { row.push(field); rows.push(row); row=[]; field=''; i++; continue; }
-                if (ch === '\r')  { i++; continue; }
-                field += ch; i++;
-              }
-              if (field.length || row.length) { row.push(field); rows.push(row); }
-              return rows;
-            }
+  <script src="/assets/js/main.js" defer></script>
 
-            function sliceCols(rows, start, count) {
-              if (!rows.length) return rows;
-              const end = count > 0 ? start + count : rows[0].length; // count==0 => all
-              const out = [];
-              for (const r of rows) out.push(r.slice(start, end));
-              return out;
-            }
-
-            function makeTable(rows) {
-              const table = document.createElement('table');
-              if (!rows.length) return table;
-              const [head, ...rest] = rows;
-              const thead = document.createElement('thead');
-              const trh = document.createElement('tr');
-              head.forEach(h => { const th = document.createElement('th'); th.textContent = h; trh.appendChild(th); });
-              thead.appendChild(trh);
-              table.appendChild(thead);
-              const tbody = document.createElement('tbody');
-              rest.forEach(r => {
-                const tr = document.createElement('tr');
-                r.forEach(c => { const td = document.createElement('td'); td.textContent = c; tr.appendChild(td); });
-                tbody.appendChild(tr);
-              });
-              table.appendChild(tbody);
-              return table;
-            }
-
-            document.querySelectorAll('.table-scroll[data-sample-url]').forEach(el => {
-              const url = el.getAttribute('data-sample-url');
-              const pageSizeAttr = Number(el.getAttribute('data-max-cols'));
-              const pageSize = Number.isFinite(pageSizeAttr) && pageSizeAttr >= 0 ? pageSizeAttr : 16; // 0 => show all
-              fetch(url)
-                .then(r => r.ok ? r.text() : Promise.reject())
-                .then(text => {
-                  const rows = parseCSV(text);
-                  // Clamp to header + 5 rows
-                  const limitedRows = rows.length ? [rows[0], ...rows.slice(1, 6)] : rows;
-
-                  const totalCols = limitedRows.length ? limitedRows[0].length : 0;
-                  let startCol = 0;
-
-                  // Build nav
-                  const nav = document.createElement('div');
-                  nav.className = 'preview-colnav';
-                  const prev = document.createElement('button'); prev.type = 'button'; prev.textContent = '◀';
-                  const next = document.createElement('button'); next.type = 'button'; next.textContent = '▶';
-                  const info = document.createElement('span'); info.className = 'range muted'; info.setAttribute('aria-live','polite');
-
-                  function render() {
-                    const slice = sliceCols(limitedRows, startCol, pageSize);
-                    const viewStart = startCol + 1;
-                    const viewEnd = pageSize === 0 ? totalCols : Math.min(startCol + pageSize, totalCols);
-
-                    // Replace table
-                    el.textContent = '';
-                    el.appendChild(makeTable(slice));
-
-                    // Update nav state
-                    info.textContent = `Columns ${viewStart}–${viewEnd} of ${totalCols}`;
-                    prev.disabled = (startCol === 0);
-                    next.disabled = (pageSize === 0 || viewEnd >= totalCols);
-                  }
-
-                  prev.addEventListener('click', () => { startCol = Math.max(0, startCol - (pageSize || totalCols)); render(); });
-                  next.addEventListener('click', () => {
-                    if (pageSize === 0) return;
-                    startCol = Math.min(totalCols - pageSize, startCol + pageSize);
-                    if (startCol < 0) startCol = 0;
-                    render();
-                  });
-
-                  // Insert nav just before the table container
-                  el.parentNode.insertBefore(nav, el);
-                  nav.appendChild(prev);
-                  nav.appendChild(info);
-                  nav.appendChild(next);
-
-                  render();
-                })
-                .catch(() => { el.textContent = 'Could not load sample preview.'; });
-            });
-          })();
-        });
-    </script>
-
-    <noscript>Your browser does not support JavaScript or it is disabled. Some features may not work properly.</noscript>
+  <noscript>Your browser does not support JavaScript or it is disabled. Some features may not work properly.</noscript>
 </body>
 </html>
