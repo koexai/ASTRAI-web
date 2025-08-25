@@ -669,3 +669,30 @@ window.addEventListener('DOMContentLoaded', function () {
 
   })();
 });
+
+(function includePartials() {
+  document.querySelectorAll('[data-include]').forEach(async (el) => {
+    const url = el.getAttribute('data-include');
+    try {
+      const res = await fetch(url, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error(res.status);
+      const html = await res.text();
+
+      // Replace the placeholder with the partial’s nodes (no extra wrapper)
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html.trim();
+      const frag = document.createDocumentFragment();
+      Array.from(tmp.childNodes).forEach(n => frag.appendChild(n));
+      el.replaceWith(frag);
+    } catch (e) {
+      // Graceful fallback (optional)
+      el.outerHTML = `
+        <footer class="site-footer">
+          <div class="container">
+            <p>© 2025 ASTRAI — Site by <a href="https://koexai.com" rel="external">Koexai srl</a></p>
+          </div>
+        </footer>`;
+    }
+  });
+})();
+
