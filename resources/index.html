@@ -28,9 +28,15 @@
   <main class="container resources-page">
     <h1>ASTRAI Resource Hub</h1>
     <p class="lede">
-      This hub provides access to ASTRAI datasets, source code, and publications.
-      The page is being assembled step-by-step; some areas below are placeholders for upcoming content.
+      Welcome to the ASTRAI Resource Hub. Here you’ll find <strong>datasets</strong> (physical models, real observations, and GenAI simulations),
+      <strong>source code</strong>, and <strong>publications</strong> produced by the project. Each release aims to be <em>FAIR</em>—findable,
+      accessible, interoperable, and reusable—so you can reproduce results, benchmark your own methods, and build on this work responsibly.
     </p>
+    <p class="muted">
+      <strong>At a glance:</strong> browse the index on the left, open any dataset section for a short overview, file checksums, a tiny CSV preview (first 5 rows), and FAIR artefacts.
+      Status chips like “Available”, “Coming soon”, or “External” indicate exactly where we are in the release process.
+    </p>
+
 
     <!-- Index / Table of Contents -->
     <div class="page-grid">
@@ -85,7 +91,14 @@
     <!-- Datasets -->
     <section id="datasets" aria-labelledby="datasets-heading">
       <h2 id="datasets-heading">Datasets</h2>
-      <p>Datasets are grouped into three categories. Detailed content will be added in subsequent steps.</p>
+        <p>
+          ASTRAI datasets are grouped into three categories: <strong>Physical Simulations</strong> (A),
+          <strong>Real Supernova Observations</strong> (B), and <strong>GenAI Simulator</strong> (C).
+          Each dataset comes with a minimal <em>open sample</em> (CSV, 5 rows) for quick inspection and the full files in compact formats (e.g. <code>.npy</code>) for research use.
+          FAIR artefacts (metadata, README, provenance, dictionary, and citation) are being added incrementally and are clearly marked below.
+        </p>
+        <p class="muted">Need the full files? See “Licence &amp; Citation” for terms and preferred citation, then follow the repository or the contact instructions where noted.</p>
+
 
       <!-- Category A -->
       <section id="A" class="category-band band-a" aria-labelledby="A-heading">
@@ -94,6 +107,9 @@
 
         <article id="A1" class="dataset frame" aria-labelledby="A1-heading">
           <h4 id="A1-heading">A1. Physical models (4-parameters)</h4>
+            <p><strong>Overview.</strong> Semi-analytic H-rich explosions with four core parameters controlling energy, radius, ejecta mass, and radioactive contribution.
+            The release includes time-dependent observables (multi-band light curves, temperature, photospheric velocity) plus generation metadata.</p>
+            <p class="muted">Intended use: parameter-recovery benchmarks, uncertainty calibration, and sanity checks against semi-analytic expectations.</p>
 
           <h5 class="visually-hidden">Primary files</h5>
             <div class="file-strip" aria-label="Primary files">
@@ -188,6 +204,9 @@
 
         <article id="A2" class="dataset frame" aria-labelledby="A2-heading">
           <h4 id="A2-heading">A2. Physical models (7-parameters)</h4>
+            <p><strong>Overview.</strong> An expanded physical grid with seven parameters to capture a broader range of progenitor and CSM scenarios.
+            Useful for ablation studies and robustness tests when moving from compact to richer physical descriptions.</p>
+            <p class="muted">Intended use: stress-testing model generalisation and examining parameter identifiability under increased realism.</p>
 
           <h5 class="visually-hidden">Primary files</h5>
             <div class="file-strip" aria-label="Primary files">
@@ -276,6 +295,9 @@
 
         <article id="B1" class="dataset frame" aria-labelledby="B1-heading">
           <h4 id="B1-heading">B1. Real observations</h4>
+            <p><strong>Overview.</strong> Curated multi-band observations with cadence, passbands, uncertainty model, and basic quality flags.
+            Where possible, records are mapped to standard naming and include minimal provenance notes.</p>
+            <p class="muted">Intended use: evaluating methods trained on synthetic data, domain shift studies, and end-to-end validation on real light curves.</p>
 
           <h5 class="visually-hidden">Primary files</h5>
             <div class="file-strip" aria-label="Primary files">
@@ -353,6 +375,9 @@
 
         <article id="C1" class="dataset frame" aria-labelledby="C1-heading">
           <h4 id="C1-heading">C1. Synthetic GenAI data</h4>
+            <p><strong>Overview.</strong> Synthetic light curves produced by the ASTRAI GenAI pipeline to augment coverage where observations are sparse.
+            Paired <code>.npy</code> files provide time series and labels; releases will ship with transparent generation settings.</p>
+            <p class="muted">Intended use: data augmentation, controlled experiments on cadence/noise, and benchmarking generalisation.</p>
 
           <h5 class="visually-hidden">Primary files</h5>
             <div class="file-strip" aria-label="Primary files">
@@ -436,7 +461,10 @@
     <!-- Source Code -->
     <section id="code" aria-labelledby="code-heading">
       <h2 id="code-heading">Source Code</h2>
-      <p class="muted">Single public repository (placeholder). Links activate once the repo is public.</p>
+        <p class="fair-note">
+          <strong>Heads up:</strong> FAIR artefacts are being published in stages. Items marked “Coming soon” will appear in the next updates;
+          “External” links point to project-controlled sources (e.g., GitHub or a data catalogue) when appropriate.
+        </p>
 
       <article class="repo" data-status="wip" aria-labelledby="code-core-heading">
       <!-- Allowed values for data-status: private, public, wip, frozen, archived -->
@@ -610,10 +638,15 @@
     <!-- Licence & Citation -->
     <section id="licence-citation" aria-labelledby="licence-heading">
       <h2 id="licence-heading">Licence &amp; Citation</h2>
-        <p class="muted">
-            Please prefer the dataset-specific citation when available.
-          <br/><strong>Heads up:</strong> per-dataset files (for example <code>LICENSE</code>, <code>citation.txt</code> or a DOI) override the defaults below.
+        <p>
+          To support ethical reuse and proper attribution, ASTRAI provides default licensing and citation templates for datasets and software.
+          <strong>Important:</strong> if a dataset or repository includes its own <code>LICENSE</code>, <code>citation.txt</code>, or DOI,
+          that local file <em>overrides the defaults</em> below. Always prefer the per-item files when present.
         </p>
+        <p class="muted">
+          If you adapt the datasets or code, indicate changes and, where practical, link back to this hub so others can find the original materials.
+        </p>
+
 
 
       <!-- Datasets -->
@@ -672,11 +705,7 @@ Source code. URL: https://astrai.koexai.com/resources/  Licence: MIT.</pre>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>Selected and funded under the ICSC Programme (PNRR) — supported by the European Union – NextGenerationEU.</p>
-    </div>
-  </footer>
+  <div data-include="/partials/footer.html"></div>
 
   <script src="/assets/js/main.js" defer></script>
 

@@ -381,7 +381,6 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 
     /* ========= TOC: mobile “Jump to…” + scroll-spy highlight ========= */
-
     const toc = document.getElementById('toc');
     if (toc) {
       const links = Array.from(toc.querySelectorAll('a[href^="#"]'));
@@ -452,6 +451,40 @@ window.addEventListener('DOMContentLoaded', function () {
       }));
 
       updateOnScroll();
+    }
+
+    // === Align the TOC panel with the first content heading (desktop only) ===
+    if (document.body.classList.contains('resources-page')) {
+      (function alignTocToFirstHeading() {
+        const mq   = window.matchMedia('(max-width: 980px)'); // keep in sync with CSS
+        const grid = document.querySelector('body.resources-page .page-grid');
+        const toc  = document.querySelector('body.resources-page .toc-panel');
+        // Prefer the Datasets h2; fall back to the first main h2
+        const firstH2 =
+          document.querySelector('#datasets > h2') ||
+          document.querySelector('body.resources-page main h2');
+
+        if (!grid || !toc || !firstH2) return;
+
+        function apply() {
+          // On mobile (single column) no offset
+          if (mq.matches) {
+            toc.style.marginTop = '0px';
+            return;
+          }
+          // Compute how far down the first H2 sits inside the grid
+          const gridTop  = grid.getBoundingClientRect().top + window.scrollY;
+          const h2Top    = firstH2.getBoundingClientRect().top + window.scrollY;
+
+          // Exact delta; small fudge (-2) helps account for subpixel rounding
+          const delta = Math.max(0, Math.round(h2Top - gridTop - 2));
+          toc.style.marginTop = `${delta}px`;
+        }
+
+        window.addEventListener('load', apply);
+        window.addEventListener('resize', apply);
+        apply();
+      })();
     }
 
     /* ========= FAIR checklist: dynamic chip text from data-status (A11Y-friendly) ========= */
@@ -636,3 +669,30 @@ window.addEventListener('DOMContentLoaded', function () {
 
   })();
 });
+
+(function includePartials() {
+  document.querySelectorAll('[data-include]').forEach(async (el) => {
+    const url = el.getAttribute('data-include');
+    try {
+      const res = await fetch(url, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error(res.status);
+      const html = await res.text();
+
+      // Replace the placeholder with the partial’s nodes (no extra wrapper)
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html.trim();
+      const frag = document.createDocumentFragment();
+      Array.from(tmp.childNodes).forEach(n => frag.appendChild(n));
+      el.replaceWith(frag);
+    } catch (e) {
+      // Graceful fallback (optional)
+      el.outerHTML = `
+        <footer class="site-footer">
+          <div class="container">
+            <p>© 2025 ASTRAI — Site by <a href="https://koexai.com" rel="external">Koexai srl</a></p>
+          </div>
+        </footer>`;
+    }
+  });
+})();
+
