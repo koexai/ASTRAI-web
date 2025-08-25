@@ -863,3 +863,37 @@ body.resources-page #toc ul ul ul > li > a {
 /* Spacing between items */
 body.resources-page #toc li { margin: .15rem 0; }
 
+/* Full-width variant */
+body.resources-page .lede{ max-width: none; margin: .75rem 0 1.25rem; }
+
+/* ==== Resource Hub: compact heading rhythm + tighter sections ==== */
+body.resources-page {
+  --rhythm-xxs: .25rem;
+  --rhythm-xs:  .4rem;
+  --rhythm-sm:  .6rem;
+  --rhythm-md:  .9rem;
+}
+
+/* Less space ABOVE titles, modest space below */
+body.resources-page h2 { margin: var(--rhythm-md) 0 var(--rhythm-sm); }   /* was ~2.2rem top */
+body.resources-page h3 { margin: var(--rhythm-sm) 0 var(--rhythm-xs); }
+body.resources-page h4 { margin: var(--rhythm-xs) 0 var(--rhythm-xxs); }
+body.resources-page h5 { margin: var(--rhythm-xs) 0 var(--rhythm-xxs); }
+
+/* Keep the very first content h2 aligned with the TOC title */
+body.resources-page .page-grid > :not(.toc-panel) h2:first-of-type { margin-top: 0; }
+
+/* Tighten vertical padding of sections on the hub only */
+body.resources-page section { padding: 1.5rem 0; }  /* (global is 4rem) */
+
+/* Optional: slightly denser dataset bands/frames to match the new rhythm */
+body.resources-page #datasets .category-band { margin: 1rem 0; padding: 1rem; }
+body.resources-page #datasets .dataset.frame { margin: .5rem 0 .9rem; padding: .8rem 1rem; }
+
+/* default: no extra offset; JS will adjust on desktop */
+body.resources-page .toc-panel { margin-top: 0; }
+
+/* single-column/mobile layout already stacks correctly */
+@media (max-width: 980px) {
+  body.resources-page .toc-panel { margin-top: 0 !important; }
+}
