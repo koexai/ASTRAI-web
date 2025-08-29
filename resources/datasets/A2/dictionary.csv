@@ -1,0 +1,13 @@
+File,Column,Type,Unit,Range,Description
+light_curves.parquet,t_0,float,hours,0,Time point at explosion start (t=0 hours)
+light_curves.parquet,t_6,float,hours,6,Time point at t=6 hours post-explosion
+light_curves.parquet,t_12,float,hours,12,Time point at t=12 hours post-explosion
+light_curves.parquet,...,float,hours,...,Intermediate time points (6-hour intervals)
+light_curves.parquet,t_9600,float,hours,9600,Final time point at t=9600 hours (400 days)
+params.parquet,progenitor_radius,float,solar_radii,"> 0","Radius of the progenitor star before explosion"
+params.parquet,progenitor_mass,float,solar_masses,"> 0","Mass of the progenitor star"
+params.parquet,progenitor_energy,float,ergs,"> 0","Explosion energy of the supernova"
+params.parquet,nickel_percentage,float,percent,"0-100","Percentage of nickel-56 produced in the explosion"
+params.parquet,csm_radius,float,parsecs,"> 0","Radius of the circumstellar medium"
+params.parquet,csm_mass,float,solar_masses,"> 0","Mass of the circumstellar medium"
+params.parquet,slope_parameter,float,dimensionless,"varies","Model-specific slope parameter for light curve shape"
