@@ -1,7 +1,2 @@
-# ASTRAI — Dataset A2 checksums (placeholder)
-# Final SHA-256 checksums will be published with the v0.1 release.
-# Format: <sha256><space><space><filename>
-# Example:
-# d2b2c55a...  lightcurves_7param.npy
-# 8f42a9bd...  params_7param.npy
-
+b2ae74e83b40a98a6344909e8c58ea784af26088429760ed0a814226554bf867  light_curves.parquet
+859099ba398645a9c4ed97cb464881863001fa3c14592b840bcd60b40a665f2b  params.parquet
