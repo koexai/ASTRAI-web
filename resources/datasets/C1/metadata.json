@@ -1,0 +1,65 @@
+{
+  "title": "Synthetic Supernova Light Curves Dataset",
+  "creators": [
+    {
+      "name": "Luca Naso",
+      "affiliation": "Koexai Srl",
+      "role": "Principal Investigator"
+    }
+  ],
+  "version": "1.0.0",
+  "dates": {
+    "created": "2025-01-15",
+    "released": "2025-01-15",
+    "lastUpdated": "2025-01-15"
+  },
+  "identifier": {
+    "type": "internal",
+    "value": "SYNTH-SN-2025-001"
+  },
+  "citation": {
+    "text": "Luca N. Synthetic Supernova Light Curves Dataset (Version 1.0.0). Generated using curve-to-curve diffusion model.",
+    "bibtex": "@dataset{luca2025synth,\n  author={luca et al.},\n  title={Synthetic Supernova Light Curves Dataset},\n  year={2025},\n  version={1.0.0},\n  note={Generated using curve-to-curve diffusion model}\n}"
+  },
+  "abstract": "This dataset contains 5000 synthetic supernova light curves generated using a curve-to-curve diffusion model approach. Each light curve consists of 1601 temporal measurements representing luminosity evolution over approximately 400 days with 6-hour sampling intervals. The curves were generated using a diffusion model trained on real supernova data, conditioned on 7 physical parameters extracted by a regression model. The generation process uses synthetic template curves as starting points, which are then refined through a 200-step denoising process to produce physically plausible supernova light curves.",
+  "keywords": ["supernova", "light curves", "synthetic data", "diffusion model", "astronomy", "machine learning", "curve generation", "generative AI"],
+  "domain": "Astrophysics",
+  "purpose": "Generate realistic synthetic supernova light curves for training machine learning models, data augmentation, and astrophysical simulations where real observational data is limited or insufficient.",
+  "provenance": {
+    "sources": "Generated from a diffusion model trained on real supernova light curve data from train_preprocessed.csv",
+    "processing": "1) Synthetic template curves created with random physical parameters, 2) Parameters extracted using trained regression model (Best_mlp_res_for_diffusion.pth), 3) 200-step reverse diffusion process applied to generate final curves",
+    "derivations": "All curves are synthetically generated through machine learning. No direct astronomical observations included."
+  },
+  "structure": {
+    "formats": ["parquet", "CSV"],
+    "encoding": "UTF-8",
+    "conventions": "Column names are sequential integers (0, 1, 2, ..., 1600). Time sampling: every 6 hours. Missing values: none expected in synthetic data.",
+    "relationships": "Single table with 5000 rows (samples) and 1601 columns (time points). Each row represents one complete supernova light curve."
+  },
+  "quality": {
+    "validation": "Generated using validated diffusion model trained on real supernova data. Model convergence verified through training loss monitoring.",
+    "metrics": {
+      "samples": 5000,
+      "timepoints_per_curve": 1601,
+      "temporal_resolution": "6 hours",
+      "total_timespan": "~400 days"
+    },
+    "limitations": [
+      "Synthetic data may not capture all rare supernova phenomena",
+      "Limited to supernova types present in training data",
+      "Generated curves are interpolations within training data space",
+      "No observational noise or instrumental effects included"
+    ],
+    "usageGuidance": "Recommended for machine learning training, data augmentation, and algorithm testing. Not recommended as substitute for real observational data in scientific analysis."
+  },
+  "access": {
+    "licence": "To be specified",
+    "reuseGuidance": "Suitable for academic research and machine learning applications",
+    "contact": {
+      "name": "Luca Naso",
+      "email": "luca@koexai.com",
+      "role": "CEO and CTO"
+    },
+    "projectLink": "N/A"
+  }
+}

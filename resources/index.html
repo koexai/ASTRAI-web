@@ -94,7 +94,7 @@
         <p>
           ASTRAI datasets are grouped into three categories: <strong>Physical Simulations</strong> (A),
           <strong>Real Supernova Observations</strong> (B), and <strong>GenAI Simulator</strong> (C).
-          Each dataset comes with a minimal <em>open sample</em> (CSV, 5 rows) for quick inspection and the full files in compact formats (e.g. <code>.npy</code>) for research use.
+          Each dataset comes with a minimal <em>open sample</em> (CSV, 5 rows) for quick inspection and the full files in compact formats (e.g. <code>.parquet</code>) for research use.
           FAIR artefacts (metadata, README, provenance, dictionary, and citation) are being added incrementally and are clearly marked below.
         </p>
         <p class="muted">Need the full files? See “Licence &amp; Citation” for terms and preferred citation, then follow the repository or the contact instructions where noted.</p>
@@ -107,7 +107,7 @@
 
         <article id="A1" class="dataset frame" aria-labelledby="A1-heading">
           <h4 id="A1-heading">A1. Physical models (4-parameters)</h4>
-            <p><strong>Overview.</strong> Semi-analytic H-rich explosions with four core parameters controlling energy, radius, ejecta mass, and radioactive contribution.
+            <p><strong>Overview.</strong> Semi-analytic explosions with four core parameters controlling energy, radius, ejecta mass, and radioactive contribution.
             The release includes time-dependent observables  plus generation metadata.</p>
             <p class="muted">Intended use: parameter-recovery benchmarks, uncertainty calibration, and sanity checks against semi-analytic expectations.</p>
           <h5 class="visually-hidden">Primary files</h5>
@@ -129,12 +129,12 @@
 
 
           <h5>Preview (CSV)</h5>
-          <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_curves_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample curve table" tabindex="0">
+          <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the csv download above.</p>
+          <div class="table-scroll" data-sample-url="../resources/datasets/samples/A1_curves_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
-          <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the .npy download above.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/A1_params_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample parameter table" tabindex="0">
+          <p class="muted">First 5 rows from a tiny sample file for parameters; the full dataset is available via the csv download above.</p>
+          <div class="table-scroll" data-sample-url="../resources/datasets/samples/A1_params_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample parameter table" tabindex="0">
             <em>Loading preview…</em>
           </div>
 
@@ -151,7 +151,7 @@
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="external">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg>
                 </span>
@@ -160,7 +160,7 @@
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="missing">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg>
                 </span>
@@ -169,7 +169,7 @@
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg>
                 </span>
@@ -238,28 +238,28 @@
             <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
 
             <ul class="fair-checklist">
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg></span>
                 <span class="name">Metadata record</span> <span class="sep">·</span>
                 <a href="../resources/datasets/A2/metadata.json">metadata.json</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg></span>
                 <span class="name">README</span> <span class="sep">·</span>
                 <a href="../resources/datasets/A2/README.md">README.md</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg></span>
                 <span class="name">Data dictionary</span> <span class="sep">·</span>
                 <a href="../resources/datasets/A2/dictionary.csv">dictionary.csv</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg></span>
                 <span class="name">Provenance &amp; methods</span> <span class="sep">·</span>
                 <a href="../resources/datasets/A2/provenance.md">provenance.md</a>
@@ -310,7 +310,7 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/B1_sample.csv" data-max-cols="10" role="region" aria-label="B1 sample table" tabindex="0">
+          <div class="table-scroll" data-sample-url="../resources/datasets/samples/B1_sample.csv" data-max-cols="10" role="region" aria-label="B1 sample table" tabindex="0">
             <em>Loading preview…</em>
           </div>
 
@@ -318,45 +318,45 @@
             <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
 
             <ul class="fair-checklist">
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg></span>
                 <span class="name">Metadata record</span> <span class="sep">·</span>
-                <a href="/resources/datasets/B1/metadata.json">metadata.json</a>
+                <a href="../resources/datasets/B1/metadata.json">metadata.json</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg></span>
                 <span class="name">README</span> <span class="sep">·</span>
-                <a href="/resources/datasets/B1/README.md">README.md</a>
+                <a href="../resources/datasets/B1/README.md">README.md</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg></span>
                 <span class="name">Data dictionary</span> <span class="sep">·</span>
-                <a href="/resources/datasets/B1/dictionary.csv">dictionary.csv</a>
+                <a href="../resources/datasets/B1/dictionary.csv">dictionary.csv</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg></span>
                 <span class="name">Provenance &amp; methods</span> <span class="sep">·</span>
-                <a href="/resources/datasets/B1/provenance.md">provenance.md</a>
+                <a href="../resources/datasets/B1/provenance.md">provenance.md</a>
                 <span class="state"></span>
               </li>
 
               <li class="fair-item" data-status="soon">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20h12v-2H6v2ZM8 2h8l1 4H7l1-4Zm-1 6h10l-1.5 9h-7L7 8Z"/></svg></span>
                 <span class="name">Licensing &amp; citation</span> <span class="sep">·</span>
-                <a href="/resources/datasets/B1/LICENSE">LICENCE</a> · <a href="/resources/datasets/B1/citation.txt">citation.txt</a>
+                <a href="../resources/datasets/B1/LICENSE">LICENCE</a> · <a href="/resources/datasets/B1/citation.txt">citation.txt</a>
                 <span class="state"></span>
               </li>
 
               <li class="fair-item" data-status="soon">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/></svg></span>
                 <span class="name">Supplementary materials</span> <span class="sep">·</span>
-                <a href="/resources/datasets/B1/supplements/">notebooks, diagrams, scripts</a>
+                <a href="../resources/datasets/B1/supplements/">notebooks, diagrams, scripts</a>
                 <span class="state"></span>
               </li>
             </ul>
@@ -372,23 +372,17 @@
 
         <article id="C1" class="dataset frame" aria-labelledby="C1-heading">
           <h4 id="C1-heading">C1. Synthetic GenAI data</h4>
-            <p><strong>Overview.</strong> Synthetic light curves produced by the ASTRAI GenAI pipeline to augment coverage where observations are sparse.
-            Paired <code>.npy</code> files provide time series and labels; releases will ship with transparent generation settings.</p>
+            <p><strong>Overview.</strong> Synthetic light curves produced by the ASTRAI GenAI model to augment coverage where observations are sparse.
+            Paired <code>.parquet</code> files provide light time series; releases will ship with transparent generation settings.</p>
             <p class="muted">Intended use: data augmentation, controlled experiments on cadence/noise, and benchmarking generalisation.</p>
 
           <h5 class="visually-hidden">Primary files</h5>
             <div class="file-strip" aria-label="Primary files">
               <div class="file-item">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
-                <a href="/resources/datasets/C1/synthetic_series.npy" download class="name">synthetic_series.npy</a>
-                <span class="meta">· TBD</span>
-                <a class="hash" href="/resources/datasets/C1/checksums.txt">SHA-256</a>
-              </div>
-              <div class="file-item">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-18-5 5h3v6h4V7h3l-5-5z"/></svg>
-                <a href="/resources/datasets/C1/synthetic_labels.npy" download class="name">synthetic_labels.npy</a>
-                <span class="meta">· TBD</span>
-                <a class="hash" href="/resources/datasets/C1/checksums.txt">SHA-256</a>
+                <a href="../resources/datasets/C1/generated_supernovae.parquet" download class="name">generated_supernovae.parquet</a>
+                <span class="meta">· 45.9&nbsp;MB </span>
+                <a class="hash" href="../resources/datasets/C1/checksums.txt">SHA-256</a>
               </div>
             </div>
             <p class="muted">Last updated: <time datetime="2025-08-23">2025-08-23</time></p>
@@ -396,7 +390,7 @@
 
           <h5>Preview (CSV)</h5>
           <p class="muted">First 5 rows from a tiny sample file.</p>
-          <div class="table-scroll" data-sample-url="/resources/datasets/samples/C1_sample.csv" data-max-cols="10" role="region" aria-label="C1 sample table" tabindex="0">
+          <div class="table-scroll" data-sample-url="../resources/datasets/samples/C1_sample.csv" data-max-cols="10" role="region" aria-label="C1_sample" tabindex="0">
             <em>Loading preview…</em>
           </div>
 
@@ -404,31 +398,31 @@
             <p class="fair-note">We’re progressively adding the artefacts below; items marked “Coming soon” will appear in the next releases.</p>
 
             <ul class="fair-checklist">
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11V6h-2v8h7v-2Z"/></svg></span>
                 <span class="name">Metadata record</span> <span class="sep">·</span>
-                <a href="/resources/datasets/C1/metadata.json">metadata.json</a>
+                <a href="../resources/datasets/C1/metadata.json">metadata.json</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 3h16v2H4zm0 4h16v2H4zm0 4h10v2H4zm0 4h10v2H4z"/></svg></span>
                 <span class="name">README</span> <span class="sep">·</span>
-                <a href="/resources/datasets/C1/README.md">README.md</a>
+                <a href="../resources/datasets/C1/README.md">README.md</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h10v2H3z"/></svg></span>
                 <span class="name">Data dictionary</span> <span class="sep">·</span>
-                <a href="/resources/datasets/C1/dictionary.csv">dictionary.csv</a>
+                <a href="../resources/datasets/C1/dictionary.csv">dictionary.csv</a>
                 <span class="state"></span>
               </li>
 
-              <li class="fair-item" data-status="soon">
+              <li class="fair-item" data-status="available">
                 <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 9l10 6 10-6-10-6Zm0 8L2 17l10 6 10-6-10-6Z"/></svg></span>
                 <span class="name">Provenance &amp; methods</span> <span class="sep">·</span>
-                <a href="/resources/datasets/C1/provenance.md">provenance.md</a>
+                <a href="../resources/datasets/C1/provenance.md">provenance.md</a>
                 <span class="state"></span>
               </li>
 
