@@ -27,7 +27,7 @@
 
   <main class="container resources-page">
     <h1>ASTRAI Resource Hub</h1>
-    <p class="lede">
+    <p class="lede" style="text-align: justify">
       Welcome to the ASTRAI Resource Hub. Here you’ll find <strong>datasets</strong> (physical models, real observations, and GenAI simulations),
       <strong>source code</strong>, and <strong>publications</strong> produced by the project. Each release aims to be <em>FAIR</em>—findable,
       accessible, interoperable, and reusable—so you can reproduce results, benchmark your own methods, and build on this work responsibly.
@@ -91,7 +91,7 @@
     <!-- Datasets -->
     <section id="datasets" aria-labelledby="datasets-heading">
       <h2 id="datasets-heading">Datasets</h2>
-        <p>
+        <p style="text-align: justify">
           ASTRAI datasets are grouped into three categories: <strong>Physical Simulations</strong> (A),
           <strong>Real Supernova Observations</strong> (B), and <strong>GenAI Simulator</strong> (C).
           Each dataset comes with a minimal <em>open sample</em> (CSV, 5 rows) for quick inspection and the full files in compact formats (e.g. <code>.parquet</code>) for research use.
@@ -107,7 +107,7 @@
 
         <article id="A1" class="dataset frame" aria-labelledby="A1-heading">
           <h4 id="A1-heading">A1. Physical models (4-parameters)</h4>
-            <p><strong>Overview.</strong> Semi-analytic explosions with four core parameters controlling energy, radius, ejecta mass, and radioactive contribution.
+            <p style="text-align: justify"><strong>Overview.</strong> Semi-analytic explosions with four core parameters controlling energy, radius, ejecta mass, and radioactive contribution.
             The release includes time-dependent observables  plus generation metadata.</p>
             <p class="muted">Intended use: parameter-recovery benchmarks, uncertainty calibration, and sanity checks against semi-analytic expectations.</p>
           <h5 class="visually-hidden">Primary files</h5>
@@ -129,7 +129,7 @@
 
 
           <h5>Preview (CSV)</h5>
-          <p class="muted">First 5 rows from a tiny sample file for curves; the full dataset is available via the csv download above.</p>
+          <p class="muted" style="text-align: justify">First 5 rows from a tiny sample file for curves; the full dataset is available via the csv download above.</p>
           <div class="table-scroll" data-sample-url="../resources/datasets/samples/A1_curves_sample.csv" data-max-cols="10" role="region" aria-label="A1 sample curve table" tabindex="0">
             <em>Loading preview…</em>
           </div>
@@ -202,7 +202,7 @@
 
         <article id="A2" class="dataset frame" aria-labelledby="A2-heading">
           <h4 id="A2-heading">A2. Physical models (7-parameters)</h4>
-            <p><strong>Overview.</strong> An expanded physical grid with seven parameters to capture a broader range of progenitor and CSM scenarios.
+            <p style="text-align: justify"><strong>Overview.</strong> An expanded physical grid with seven parameters to capture a broader range of progenitor and CSM scenarios.
             Useful for ablation studies and robustness tests when moving from compact to richer physical descriptions.</p>
             <p class="muted">Intended use: stress-testing model generalisation and examining parameter identifiability under increased realism.</p>
           <h5 class="visually-hidden">Primary files</h5>
@@ -292,7 +292,7 @@
 
         <article id="B1" class="dataset frame" aria-labelledby="B1-heading">
           <h4 id="B1-heading">B1. Real observations</h4>
-            <p><strong>Overview.</strong> Curated multi-band observations with cadence, passbands, uncertainty model, and basic quality flags.
+            <p style="text-align: justify"><strong>Overview.</strong> Curated multi-band observations with cadence, passbands, uncertainty model, and basic quality flags.
             Where possible, records are mapped to standard naming and include minimal provenance notes.</p>
             <p class="muted">Intended use: evaluating methods trained on synthetic data, domain shift studies, and end-to-end validation on real light curves.</p>
 
@@ -372,7 +372,7 @@
 
         <article id="C1" class="dataset frame" aria-labelledby="C1-heading">
           <h4 id="C1-heading">C1. Synthetic GenAI data</h4>
-            <p><strong>Overview.</strong> Synthetic light curves produced by the ASTRAI GenAI model to augment coverage where observations are sparse.
+            <p style="text-align: justify"><strong>Overview.</strong> Synthetic light curves produced by the ASTRAI GenAI model to augment coverage where observations are sparse.
             Paired <code>.parquet</code> files provide light time series; releases will ship with transparent generation settings.</p>
             <p class="muted">Intended use: data augmentation, controlled experiments on cadence/noise, and benchmarking generalisation.</p>
 
@@ -452,7 +452,7 @@
     <!-- Source Code -->
     <section id="code" aria-labelledby="code-heading">
       <h2 id="code-heading">Source Code</h2>
-        <p class="fair-note">
+        <p class="fair-note" style="text-align: justify">
           <strong>Heads up:</strong> FAIR artefacts are being published in stages. Items marked “Coming soon” will appear in the next updates;
           “External” links point to project-controlled sources (e.g., GitHub or a data catalogue) when appropriate.
         </p>
@@ -571,7 +571,7 @@
           <li class="pub-item" data-kind="diagrams" data-status="published">
             <div class="pub-head">
               <span class="pub-title"><a href="/resources/diagrams/generation_network_architecture_v1.pdf" target="_blank" rel="noopener">Generative pipeline (v1, PDF)</a></span>
-              <span class="pub-state" aria-label="Status: work in progress"></span>
+              <span class="pub-state" aria-label="Status: published"></span>
             </div>
             <ul class="pub-meta">
               <li><span class="label">Format:</span> PDF</li>
@@ -600,7 +600,7 @@
           <li class="pub-item" data-kind="findings" data-status="wip">
             <div class="pub-head">
               <span class="pub-title"><a href="/resources/findings/benchmark_snapshot_v1.md">Benchmark snapshot — early metrics</a></span>
-              <span class="pub-state" aria-label="Status: work in progress"></span>
+              <span class="pub-state" aria-label="Status: published"></span>
             </div>
             <ul class="pub-meta">
               <li><span class="label">Theme:</span> Timing/quality</li>
@@ -615,12 +615,12 @@
     <!-- Licence & Citation -->
     <section id="licence-citation" aria-labelledby="licence-heading">
       <h2 id="licence-heading">Licence &amp; Citation</h2>
-        <p>
+        <p style="text-align: justify">
           To support ethical reuse and proper attribution, ASTRAI provides default licensing and citation templates for datasets and software.
           <strong>Important:</strong> if a dataset or repository includes its own <code>LICENSE</code>, <code>citation.txt</code>, or DOI,
           that local file <em>overrides the defaults</em> below. Always prefer the per-item files when present.
         </p>
-        <p class="muted">
+        <p class="muted" style="color: #154c79;">
           If you adapt the datasets or code, indicate changes and, where practical, link back to this hub so others can find the original materials.
         </p>
 
