@@ -2,9 +2,7 @@ If you use ASTRAI in your research, please cite both the software and our submit
 
 [1] Grasso, A.G. (2025). ASTRAI: Advanced Supernova Transient Research with Artificial Intelligence. 
     Submitted to Journal, under review.
-    
-[2] Grasso, A.G. (2025). ASTRAI Software Framework. Koexai.
-    URL: https://astrai.koexai.com/
+   
 
 BibTeX Format:
 @article{grasso2025astrai,
@@ -13,12 +11,4 @@ BibTeX Format:
   year = {2025},
   journal = {Submitted to Journal},
   note = {Under review}
-}
-
-@software{grasso2025,
-  title = {ASTRAI Software Framework},
-  author = {Naso, Luca},
-  year = {2025},
-  url = {https://astrai.koexai.com/},
-  publisher = {Koexai}
 }
