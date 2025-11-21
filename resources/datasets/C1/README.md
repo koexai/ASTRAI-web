@@ -140,10 +140,9 @@ Generated using curve-to-curve diffusion model.
 
 ### Contact Information
 
-**Dataset Creator**: Luca Naso  
-**Institution**: Koexai Srl 
-**Email**:luca@koexai.com  
-**Role**: Principal Investigator
+- **Project**: ASTRAI (Koexai S.r.l.)
+- **Email**: [info@koexai.com]
+- **LinkedIn**:[https://www.linkedin.com/company/koexai/]
 
 ### Acknowledgments
 

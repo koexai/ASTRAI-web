@@ -164,7 +164,7 @@ Parameter ranges are physically motivated and span typical supernova progenitor 
 ### BibTeX Entry
 ```bibtex
 @dataset{sn_lc_421d_2025,
-  author = {[Your Name]},
+  author = {[Naso, Luca]},
   title = {Synthetic Supernova Light Curves Dataset - 421 Days},
   year = {2025},
   version = {1.0.0},
@@ -175,9 +175,8 @@ Parameter ranges are physically motivated and span typical supernova progenitor 
 
 ## Contact
 
-- **Maintainer**: [Your Name]
-- **Email**: [your.email@koexai.com]
-- **Organization**: Koexai Srl
-- **Website**: https://koexai.com
+- **Project**: ASTRAI (Koexai S.r.l.)
+- **Email**: [info@koexai.com]
+- **LinkedIn**:[https://www.linkedin.com/company/koexai/]
 
 For questions about the dataset, model details, or usage recommendations, please contact the maintainer.

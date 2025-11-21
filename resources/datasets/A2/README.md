@@ -121,20 +121,11 @@ The seven physical parameters characterize:
 ### BibTeX Entry
 ```bibtex
 @dataset{sn_lc_syn_2025,
-  author = {[Your Name]},
-  title = {Synthetic Supernova Light Curves Dataset},
-  year = {2025},
-  version = {1.0.0},
-  publisher = {Koexai Srl},
-  note = {Approximately 10,000 synthetic supernova light curves with physical parameters}
-}
-```
+  author = {[Naso, Luca
 
 ## Contact
-
-- **Maintainer**: [Your Name]
-- **Email**: [your.email@koexai.com]
-- **Organization**: Koexai Srl
-- **Website**: https://koexai.com
+- **Project**: ASTRAI (Koexai S.r.l.)
+- **Email**: [info@koexai.com]
+- **LinkedIn**:[https://www.linkedin.com/company/koexai/]
 
 For questions about the dataset, model details, or usage recommendations, please contact the maintainer.
