@@ -166,6 +166,6 @@ For each parameter set:
 ## Contact for Methods Questions
 
 For detailed questions about the modeling approach, parameter choices, or validation procedures:
-- **Technical Contact**: [your.email@koexai.com]
+- **Technical Contact**: [info@koexai.com]
 - **Subject Line**: "SN 421-Day Dataset - Methods Inquiry"
 - **Documentation**: Additional technical documentation available upon request

@@ -159,12 +159,12 @@ Parameter ranges are physically motivated and span typical supernova progenitor 
 ## How to Cite
 
 ### Plain Text Citation
-[Your Name]. (2025). Synthetic Supernova Light Curves Dataset - 421 Days (Version 1.0.0). Koexai Srl.
+[Koexai S.r.l.]. (2025). Synthetic Supernova Light Curves Dataset - 421 Days (Version 1.0.0). Koexai Srl.
 
 ### BibTeX Entry
 ```bibtex
 @dataset{sn_lc_421d_2025,
-  author = {[Naso, Luca]},
+  author = {[Koexai S.r.l.]},
   title = {Synthetic Supernova Light Curves Dataset - 421 Days},
   year = {2025},
   version = {1.0.0},
