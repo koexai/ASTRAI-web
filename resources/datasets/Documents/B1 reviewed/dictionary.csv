@@ -1,0 +1,2 @@
+Column,Type,Unit,Allowed/Range,Description
+0-420,float64,log10(erg/s),0.663 to 7.831 or NaN,"Bolometric luminosity time series. Each column (0 through 420) represents a sequential time step in the supernova light curve evolution. Values are the logarithm (base 10) of bolometric luminosity measured in erg/s. Each row corresponds to a different supernova event. NaN values indicate missing observations at that particular time step for the given supernova. The dataset contains 72 supernova light curves with observations across up to 421 time steps."

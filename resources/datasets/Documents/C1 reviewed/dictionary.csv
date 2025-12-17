@@ -1,0 +1,16 @@
+Column,Type,Unit,Time_Hours,Time_Days,Allowed_Range,Description
+0,float,luminosity_units,0,0.000,real_numbers,Luminosity measurement at t=0 hours (supernova start)
+1,float,luminosity_units,6,0.250,real_numbers,Luminosity measurement at t=6 hours
+2,float,luminosity_units,12,0.500,real_numbers,Luminosity measurement at t=12 hours
+3,float,luminosity_units,18,0.750,real_numbers,Luminosity measurement at t=18 hours
+4,float,luminosity_units,24,1.000,real_numbers,Luminosity measurement at t=24 hours (day 1)
+5,float,luminosity_units,30,1.250,real_numbers,Luminosity measurement at t=30 hours
+10,float,luminosity_units,60,2.500,real_numbers,Luminosity measurement at t=60 hours
+25,float,luminosity_units,150,6.250,real_numbers,Luminosity measurement at t=150 hours
+50,float,luminosity_units,300,12.500,real_numbers,Luminosity measurement at t=300 hours
+100,float,luminosity_units,600,25.000,real_numbers,Luminosity measurement at t=600 hours
+200,float,luminosity_units,1200,50.000,real_numbers,Luminosity measurement at t=1200 hours
+400,float,luminosity_units,2400,100.000,real_numbers,Luminosity measurement at t=2400 hours
+800,float,luminosity_units,4800,200.000,real_numbers,Luminosity measurement at t=4800 hours
+1200,float,luminosity_units,7200,300.000,real_numbers,Luminosity measurement at t=7200 hours
+1600,float,luminosity_units,9600,400.000,real_numbers,Luminosity measurement at t=9600 hours (final point)

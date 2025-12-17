@@ -155,7 +155,7 @@ The four physical parameters characterize essential supernova properties:
 ### BibTeX Entry
 ```bibtex
 @dataset{sn_lc_421d_2025,
-  author = {[Koexai S.r.l.]},
+  author = {[Cosentino, S.]},
   title = {Synthetic Supernova Light Curves Dataset - 421 Days},
   year = {2025},
   version = {1.0.0},
