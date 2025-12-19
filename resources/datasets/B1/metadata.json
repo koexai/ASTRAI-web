@@ -1,0 +1,69 @@
+{
+  "title": "Real Supernova Bolometric Light Curves Dataset",
+
+  "version": "1.0.0",
+  "dates": {
+    "created": "2024-12-01",
+    "released": "2025-08-30",
+    "lastUpdated": "2025-08-30"
+  },
+  "identifier": {
+    "type": "internal",
+    "value": "KOEXAI-SNE-BOL-74-v1.0"
+  },
+  "citation": {
+    "text": "Koexai Srl (2025). Real Supernova Bolometric Light Curves Dataset (Version 1.0.0). Koexai S.r.l. Dataset ID: KOEXAI-SNE-BOL-74-v1.0",
+    "bibtex": "@dataset{koexai2024sne,\n  author = {Koexai Srl},\n  title = {Real Supernova Bolometric Light Curves Dataset},\n  year = {2025},\n  version = {1.0.0},\n  publisher = {Koexai Srl},\n  identifier = {KOEXAI-SNE-BOL-74-v1.0}\n}"
+  },
+  "abstract": "This dataset contains 74 real supernova bolometric light curves collected from observational astronomy data. Each light curve represents the temporal evolution of bolometric luminosity across multiple time steps. The dataset is structured as a time series with 72 supernova events (rows) and 421 temporal observations (columns). Values represent the logarithm (base 10) of bolometric luminosity measured in erg/s. This dataset was compiled for the ASTRAI project, specifically for training and validation of deep learning models (diffusion models) for synthetic supernova light curve generation. The data exhibits realistic observational characteristics including irregular sampling, missing observations, and varying light curve coverage typical of real astronomical surveys.",
+  "keywords": [
+    "supernova",
+    "bolometric luminosity",
+    "light curves",
+    "time series",
+    "astrophysics",
+    "ASTRAI",
+    "observational astronomy",
+    "machine learning training data"
+  ],
+  "domain": "Astrophysics / Time-Domain Astronomy",
+  "purpose": "Training and validation dataset for machine learning models (specifically diffusion models) that generate synthetic supernova light curves. Part of the ASTRAI project funded by PNRR initiatives for AI applications in astrophysical research.",
+  "provenance": {
+    "sources": "Compiled from public supernova databases and astronomical surveys. Light curves were extracted from photometric observations and converted to bolometric luminosities using standard astrophysical corrections.",
+    "processing": "Data underwent quality filtering, outlier removal, temporal alignment, and logarithmic transformation. Missing observations retained as NaN to preserve realistic observational patterns.",
+    "derivations": "Bolometric luminosities derived from multi-band photometry using bolometric corrections and distance modulus calculations."
+  },
+  "structure": {
+    "formats": ["parquet"],
+    "encoding": "UTF-8",
+    "conventions": "Column indices 0-420 represent sequential time steps. NaN values indicate missing observations. Values are log10(luminosity) where luminosity is in erg/s.",
+    "relationships": "Single tabular structure where each row is an independent supernova event and columns represent the temporal dimension of observations."
+  },
+  "quality": {
+    "validation": "Visual inspection of light curve morphology, statistical outlier detection, consistency checks against known supernova physics (peak luminosity ranges, evolution timescales).",
+    "metrics": {
+      "n_samples": 74,
+      "n_timesteps": 421,
+      "value_range": "0.663 to 7.831 log10(erg/s)",
+      "completeness": "Highly variable - sparse sampling typical of real observations"
+    },
+    "limitations": [
+      "Missing observations: Many NaN values reflect realistic but incomplete temporal coverage",
+      "Selection bias: Compiled supernovae may not represent complete population statistics",
+      "Temporal alignment: Time steps are discretized and may not perfectly align across all supernovae",
+      "Not suitable for statistical population studies without accounting for observational biases",
+      "Limited to bolometric quantities - spectroscopic information not included"
+    ],
+    "usageGuidance": "Recommended for machine learning model training and validation. Suitable for testing algorithms' ability to handle sparse, irregular time series. Not recommended for direct astrophysical inference or population statistics without careful consideration of selection effects and completeness."
+  },
+  "access": {
+    "licence": "CC-BY-4.0",
+    "reuseGuidance": "Attribution required. Derivative works permitted. Commercial use allowed with proper citation.",
+    "contact": {
+      "name": "Koexai Srl",
+      "email": "info@koexai.com",
+      "role": "Dataset Maintainer"
+    },
+    "projectLink": "https://astrai.koexai.com"
+  }
+}

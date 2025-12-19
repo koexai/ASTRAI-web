@@ -1,0 +1,59 @@
+{
+  "title": "Synthetic Supernova Light Curves Dataset - 421 Days",
+  "creators": [
+    {
+      "name": "Stefano P. Cosentino",
+      "affiliation": "University of Catania",
+      "role": "Researcher at University of Catania"
+    },
+    {
+      "name": "Luca Naso",
+      "affiliation": "Koexai Srl",
+      "role": "CEO and Founder"
+    }
+  ],
+  "version": "1.0.0",
+  "dates": {
+    "created": "2025-08-29",
+    "released": "2025-08-29",
+    "lastUpdated": "2025-08-29"
+  },
+  "identifier": {
+    "type": "Internal",
+    "value": "CS-SF-NS-LC-421D-v1.0"
+  },
+  "citation": {
+    "text": "Koexai Srl (2025). Synthetic Supernova Light Curves Dataset - 421 Days (Version 1.0.0). Koexai Srl.",
+    "bibtex": "@dataset{cs_sf_ns_lc_421d_2025,\n  author = {Stefano P. Cosentino},\n  title = {Synthetic Supernova Light Curves Dataset - 421 Days},\n  year = {2025},\n  version = {1.0.0},\n  publisher = {Koexai Srl}\n}"
+  },
+  "abstract": "This dataset contains synthetic light curves generated using semi-analytical models for supernova research. Each light curve consists of 421 daily flux measurements covering 421 consecutive days of supernova evolution. The dataset includes four corresponding physical parameters for each simulated supernova: progenitor radius, mass, explosion energy, and nickel-56 percentage. The synthetic data is designed to support machine learning applications in supernova classification and parameter estimation studies with daily cadence observations.",
+  "keywords": ["supernova", "light curves", "synthetic data", "astrophysics", "semi-analytical models", "time series", "daily observations", "stellar physics"],
+  "domain": "Astrophysics",
+  "purpose": "Supporting machine learning research in supernova classification and physical parameter estimation with daily cadence data",
+  "provenance": {
+    "sources": "Generated using semi-analytical supernova models",
+    "processing": "Daily temporal sampling over 421-day observation period",
+    "derivations": "Four core physical parameters derived from progenitor models"
+  },
+  "structure": {
+    "formats": ["Parquet"],
+    "encoding": "UTF-8",
+    "conventions": "Time in days from explosion start (day 1 to day 421); flux values in arbitrary units; missing values coded as NaN",
+    "relationships": "light_curves.parquet and params.parquet linked by implicit row index"
+  },
+  "quality": {
+    "validation": "Model consistency checks applied; parameter ranges validated against physical constraints",
+    "metrics": {
+      "completeness": "100% - no missing light curves",
+      "temporal_coverage": "421 days per light curve",
+      "sampling_rate": "Daily uniform cadence"
+    },
+    "limitations": [
+      "Semi-analytical models may not capture all physical complexity",
+      "Parameter space limited to four core progenitor properties",
+      "No observational noise included in synthetic data",
+      "Daily sampling may miss rapid variability features"
+    ],
+    "usageGuidance": "Suitable for algorithm development with daily cadence data; not recommended for direct comparison with observational data without noise modeling"
+  }
+}

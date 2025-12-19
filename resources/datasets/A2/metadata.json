@@ -1,0 +1,58 @@
+{
+  "title": "Synthetic Supernova Light Curves Dataset with 7 parameters",
+  "creators": [
+    {
+      "name": "Stefano P. Cosentino",
+      "affiliation": "Univeristy of Catania",
+      "role": "Researcher at Univeristy of Catania"
+    },
+    {
+      "name": "Luca Naso",
+      "affiliation": "Koexai Srl",
+      "role": "CEO and Founder"
+    }
+  ],
+  "version": "1.0.0",
+  "dates": {
+    "created": "2025-08-29",
+    "released": "2025-08-29",
+    "lastUpdated": "2025-08-29"
+  },
+  "identifier": {
+    "type": "Internal",
+    "value": "CS-SN-NS-LC-SYN-v1.0"
+  },
+  "citation": {
+    "text": "Stefano P. Cosentino, Lauca Naso (2025). Synthetic Supernova Light Curves Dataset (Version 1.0.0). Koexai Srl.",
+    "bibtex": "@dataset{cs_sn_ns_lc_2025,\n  author = {Stefano P. Cosentino},\n  title = {Synthetic Supernova Light Curves Dataset with 7 parameters},\n  year = {2025},\n  version = {1.0.0},\n  publisher = {Koexai Srl}\n}"
+  },
+  "abstract": "This dataset contains 11,121 synthetic light curves generated using semi-analytical models for supernova research. Each light curve consists of 1,601 uniformly distributed temporal samples over 400 days with a 6-hour cadence. The dataset includes corresponding physical parameters for each simulated supernova: progenitor radius, mass and energy, nickel percentage, circumstellar medium radius and mass, and slope parameter. The synthetic data is designed to support machine learning applications in supernova classification and parameter estimation studies.",
+  "keywords": ["supernova", "light curves", "synthetic data", "astrophysics", "semi-analytical models", "time series", "stellar physics"],
+  "domain": "Astrophysics",
+  "purpose": "Supporting machine learning research in supernova classification and physical parameter estimation",
+  "provenance": {
+    "sources": "Generated using semi-analytical supernova models",
+    "processing": "Uniform temporal sampling at 6-hour intervals over 400-day period",
+    "derivations": "Seven physical parameters derived from progenitor and circumstellar medium models"
+  },
+  "structure": {
+    "formats": ["Parquet"],
+    "encoding": "UTF-8",
+    "conventions": "Time in days from explosion start; flux values in arbitrary units; missing values coded as NaN",
+    "relationships": "light_curves.parquet and params.parquet linked by implicit row index"
+  },
+  "quality": {
+    "validation": "Model consistency checks applied; parameter ranges validated against physical constraints",
+    "metrics": {
+      "completeness": "100% - no missing light curves",
+      "temporal_coverage": "400 days per light curve",
+      "sampling_rate": "6 hours uniform cadence"
+    },
+    "limitations": [
+      "Semi-analytical models may not capture all physical complexity",
+      "Parameter space limited to specific progenitor and CSM configurations",
+      "No observational noise included in synthetic data"
+    ],
+    "usageGuidance": "Suitable for algorithm development and testing; not recommended for direct comparison with observational data without noise modeling"
+  }
+}

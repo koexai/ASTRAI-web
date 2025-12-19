@@ -1,0 +1,10 @@
+If you use ASTRAI in your research, please cite both the software and our submitted paper:
+
+[1] Puglisi, G. (2026). ASTRAI II: Advanced Supernova Transient Research with Artificial Intelligence on 7 parameters 
+
+BibTeX Format:
+@article{puglisi2025astrai,
+  title = {ASTRAI II: Advanced Supernova Transient Research with Artificial Intelligence on 7 parameters},
+  author = {Puglisi, Giuseppe},
+  year = {2026}
+}

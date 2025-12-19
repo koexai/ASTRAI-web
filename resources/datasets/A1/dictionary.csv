@@ -1,0 +1,10 @@
+File,Column,Type,Unit,Range,Description
+light_curves.parquet,day_1,float,arbitrary,"> 0","Flux measurement at day 1 post-explosion"
+light_curves.parquet,day_2,float,arbitrary,"> 0","Flux measurement at day 2 post-explosion"
+light_curves.parquet,day_3,float,arbitrary,"> 0","Flux measurement at day 3 post-explosion"
+light_curves.parquet,...,float,arbitrary,"> 0","Flux measurements at intermediate days (day 4 through day 420)"
+light_curves.parquet,day_421,float,arbitrary,"> 0","Flux measurement at day 421 post-explosion"
+params.parquet,radius,float,solar_radii,"> 0","Radius of the progenitor star before explosion"
+params.parquet,mass,float,solar_masses,"> 0","Total mass of the progenitor star"
+params.parquet,energy,float,ergs,"> 0","Explosion energy imparted to the ejecta"
+params.parquet,nickel,float,percent,"0-100","Percentage of nickel-56 in the ejecta mass"
