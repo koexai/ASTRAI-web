@@ -548,6 +548,7 @@
       </section>
 
       <!-- Diagrams & Technical Notes -->
+      <!--
       <section id="pub-diagrams" aria-labelledby="pub-diagrams-heading" class="pub-group" data-group="diagrams">
         <h3 id="pub-diagrams-heading">Diagrams &amp; Technical Notes</h3>
         <ul class="pub-list">
@@ -587,6 +588,283 @@
           </li>
         </ul>
       </section>
+      -->
+      <!-- Diagrams & Technical Notes -->                                                   
+      <section id="pub-diagrams" aria-labelledby="pub-diagrams-heading" class="pub-group"   
+      data-group="diagrams">                                                                
+        <h3 id="pub-diagrams-heading">Diagrams &amp; Technical Notes</h3>                   
+        <ul class="pub-list">                                                               
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">                                                          
+              <span class="pub-title"><a href="/resources/diagrams/plot_EDA_4params.pdf"    
+      target="_blank" rel="noopener">Figure 1 — Parameter effect on LC morphology,          
+      4-parameter dataset (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Four panes show how Radius, Mass, Energy and Nickel mass shape
+      light-curve morphology in the 4-parameter synthetic dataset.</p>                      
+          </li>       
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/plot_EDA_7params.pdf"    
+      target="_blank" rel="noopener">Figure 2 — Mean parameter effect on LC, 7-parameter    
+      dataset (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>    
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>                               
+            </ul>
+            <p class="muted">Mean effect of ±0.5/1.0/1.5 σ parameter variations on the LC   
+      for the 7-parameter model, with a zoom on the first 10 days after the explosion.</p>  
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/effect_of_params.pdf"    
+      target="_blank" rel="noopener">Figure 3 — Mean variance of parameter effects across   
+      epochs (PDF)</a></span>                                                               
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Log-log variance of each parameter's contribution to the LC
+      across epochs (7-parameter model), highlighting which features are constrained at     
+      early vs late times.</p>
+          </li>                                                                             
+                      
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/plot_sampling_LSST.pdf"  
+      target="_blank" rel="noopener">Figure 4 — Non-uniform LSST sampling simulation        
+      (PDF)</a></span>                                                                      
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Decomposition of the observation-mask pipeline (daylight, Moon,
+       Sun, weather, combined mask, sampling and lag) used to emulate realistic LSST        
+      cadence.</p>    
+          </li>                                                                             
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">                                                          
+              <span class="pub-title"><a 
+      href="/resources/diagrams/plot_LC_reconstruction.pdf" target="_blank"                 
+      rel="noopener">Figure 5 — LC reconstruction example (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Synthetic LC after undersampling and corruption, fed through
+      PPReg → LCGen to obtain the reconstructed curve.</p>                                  
+          </li>       
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a                                                    
+      href="/resources/diagrams/schema_full_architecture_view.png" target="_blank"          
+      rel="noopener">Figure 6 — Full ASTRAI neural-network architecture (PNG)</a></span>    
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>    
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PNG</li>
+              <li><span class="label">Version:</span> v1</li>                               
+            </ul>
+            <p class="muted">End-to-end schema: Original LC → Preproc/Augment → PPReg →     
+      LCGen → Generated LC, with characterisation, generation and reconstruction losses.</p>
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">
+              <span class="pub-title"><a                                                    
+      href="/resources/diagrams/schema_block_details.jpeg" target="_blank"                  
+      rel="noopener">Figure 7 — PPReg and LCGen block details (JPEG)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> JPEG</li>                              
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Detailed view of the residual MLP blocks (Linear + LeakyReLU +
+      BatchNorm) chosen for the PPReg (left) and LCGen (right) after the hyperparameter     
+      search.</p>     
+          </li>                                                                             
+                      
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/schema_model_unified.pdf"
+       target="_blank" rel="noopener">Figure 8a — Unified-model PPReg architecture          
+      (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>    
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>                               
+            </ul>
+            <p class="muted">Single multi-target PPReg variant: one MLP regresses all       
+      physical parameters at once before LCGen.</p>                                         
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">
+              <span class="pub-title"><a                                                    
+      href="/resources/diagrams/schema_model_ensemble.pdf" target="_blank"                  
+      rel="noopener">Figure 8b — Ensemble-model PPReg architecture (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Ensemble PPReg variant: one specialised MLP per physical       
+      parameter, then aggregated into the LCGen input.</p>                                  
+          </li>                                                                             
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/plot_RMSE_epochs.pdf"    
+      target="_blank" rel="noopener">Figure 9 — RMSE on generated LCs across epochs         
+      (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Per-epoch RMSE for generation, reconstruction and
+      reconstruction+noise pipelines, showing higher error around the peak and stable       
+      accuracy on the tail.</p>
+          </li>                                                                             
+                      
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2000CB_inference.pdf" 
+      target="_blank" rel="noopener">Figure 10 — SN 2000cb inference (PDF)</a></span>       
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Char→Gen reconstruction of SN 2000cb against observed
+      bolometric LC, with residuals and inferred 4-parameter values.</p>                    
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2006AU_inference.pdf"  
+      target="_blank" rel="noopener">Figure 11 — SN 2006au inference (PDF)</a></span>       
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>                                                                          
+            <ul class="pub-meta">                                                           
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>                               
+            </ul>     
+            <p class="muted">Char→Gen reconstruction of SN 2006au against observed          
+      bolometric LC, with residuals and inferred parameters.</p>
+          </li>                                                                             
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">                                                          
+              <span class="pub-title"><a href="/resources/diagrams/SN2006V_inference.pdf" 
+      target="_blank" rel="noopener">Figure 12 — SN 2006V inference (PDF)</a></span>        
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Char→Gen reconstruction of SN 2006V against observed bolometric
+       LC, with residuals and inferred parameters.</p>                                      
+          </li>       
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2009E_inference.pdf" 
+      target="_blank" rel="noopener">Figure 13 — SN 2009E inference (PDF)</a></span>        
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>                               
+            </ul>
+            <p class="muted">Char→Gen reconstruction of SN 2009E against observed bolometric
+       LC, with residuals and inferred parameters.</p>                                      
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2018HNA_inference.pdf" 
+      target="_blank" rel="noopener">Figure 14 — SN 2018hna inference (PDF)</a></span>      
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>                               
+            </ul>
+            <p class="muted">Char→Gen reconstruction of SN 2018hna against observed         
+      bolometric LC, with residuals and inferred parameters.</p>                            
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2020ABAH_inference.pdf"
+       target="_blank" rel="noopener">Figure 15 — SN 2020bah inference (PDF)</a></span>     
+              <span class="pub-state" aria-label="Status: published"></span>                
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+            </ul>                                                                           
+            <p class="muted">Char→Gen reconstruction of SN 2020bah against observed
+      bolometric LC, with residuals and inferred parameters.</p>                            
+          </li>
+                                                                                            
+          <li class="pub-item" data-kind="diagrams" data-status="available">                
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2021AATD_inference.pdf"
+       target="_blank" rel="noopener">Figure 16 — SN 2021aatd inference (PDF)</a></span>    
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>                                                                          
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>                               
+              <li><span class="label">Version:</span> v1</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Char→Gen reconstruction of SN 2021aatd against observed bolometric LC, with residuals
+       and inferred parameters.</p>
+          </li>
+
+          <li class="pub-item" data-kind="diagrams" data-status="available">
+            <div class="pub-head">
+              <span class="pub-title"><a href="/resources/diagrams/SN2021WUN_inference.pdf" target="_blank" 
+      rel="noopener">Figure 17 — SN 2021wun inference (PDF)</a></span>
+              <span class="pub-state" aria-label="Status: published"></span>
+            </div>
+            <ul class="pub-meta">
+              <li><span class="label">Format:</span> PDF</li>
+              <li><span class="label">Version:</span> v1</li>
+            </ul>
+            <p class="muted">Char→Gen reconstruction of SN 2021wun against observed bolometric LC, with residuals
+      and inferred parameters.</p>
+          </li>
+
+        </ul>
+      </section>
+
 
 
       <!-- 
@@ -644,19 +922,32 @@
         </p>
 
         <h4>Recommended dataset citation (plain text)</h4>
-        <pre class="cite">ASTRAI Project (2025). ASTRAI Light Curves — Physical models (4-parameters), v0.1.
-Koexai. URL: https://astrai.koexai.com/resources/  Licence: CC BY 4.0.</pre>
+        <pre class="cite">Andrea Claudio Grasso, Vincenzo Del Zoppo, Alessio Mezzina, Marco Cataldo, Giuseppe Puglisi, Fabio Spampinato, Stefano Pio Cosentino, Maria Letizia Pumo, Luca Naso,
+        A dual AI framework for the automatic characterisation of low-interacting H-rich SNe within the ASTRAI (Advanced Supernova Transient Research with Artificial Intelligence) project,
+        Astronomy and Computing,
+        Volume 56,
+        2026,
+        101116,
+        ISSN 2213-1337,
+        https://doi.org/10.1016/j.ascom.2026.101116.
+        (https://www.sciencedirect.com/science/article/pii/S2213133726000582)
+        Abstract: Rapidly increasing data volumes from high cadence surveys, and the still larger streams anticipated from the Legacy Survey of Space and Time (LSST), pose a major challenge for the timely and accurate analysis of transient phenomena such as core-collapse Supernovae (CC SNe). Traditional approaches based on semi-analytical or hydrodynamical models, while physically grounded, hinder the large-scale characterisation of these transient events. We present a novel machine learning approach, focusing on low-interacting hydrogen-rich (H-rich) SNe. This approach encompasses two stages: a generative model produces synthetic light curves (LCs) to augment sparse or incomplete datasets, and deep learning models characterise LCs by regressing fundamental physical parameters. The characterisation stage uses an ensemble of neural networks, each specialised to regress a single parameter, improving interpretability, modularity and robustness. To account for observational systematics, we employ data augmentation strategies that mimic realistic noise and cadence conditions. Benchmarking against semi-analytical and hydrodynamical simulations demonstrates that the proposed generative method recovers LCs with error comparable to or smaller than observational noise, while achieving inference speeds orders of magnitude faster than traditional modelling pipelines (with a throughput beyond 105 LCs per second on a single GPU hardware). This could enable large-scale characterisation of H-rich SNe within modern and upcoming survey data streams, preparing the scientific community to handle the massive LCs flow expected from LSST.
+        Keywords: Supernovae; Transient astrophysics; LSST; Light curves; Deep learning; GenAI; Synthetic 
+        dataURL: https://astrai.koexai.com/resources/  Licence: CC BY 4.0.</pre>
 
         <h4>Dataset BibTeX (template)</h4>
-        <pre class="cite">@dataset{astrai_A1_v0_1_2025,
-      author  = {Koexai Srl},
-      title   = {ASTRAI Light Curves — Physical models (4-parameters)},
-      year    = {2025},
-      version = {0.1},
-      url     = {https://astrai.koexai.com/resources/},
-      license = {CC BY 4.0},
-      note    = {Replace with DOI when available}
-    }</pre>
+        <pre class="cite">@article{GRASSO2026101116,
+        title = {A dual AI framework for the automatic characterisation of low-interacting H-rich SNe within the ASTRAI (Advanced Supernova Transient Research with Artificial Intelligence) project},
+        journal = {Astronomy and Computing},
+        volume = {56},
+        pages = {101116},
+        year = {2026},
+        issn = {2213-1337},
+        doi = {https://doi.org/10.1016/j.ascom.2026.101116},
+        url = {https://www.sciencedirect.com/science/article/pii/S2213133726000582},
+        author = {Andrea Claudio Grasso and Vincenzo {Del Zoppo} and Alessio Mezzina and Marco Cataldo and Giuseppe Puglisi and Fabio Spampinato and Stefano Pio Cosentino and Maria Letizia Pumo and Luca Naso},
+        keywords = {Supernovae, Transient astrophysics, LSST, Light curves, Deep learning, GenAI, Synthetic data},
+        abstract = {Rapidly increasing data volumes from high cadence surveys, and the still larger streams anticipated from the Legacy Survey of Space and Time (LSST), pose a major challenge for the timely and accurate analysis of transient phenomena such as core-collapse Supernovae (CC SNe). Traditional approaches based on semi-analytical or hydrodynamical models, while physically grounded, hinder the large-scale characterisation of these transient events. We present a novel machine learning approach, focusing on low-interacting hydrogen-rich (H-rich) SNe. This approach encompasses two stages: a generative model produces synthetic light curves (LCs) to augment sparse or incomplete datasets, and deep learning models characterise LCs by regressing fundamental physical parameters. The characterisation stage uses an ensemble of neural networks, each specialised to regress a single parameter, improving interpretability, modularity and robustness. To account for observational systematics, we employ data augmentation strategies that mimic realistic noise and cadence conditions. Benchmarking against semi-analytical and hydrodynamical simulations demonstrates that the proposed generative method recovers LCs with error comparable to or smaller than observational noise, while achieving inference speeds orders of magnitude faster than traditional modelling pipelines (with a throughput beyond 105 LCs per second on a single GPU hardware). This could enable large-scale characterisation of H-rich SNe within modern and upcoming survey data streams, preparing the scientific community to handle the massive LCs flow expected from LSST.}</pre>
         <p class="muted">Tip: if a dataset provides its own <code>citation.txt</code> or DOI, please use that instead of the template above.</p>
       </section>
 
